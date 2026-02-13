@@ -1,0 +1,1912 @@
+[
+  {
+    "item_id": "yr3_frac_compare_001_d1_5029",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/3 or 1/3?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 2,
+      "num2": 1,
+      "denom1": 3,
+      "denom2": 3
+    },
+    "correct_answer": "2/3",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 3, we compare numerators: 2 > 1, so 2/3 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_2099",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 5/6 or 3/6?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 5,
+      "num2": 3,
+      "denom1": 6,
+      "denom2": 6
+    },
+    "correct_answer": "5/6",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 6, we compare numerators: 5 > 3, so 5/6 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_5187",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 5/8 or 7/8?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 5,
+      "num2": 7,
+      "denom1": 8,
+      "denom2": 8
+    },
+    "correct_answer": "7/8",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 8, we compare numerators: 7 > 5, so 7/8 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_6070",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 3/8 or 6/8?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 3,
+      "num2": 6,
+      "denom1": 8,
+      "denom2": 8
+    },
+    "correct_answer": "6/8",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 8, we compare numerators: 6 > 3, so 6/8 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_1147",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/10 or 3/10?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 1,
+      "num2": 3,
+      "denom1": 10,
+      "denom2": 10
+    },
+    "correct_answer": "3/10",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 10, we compare numerators: 3 > 1, so 3/10 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_3704",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/6 or 1/6?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 2,
+      "num2": 1,
+      "denom1": 6,
+      "denom2": 6
+    },
+    "correct_answer": "2/6",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 6, we compare numerators: 2 > 1, so 2/6 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_8286",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 3/7 or 4/7?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 3,
+      "num2": 4,
+      "denom1": 7,
+      "denom2": 7
+    },
+    "correct_answer": "4/7",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 7, we compare numerators: 4 > 3, so 4/7 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_6374",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/4 or 3/4?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 2,
+      "num2": 3,
+      "denom1": 4,
+      "denom2": 4
+    },
+    "correct_answer": "3/4",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 4, we compare numerators: 3 > 2, so 3/4 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_2002",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 4/5 or 1/5?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 4,
+      "num2": 1,
+      "denom1": 5,
+      "denom2": 5
+    },
+    "correct_answer": "4/5",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 5, we compare numerators: 4 > 1, so 4/5 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_8507",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 3/7 or 5/7?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 3,
+      "num2": 5,
+      "denom1": 7,
+      "denom2": 7
+    },
+    "correct_answer": "5/7",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 7, we compare numerators: 5 > 3, so 5/7 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_3443",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 9/11 or 8/11?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 9,
+      "num2": 8,
+      "denom1": 11,
+      "denom2": 11
+    },
+    "correct_answer": "9/11",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 11. Compare numerators: 9 > 8",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_3345",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/3 or 2/3?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 1,
+      "num2": 2,
+      "denom1": 3,
+      "denom2": 3
+    },
+    "correct_answer": "2/3",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 3. Compare numerators: 2 > 1",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_3611",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 6/16 or 2/16?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 6,
+      "num2": 2,
+      "denom1": 16,
+      "denom2": 16
+    },
+    "correct_answer": "6/16",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 16. Compare numerators: 6 > 2",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_2060",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/3 or 1/3?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 2,
+      "num2": 1,
+      "denom1": 3,
+      "denom2": 3
+    },
+    "correct_answer": "2/3",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 3. Compare numerators: 2 > 1",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_7100",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 11/17 or 14/17?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 11,
+      "num2": 14,
+      "denom1": 17,
+      "denom2": 17
+    },
+    "correct_answer": "14/17",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 17. Compare numerators: 14 > 11",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_2958",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/4 or 3/4?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 1,
+      "num2": 3,
+      "denom1": 4,
+      "denom2": 4
+    },
+    "correct_answer": "3/4",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 4. Compare numerators: 3 > 1",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_1805",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 6/12 or 5/12?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 6,
+      "num2": 5,
+      "denom1": 12,
+      "denom2": 12
+    },
+    "correct_answer": "6/12",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 12. Compare numerators: 6 > 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_2510",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 5/14 or 12/14?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 5,
+      "num2": 12,
+      "denom1": 14,
+      "denom2": 14
+    },
+    "correct_answer": "12/14",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 14. Compare numerators: 12 > 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_9841",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 10/16 or 7/16?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 10,
+      "num2": 7,
+      "denom1": 16,
+      "denom2": 16
+    },
+    "correct_answer": "10/16",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 16. Compare numerators: 10 > 7",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_4164",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 12/13 or 1/13?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 12,
+      "num2": 1,
+      "denom1": 13,
+      "denom2": 13
+    },
+    "correct_answer": "12/13",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 13. Compare numerators: 12 > 1",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_3164",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 4/5 or 10/15?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 4,
+      "num2": 10,
+      "denom1": 5,
+      "denom2": 15
+    },
+    "correct_answer": "4/5",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 15: 4/5 = 12/15 and 10/15 = 10/15. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_1432",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/3 or 6/9?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 6,
+      "denom1": 3,
+      "denom2": 9
+    },
+    "correct_answer": "6/9",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 9: 1/3 = 3/9 and 6/9 = 6/9. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_8425",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/4 or 4/12?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 4,
+      "denom1": 4,
+      "denom2": 12
+    },
+    "correct_answer": "4/12",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 12: 1/4 = 3/12 and 4/12 = 4/12. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_6338",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 4/5 or 7/15?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 4,
+      "num2": 7,
+      "denom1": 5,
+      "denom2": 15
+    },
+    "correct_answer": "4/5",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 15: 4/5 = 12/15 and 7/15 = 7/15. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_6083",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/2 or 4/6?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 4,
+      "denom1": 2,
+      "denom2": 6
+    },
+    "correct_answer": "4/6",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 6: 1/2 = 3/6 and 4/6 = 4/6. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_5570",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/2 or 1/6?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 1,
+      "denom1": 2,
+      "denom2": 6
+    },
+    "correct_answer": "1/2",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 6: 1/2 = 3/6 and 1/6 = 1/6. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_8063",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 3/5 or 9/10?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 3,
+      "num2": 9,
+      "denom1": 5,
+      "denom2": 10
+    },
+    "correct_answer": "9/10",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 10: 3/5 = 6/10 and 9/10 = 9/10. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_3675",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/4 or 11/12?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 11,
+      "denom1": 4,
+      "denom2": 12
+    },
+    "correct_answer": "11/12",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 12: 2/4 = 6/12 and 11/12 = 11/12. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_4516",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/3 or 7/9?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 7,
+      "denom1": 3,
+      "denom2": 9
+    },
+    "correct_answer": "7/9",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 9: 2/3 = 6/9 and 7/9 = 7/9. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_4034",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 4/5 or 3/15?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 4,
+      "num2": 3,
+      "denom1": 5,
+      "denom2": 15
+    },
+    "correct_answer": "4/5",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 15: 4/5 = 12/15 and 3/15 = 3/15. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_8564",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/5? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 5,
+      "multiplier": 2
+    },
+    "correct_answer": "8/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 5 by 2. Also multiply numerator: 4 \u00d7 2 = 8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_4030",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/5? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 5,
+      "multiplier": 2
+    },
+    "correct_answer": "2/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 5 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_8288",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/6? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 6,
+      "multiplier": 2
+    },
+    "correct_answer": "4/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 6 by 2. Also multiply numerator: 2 \u00d7 2 = 4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_3563",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/7? (Use denominator 14)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 7,
+      "multiplier": 2
+    },
+    "correct_answer": "4/14",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 14, multiply 7 by 2. Also multiply numerator: 2 \u00d7 2 = 4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_3317",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/4? (Use denominator 8)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 4,
+      "multiplier": 2
+    },
+    "correct_answer": "2/8",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 8, multiply 4 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_4398",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 4)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 2
+    },
+    "correct_answer": "2/4",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 4, multiply 2 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_4550",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/4? (Use denominator 8)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 4,
+      "multiplier": 2
+    },
+    "correct_answer": "6/8",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 8, multiply 4 by 2. Also multiply numerator: 3 \u00d7 2 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_2744",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 4)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 2
+    },
+    "correct_answer": "2/4",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 4, multiply 2 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_1031",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/6? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 6,
+      "multiplier": 2
+    },
+    "correct_answer": "2/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 6 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_9737",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/5? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 5,
+      "multiplier": 2
+    },
+    "correct_answer": "2/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 5 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_4253",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/3? (Use denominator 9)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "6/9",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 9, multiply 3 by 3. Also multiply numerator: 2 \u00d7 3 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_6098",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 4)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 2
+    },
+    "correct_answer": "2/4",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 4, multiply 2 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_9821",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/3? (Use denominator 9)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "6/9",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 9, multiply 3 by 3. Also multiply numerator: 2 \u00d7 3 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_5749",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/8? (Use denominator 24)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 8,
+      "multiplier": 3
+    },
+    "correct_answer": "12/24",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 24, multiply 8 by 3. Also multiply numerator: 4 \u00d7 3 = 12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_8356",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/8? (Use denominator 16)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 8,
+      "multiplier": 2
+    },
+    "correct_answer": "6/16",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 16, multiply 8 by 2. Also multiply numerator: 3 \u00d7 2 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_9068",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 4)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 2
+    },
+    "correct_answer": "2/4",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 4, multiply 2 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_2896",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/6? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 6,
+      "multiplier": 2
+    },
+    "correct_answer": "6/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 6 by 2. Also multiply numerator: 3 \u00d7 2 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_6299",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/3? (Use denominator 9)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "6/9",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 9, multiply 3 by 3. Also multiply numerator: 2 \u00d7 3 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_2050",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/5? (Use denominator 15)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 5,
+      "multiplier": 3
+    },
+    "correct_answer": "9/15",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 15, multiply 5 by 3. Also multiply numerator: 3 \u00d7 3 = 9",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_2230",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/5? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 5,
+      "multiplier": 2
+    },
+    "correct_answer": "2/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 5 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_9132",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 5
+    },
+    "correct_answer": "5/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 2 by 5. Also multiply numerator: 1 \u00d7 5 = 5",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_1981",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 6)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 3
+    },
+    "correct_answer": "3/6",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 6, multiply 2 by 3. Also multiply numerator: 1 \u00d7 3 = 3",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_4219",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 5
+    },
+    "correct_answer": "5/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 2 by 5. Also multiply numerator: 1 \u00d7 5 = 5",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_9249",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/4? (Use denominator 24)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 4,
+      "multiplier": 6
+    },
+    "correct_answer": "18/24",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 24, multiply 4 by 6. Also multiply numerator: 3 \u00d7 6 = 18",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_8065",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 6)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 3
+    },
+    "correct_answer": "3/6",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 6, multiply 2 by 3. Also multiply numerator: 1 \u00d7 3 = 3",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_8957",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/4? (Use denominator 8)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 4,
+      "multiplier": 2
+    },
+    "correct_answer": "2/8",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 8, multiply 4 by 2. Also multiply numerator: 1 \u00d7 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_3178",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/7? (Use denominator 21)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 7,
+      "multiplier": 3
+    },
+    "correct_answer": "12/21",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 21, multiply 7 by 3. Also multiply numerator: 4 \u00d7 3 = 12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_6654",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/3? (Use denominator 6)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 2
+    },
+    "correct_answer": "4/6",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 6, multiply 3 by 2. Also multiply numerator: 2 \u00d7 2 = 4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_1655",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 5
+    },
+    "correct_answer": "5/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 2 by 5. Also multiply numerator: 1 \u00d7 5 = 5",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_4865",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/6? (Use denominator 24)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 6,
+      "multiplier": 4
+    },
+    "correct_answer": "16/24",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 24, multiply 6 by 4. Also multiply numerator: 4 \u00d7 4 = 16",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_3912",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 1/6 = 5/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 6,
+      "multiplier": 5
+    },
+    "correct_answer": "30",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_6188",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 4/5 = ?/15",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 5,
+      "multiplier": 3
+    },
+    "correct_answer": "12",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_9019",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 1/2 = ?/6",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 3
+    },
+    "correct_answer": "3",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_7200",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 1/4 = 3/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 4,
+      "multiplier": 3
+    },
+    "correct_answer": "12",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_1542",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 5/8 = ?/32",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 5,
+      "base_denom": 8,
+      "multiplier": 4
+    },
+    "correct_answer": "20",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 4",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_3057",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 4/7 = 12/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 7,
+      "multiplier": 3
+    },
+    "correct_answer": "21",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_9127",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 2/3 = ?/9",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "6",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_3256",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 2/7 = 6/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 7,
+      "multiplier": 3
+    },
+    "correct_answer": "21",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_6585",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 4/6 = 12/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 6,
+      "multiplier": 3
+    },
+    "correct_answer": "18",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_3622",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 2/3 = ?/15",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 5
+    },
+    "correct_answer": "10",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_5691",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/10 + 3/10?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 1,
+      "num2": 3,
+      "denom1": 10,
+      "denom2": 10,
+      "result_num": 4,
+      "result_denom": 10
+    },
+    "correct_answer": "4/10",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 10, add numerators: 1 + 3 = 4. Answer: 4/10",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_2646",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/5 + 1/5?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 1,
+      "num2": 1,
+      "denom1": 5,
+      "denom2": 5,
+      "result_num": 2,
+      "result_denom": 5
+    },
+    "correct_answer": "2/5",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 5, add numerators: 1 + 1 = 2. Answer: 2/5",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_5165",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 4/8 + 2/8?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 4,
+      "num2": 2,
+      "denom1": 8,
+      "denom2": 8,
+      "result_num": 6,
+      "result_denom": 8
+    },
+    "correct_answer": "6/8",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 8, add numerators: 4 + 2 = 6. Answer: 6/8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_6562",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/9 + 5/9?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 1,
+      "num2": 5,
+      "denom1": 9,
+      "denom2": 9,
+      "result_num": 6,
+      "result_denom": 9
+    },
+    "correct_answer": "6/9",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 9, add numerators: 1 + 5 = 6. Answer: 6/9",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_1059",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 3/8 + 4/8?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 3,
+      "num2": 4,
+      "denom1": 8,
+      "denom2": 8,
+      "result_num": 7,
+      "result_denom": 8
+    },
+    "correct_answer": "7/8",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 8, add numerators: 3 + 4 = 7. Answer: 7/8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_9880",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/7 + 2/7?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 1,
+      "num2": 2,
+      "denom1": 7,
+      "denom2": 7,
+      "result_num": 3,
+      "result_denom": 7
+    },
+    "correct_answer": "3/7",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 7, add numerators: 1 + 2 = 3. Answer: 3/7",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_3103",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 5/8 + 2/8?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 5,
+      "num2": 2,
+      "denom1": 8,
+      "denom2": 8,
+      "result_num": 7,
+      "result_denom": 8
+    },
+    "correct_answer": "7/8",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 8, add numerators: 5 + 2 = 7. Answer: 7/8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_2143",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/7 + 3/7?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 2,
+      "num2": 3,
+      "denom1": 7,
+      "denom2": 7,
+      "result_num": 5,
+      "result_denom": 7
+    },
+    "correct_answer": "5/7",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 7, add numerators: 2 + 3 = 5. Answer: 5/7",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_3230",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/9 + 2/9?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 1,
+      "num2": 2,
+      "denom1": 9,
+      "denom2": 9,
+      "result_num": 3,
+      "result_denom": 9
+    },
+    "correct_answer": "3/9",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 9, add numerators: 1 + 2 = 3. Answer: 3/9",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d1_9933",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 4/6 + 1/6?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 4,
+      "num2": 1,
+      "denom1": 6,
+      "denom2": 6,
+      "result_num": 5,
+      "result_denom": 6
+    },
+    "correct_answer": "5/6",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 6, add numerators: 4 + 1 = 5. Answer: 5/6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_4772",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 4/9 + 2/9?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 4,
+      "num2": 2,
+      "denom1": 9,
+      "denom2": 9,
+      "result_num": 6,
+      "result_denom": 9
+    },
+    "correct_answer": "6/9",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 9, add numerators: 4 + 2 = 6. Answer: 6/9",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_1727",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 4/8 + 3/8?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 4,
+      "num2": 3,
+      "denom1": 8,
+      "denom2": 8,
+      "result_num": 7,
+      "result_denom": 8
+    },
+    "correct_answer": "7/8",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 8, add numerators: 4 + 3 = 7. Answer: 7/8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_1684",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/5 + 4/5?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 1,
+      "num2": 4,
+      "denom1": 5,
+      "denom2": 5,
+      "result_num": 5,
+      "result_denom": 5
+    },
+    "correct_answer": "5/5",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 5, add numerators: 1 + 4 = 5. Answer: 5/5",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_6146",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 5/8 + 7/8?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 5,
+      "num2": 7,
+      "denom1": 8,
+      "denom2": 8,
+      "result_num": 12,
+      "result_denom": 8
+    },
+    "correct_answer": "12/8",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 8, add numerators: 5 + 7 = 12. Answer: 12/8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_7380",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 7/9 + 8/9?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 7,
+      "num2": 8,
+      "denom1": 9,
+      "denom2": 9,
+      "result_num": 15,
+      "result_denom": 9
+    },
+    "correct_answer": "15/9",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 9, add numerators: 7 + 8 = 15. Answer: 15/9",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_3075",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/5 + 4/5?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 2,
+      "num2": 4,
+      "denom1": 5,
+      "denom2": 5,
+      "result_num": 6,
+      "result_denom": 5
+    },
+    "correct_answer": "6/5",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 5, add numerators: 2 + 4 = 6. Answer: 6/5",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_8415",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/2 + 1/2?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 1,
+      "num2": 1,
+      "denom1": 2,
+      "denom2": 2,
+      "result_num": 2,
+      "result_denom": 2
+    },
+    "correct_answer": "2/2",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 2, add numerators: 1 + 1 = 2. Answer: 2/2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_5626",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/4 + 3/4?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 1,
+      "num2": 3,
+      "denom1": 4,
+      "denom2": 4,
+      "result_num": 4,
+      "result_denom": 4
+    },
+    "correct_answer": "4/4",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 4, add numerators: 1 + 3 = 4. Answer: 4/4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_4762",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/8 + 4/8?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 2,
+      "num2": 4,
+      "denom1": 8,
+      "denom2": 8,
+      "result_num": 6,
+      "result_denom": 8
+    },
+    "correct_answer": "6/8",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 8, add numerators: 2 + 4 = 6. Answer: 6/8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d2_6820",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/6 + 5/6?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 2,
+      "num2": 5,
+      "denom1": 6,
+      "denom2": 6,
+      "result_num": 7,
+      "result_denom": 6
+    },
+    "correct_answer": "7/6",
+    "hint": "When denominators are the same, add the numerators and keep the denominator",
+    "explanation": "Since both fractions have denominator 6, add numerators: 2 + 5 = 7. Answer: 7/6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_4020",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 3/5 + 9/10?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 3,
+      "num2": 9,
+      "denom1": 5,
+      "denom2": 10,
+      "result_num": 15,
+      "result_denom": 10
+    },
+    "correct_answer": "15/10",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 10. Convert and add: (6 + 9) / 10 = 15/10",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_1508",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/3 + 2/6?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 2,
+      "denom1": 3,
+      "denom2": 6,
+      "result_num": 6,
+      "result_denom": 6
+    },
+    "correct_answer": "6/6",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 6. Convert and add: (4 + 2) / 6 = 6/6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_8943",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/2 + 1/6?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 1,
+      "denom1": 2,
+      "denom2": 6,
+      "result_num": 4,
+      "result_denom": 6
+    },
+    "correct_answer": "4/6",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 6. Convert and add: (3 + 1) / 6 = 4/6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_7839",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 3/5 + 8/10?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 3,
+      "num2": 8,
+      "denom1": 5,
+      "denom2": 10,
+      "result_num": 14,
+      "result_denom": 10
+    },
+    "correct_answer": "14/10",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 10. Convert and add: (6 + 8) / 10 = 14/10",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_5590",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/4 + 4/8?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 4,
+      "denom1": 4,
+      "denom2": 8,
+      "result_num": 8,
+      "result_denom": 8
+    },
+    "correct_answer": "8/8",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 8. Convert and add: (4 + 4) / 8 = 8/8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_5330",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/5 + 2/10?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 2,
+      "denom1": 5,
+      "denom2": 10,
+      "result_num": 6,
+      "result_denom": 10
+    },
+    "correct_answer": "6/10",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 10. Convert and add: (4 + 2) / 10 = 6/10",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_6996",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/4 + 5/12?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 5,
+      "denom1": 4,
+      "denom2": 12,
+      "result_num": 11,
+      "result_denom": 12
+    },
+    "correct_answer": "11/12",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 12. Convert and add: (6 + 5) / 12 = 11/12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_6657",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/3 + 4/9?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 4,
+      "denom1": 3,
+      "denom2": 9,
+      "result_num": 10,
+      "result_denom": 9
+    },
+    "correct_answer": "10/9",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 9. Convert and add: (6 + 4) / 9 = 10/9",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_2620",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 4/5 + 7/10?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 4,
+      "num2": 7,
+      "denom1": 5,
+      "denom2": 10,
+      "result_num": 15,
+      "result_denom": 10
+    },
+    "correct_answer": "15/10",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 10. Convert and add: (8 + 7) / 10 = 15/10",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d3_4576",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/3 + 2/6?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 2,
+      "denom1": 3,
+      "denom2": 6,
+      "result_num": 6,
+      "result_denom": 6
+    },
+    "correct_answer": "6/6",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 6. Convert and add: (4 + 2) / 6 = 6/6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_8740",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/3 + 5/11?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 2,
+      "num2": 5,
+      "denom1": 3,
+      "denom2": 11,
+      "result_num": 37,
+      "result_denom": 33
+    },
+    "correct_answer": "37/33",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 33. Convert and add: (22 + 15) / 33 = 37/33",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_8954",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/11 + 6/7?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 1,
+      "num2": 6,
+      "denom1": 11,
+      "denom2": 7,
+      "result_num": 73,
+      "result_denom": 77
+    },
+    "correct_answer": "73/77",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 77. Convert and add: (7 + 66) / 77 = 73/77",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_6054",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 4/6 + 1/5?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 4,
+      "num2": 1,
+      "denom1": 6,
+      "denom2": 5,
+      "result_num": 26,
+      "result_denom": 30
+    },
+    "correct_answer": "26/30",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 30. Convert and add: (20 + 6) / 30 = 26/30",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_6669",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 6/12 + 1/9?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 6,
+      "num2": 1,
+      "denom1": 12,
+      "denom2": 9,
+      "result_num": 22,
+      "result_denom": 36
+    },
+    "correct_answer": "22/36",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 36. Convert and add: (18 + 4) / 36 = 22/36",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_9367",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/5 + 8/9?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 2,
+      "num2": 8,
+      "denom1": 5,
+      "denom2": 9,
+      "result_num": 58,
+      "result_denom": 45
+    },
+    "correct_answer": "58/45",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 45. Convert and add: (18 + 40) / 45 = 58/45",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_4414",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 3/6 + 1/2?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 3,
+      "num2": 1,
+      "denom1": 6,
+      "denom2": 2,
+      "result_num": 6,
+      "result_denom": 6
+    },
+    "correct_answer": "6/6",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 6. Convert and add: (3 + 3) / 6 = 6/6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_9685",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/2 + 4/9?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 1,
+      "num2": 4,
+      "denom1": 2,
+      "denom2": 9,
+      "result_num": 17,
+      "result_denom": 18
+    },
+    "correct_answer": "17/18",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 18. Convert and add: (9 + 8) / 18 = 17/18",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_2518",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 2/12 + 2/3?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 2,
+      "num2": 2,
+      "denom1": 12,
+      "denom2": 3,
+      "result_num": 10,
+      "result_denom": 12
+    },
+    "correct_answer": "10/12",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 12. Convert and add: (2 + 8) / 12 = 10/12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_7613",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 3/10 + 2/4?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 3,
+      "num2": 2,
+      "denom1": 10,
+      "denom2": 4,
+      "result_num": 16,
+      "result_denom": 20
+    },
+    "correct_answer": "16/20",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 20. Convert and add: (6 + 10) / 20 = 16/20",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr5_frac_add_001_d4_1000",
+    "skill_id": "yr5_frac_add_001",
+    "question_text": "What is 1/4 + 2/6?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "num1": 1,
+      "num2": 2,
+      "denom1": 4,
+      "denom2": 6,
+      "result_num": 7,
+      "result_denom": 12
+    },
+    "correct_answer": "7/12",
+    "hint": "Find a common denominator, then add the numerators",
+    "explanation": "Common denominator is 12. Convert and add: (3 + 4) / 12 = 7/12",
+    "validation_rule": "equivalent_fraction"
+  }
+]
