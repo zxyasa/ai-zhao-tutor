@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.michaelzhao.daily-maths-notes</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/michaelzhao/agents/ai-zhao-tutor/scripts/generate_daily_maths_notes.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/michaelzhao/agents/ai-zhao-tutor</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>5</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/michaelzhao/agents/ai-zhao-tutor/logs/daily_maths_notes.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/michaelzhao/agents/ai-zhao-tutor/logs/daily_maths_notes.err.log</string>
+</dict>
+</plist>
+

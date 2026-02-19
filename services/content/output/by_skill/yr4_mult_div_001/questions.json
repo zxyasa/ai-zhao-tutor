@@ -1,0 +1,1502 @@
+[
+  {
+    "item_id": "yr4_mult_div_001_d1_4834",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 1?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 4,
+      "b": 1
+    },
+    "correct_answer": "4",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "4 × 1 = 4",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_8713",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 2 × 10?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 2,
+      "b": 10
+    },
+    "correct_answer": "20",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "2 × 10 = 20",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_5767",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 5?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 8,
+      "b": 5
+    },
+    "correct_answer": "40",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "8 × 5 = 40",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_6666",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 2 × 8?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 2,
+      "b": 8
+    },
+    "correct_answer": "16",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "2 × 8 = 16",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_7557",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 4?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 8,
+      "b": 4
+    },
+    "correct_answer": "32",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "8 × 4 = 32",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_2355",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 4?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 5,
+      "b": 4
+    },
+    "correct_answer": "20",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "5 × 4 = 20",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_2874",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 1 × 2?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 1,
+      "b": 2
+    },
+    "correct_answer": "2",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "1 × 2 = 2",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_4332",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 10?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 4,
+      "b": 10
+    },
+    "correct_answer": "40",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "4 × 10 = 40",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_2173",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 6?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 4,
+      "b": 6
+    },
+    "correct_answer": "24",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "4 × 6 = 24",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_4957",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 10 × 3?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 10,
+      "b": 3
+    },
+    "correct_answer": "30",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "10 × 3 = 30",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_4271",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 5?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 7,
+      "b": 5
+    },
+    "correct_answer": "35",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "7 × 5 = 35",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_9852",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 5?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 7,
+      "b": 5
+    },
+    "correct_answer": "35",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "7 × 5 = 35",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_2383",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 1?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 4,
+      "b": 1
+    },
+    "correct_answer": "4",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "4 × 1 = 4",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_5712",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 2?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 5,
+      "b": 2
+    },
+    "correct_answer": "10",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "5 × 2 = 10",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_8530",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 3 × 4?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 3,
+      "b": 4
+    },
+    "correct_answer": "12",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "3 × 4 = 12",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_7242",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 2 × 2?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 2,
+      "b": 2
+    },
+    "correct_answer": "4",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "2 × 2 = 4",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_3653",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 5?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 6,
+      "b": 5
+    },
+    "correct_answer": "30",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "6 × 5 = 30",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_9537",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 2?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 6,
+      "b": 2
+    },
+    "correct_answer": "12",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "6 × 2 = 12",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_5650",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 10 × 3?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 10,
+      "b": 3
+    },
+    "correct_answer": "30",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "10 × 3 = 30",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_1462",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 4?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 5,
+      "b": 4
+    },
+    "correct_answer": "20",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "5 × 4 = 20",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_7844",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 3 × 2?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 3,
+      "b": 2
+    },
+    "correct_answer": "6",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "3 × 2 = 6",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_8584",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 3?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 4,
+      "b": 3
+    },
+    "correct_answer": "12",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "4 × 3 = 12",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_4955",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 2 × 3?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 2,
+      "b": 3
+    },
+    "correct_answer": "6",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "2 × 3 = 6",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_4152",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 3?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 8,
+      "b": 3
+    },
+    "correct_answer": "24",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "8 × 3 = 24",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d1_4990",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 3?",
+    "question_type": "numeric",
+    "difficulty": 1,
+    "parameters": {
+      "a": 9,
+      "b": 3
+    },
+    "correct_answer": "27",
+    "hint": "Use repeated addition or skip counting.",
+    "explanation": "9 × 3 = 27",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_6926",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 8?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 9,
+      "b": 8
+    },
+    "correct_answer": "72",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "9 × 8 = 72",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_2457",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 3?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 9,
+      "b": 3
+    },
+    "correct_answer": "27",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "9 × 3 = 27",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_5505",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 7?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 7,
+      "b": 7
+    },
+    "correct_answer": "49",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "7 × 7 = 49",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_8447",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 1?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 8,
+      "b": 1
+    },
+    "correct_answer": "8",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "8 × 1 = 8",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_5115",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 3?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 6,
+      "b": 3
+    },
+    "correct_answer": "18",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "6 × 3 = 18",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_9031",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 9?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 8,
+      "b": 9
+    },
+    "correct_answer": "72",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "8 × 9 = 72",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_5325",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 2?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 6,
+      "b": 2
+    },
+    "correct_answer": "12",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "6 × 2 = 12",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_7782",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 6?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 4,
+      "b": 6
+    },
+    "correct_answer": "24",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "4 × 6 = 24",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_7838",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 7?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 9,
+      "b": 7
+    },
+    "correct_answer": "63",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "9 × 7 = 63",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_8752",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 9?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 6,
+      "b": 9
+    },
+    "correct_answer": "54",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "6 × 9 = 54",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_4837",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 7?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 5,
+      "b": 7
+    },
+    "correct_answer": "35",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "5 × 7 = 35",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_2181",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 10?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 7,
+      "b": 10
+    },
+    "correct_answer": "70",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "7 × 10 = 70",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_1317",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 7?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 7,
+      "b": 7
+    },
+    "correct_answer": "49",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "7 × 7 = 49",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_4440",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 7?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 4,
+      "b": 7
+    },
+    "correct_answer": "28",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "4 × 7 = 28",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_1056",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 8?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 7,
+      "b": 8
+    },
+    "correct_answer": "56",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "7 × 8 = 56",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_1052",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 8?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 7,
+      "b": 8
+    },
+    "correct_answer": "56",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "7 × 8 = 56",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_9541",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 4?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 6,
+      "b": 4
+    },
+    "correct_answer": "24",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "6 × 4 = 24",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_2946",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 7?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 5,
+      "b": 7
+    },
+    "correct_answer": "35",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "5 × 7 = 35",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_6590",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 3 × 6?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 3,
+      "b": 6
+    },
+    "correct_answer": "18",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "3 × 6 = 18",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_8727",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 9?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 9,
+      "b": 9
+    },
+    "correct_answer": "81",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "9 × 9 = 81",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_6051",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 1?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 9,
+      "b": 1
+    },
+    "correct_answer": "9",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "9 × 1 = 9",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_2618",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 9?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 7,
+      "b": 9
+    },
+    "correct_answer": "63",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "7 × 9 = 63",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_6026",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 6?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 5,
+      "b": 6
+    },
+    "correct_answer": "30",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "5 × 6 = 30",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_5057",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 2 × 9?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 2,
+      "b": 9
+    },
+    "correct_answer": "18",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "2 × 9 = 18",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d2_4373",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 9?",
+    "question_type": "numeric",
+    "difficulty": 2,
+    "parameters": {
+      "a": 6,
+      "b": 9
+    },
+    "correct_answer": "54",
+    "hint": "Break it into easier chunks (e.g. 7×6 = 7×5 + 7).",
+    "explanation": "6 × 9 = 54",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_2033",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 12?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 12
+    },
+    "correct_answer": "132",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 12 = 132",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_4060",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 8?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 8
+    },
+    "correct_answer": "88",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 8 = 88",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_7583",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 10?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 6,
+      "b": 10
+    },
+    "correct_answer": "60",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "6 × 10 = 60",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_9452",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 12?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 6,
+      "b": 12
+    },
+    "correct_answer": "72",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "6 × 12 = 72",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_6284",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 5?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 5
+    },
+    "correct_answer": "55",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 5 = 55",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_4669",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 3 × 9?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 3,
+      "b": 9
+    },
+    "correct_answer": "27",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "3 × 9 = 27",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_2574",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 8?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 5,
+      "b": 8
+    },
+    "correct_answer": "40",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "5 × 8 = 40",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_3674",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 5?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 6,
+      "b": 5
+    },
+    "correct_answer": "30",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "6 × 5 = 30",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_8004",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 12?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 8,
+      "b": 12
+    },
+    "correct_answer": "96",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "8 × 12 = 96",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_1948",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 10?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 6,
+      "b": 10
+    },
+    "correct_answer": "60",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "6 × 10 = 60",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_7613",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 12 × 7?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 12,
+      "b": 7
+    },
+    "correct_answer": "84",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "12 × 7 = 84",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_3527",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 6?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 5,
+      "b": 6
+    },
+    "correct_answer": "30",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "5 × 6 = 30",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_1063",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 7?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 7,
+      "b": 7
+    },
+    "correct_answer": "49",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "7 × 7 = 49",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_9573",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 4?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 4
+    },
+    "correct_answer": "44",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 4 = 44",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_3505",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 2?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 9,
+      "b": 2
+    },
+    "correct_answer": "18",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "9 × 2 = 18",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_7436",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 12 × 9?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 12,
+      "b": 9
+    },
+    "correct_answer": "108",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "12 × 9 = 108",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_7954",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 11?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 11
+    },
+    "correct_answer": "121",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 11 = 121",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_1054",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 11?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 9,
+      "b": 11
+    },
+    "correct_answer": "99",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "9 × 11 = 99",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_4672",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 2?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 2
+    },
+    "correct_answer": "22",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 2 = 22",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_7370",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 10 × 2?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 10,
+      "b": 2
+    },
+    "correct_answer": "20",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "10 × 2 = 20",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_1664",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 11?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 5,
+      "b": 11
+    },
+    "correct_answer": "55",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "5 × 11 = 55",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_8240",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 8?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 8
+    },
+    "correct_answer": "88",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 8 = 88",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_4635",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 7?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 7,
+      "b": 7
+    },
+    "correct_answer": "49",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "7 × 7 = 49",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_1310",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 8?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 7,
+      "b": 8
+    },
+    "correct_answer": "56",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "7 × 8 = 56",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d3_6044",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 2?",
+    "question_type": "numeric",
+    "difficulty": 3,
+    "parameters": {
+      "a": 11,
+      "b": 2
+    },
+    "correct_answer": "22",
+    "hint": "Recall times-table patterns and commutative property.",
+    "explanation": "11 × 2 = 22",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_3943",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 17 × 9?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 17,
+      "b": 9
+    },
+    "correct_answer": "153",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "17 × 9 = 153",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_3532",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 20 × 5?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 20,
+      "b": 5
+    },
+    "correct_answer": "100",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "20 × 5 = 100",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_8809",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 15 × 5?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 15,
+      "b": 5
+    },
+    "correct_answer": "75",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "15 × 5 = 75",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_8702",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 17 × 8?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 17,
+      "b": 8
+    },
+    "correct_answer": "136",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "17 × 8 = 136",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_2434",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 3 × 12?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 3,
+      "b": 12
+    },
+    "correct_answer": "36",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "3 × 12 = 36",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_3385",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 15 × 6?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 15,
+      "b": 6
+    },
+    "correct_answer": "90",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "15 × 6 = 90",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_1227",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 6 × 20?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 6,
+      "b": 20
+    },
+    "correct_answer": "120",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "6 × 20 = 120",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_2945",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 13 × 4?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 13,
+      "b": 4
+    },
+    "correct_answer": "52",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "13 × 4 = 52",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_1809",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 16?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 8,
+      "b": 16
+    },
+    "correct_answer": "128",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "8 × 16 = 128",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_2448",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 4 × 14?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 4,
+      "b": 14
+    },
+    "correct_answer": "56",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "4 × 14 = 56",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_1655",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 2 × 14?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 2,
+      "b": 14
+    },
+    "correct_answer": "28",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "2 × 14 = 28",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_7023",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 14 × 5?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 14,
+      "b": 5
+    },
+    "correct_answer": "70",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "14 × 5 = 70",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_6365",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 20?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 8,
+      "b": 20
+    },
+    "correct_answer": "160",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "8 × 20 = 160",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_5138",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 3 × 18?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 3,
+      "b": 18
+    },
+    "correct_answer": "54",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "3 × 18 = 54",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_9848",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 18 × 2?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 18,
+      "b": 2
+    },
+    "correct_answer": "36",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "18 × 2 = 36",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_9103",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 9 × 12?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 9,
+      "b": 12
+    },
+    "correct_answer": "108",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "9 × 12 = 108",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_5778",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 15?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 7,
+      "b": 15
+    },
+    "correct_answer": "105",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "7 × 15 = 105",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_3444",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 5 × 20?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 5,
+      "b": 20
+    },
+    "correct_answer": "100",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "5 × 20 = 100",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_4017",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 12 × 6?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 12,
+      "b": 6
+    },
+    "correct_answer": "72",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "12 × 6 = 72",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_6025",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 8 × 16?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 8,
+      "b": 16
+    },
+    "correct_answer": "128",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "8 × 16 = 128",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_3947",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 12 × 5?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 12,
+      "b": 5
+    },
+    "correct_answer": "60",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "12 × 5 = 60",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_5337",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 11 × 9?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 11,
+      "b": 9
+    },
+    "correct_answer": "99",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "11 × 9 = 99",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_1768",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 12 × 8?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 12,
+      "b": 8
+    },
+    "correct_answer": "96",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "12 × 8 = 96",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_5388",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 14 × 6?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 14,
+      "b": 6
+    },
+    "correct_answer": "84",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "14 × 6 = 84",
+    "validation_rule": "numeric"
+  },
+  {
+    "item_id": "yr4_mult_div_001_d4_8405",
+    "skill_id": "yr4_mult_div_001",
+    "question_text": "What is 7 × 14?",
+    "question_type": "numeric",
+    "difficulty": 4,
+    "parameters": {
+      "a": 7,
+      "b": 14
+    },
+    "correct_answer": "98",
+    "hint": "Split by place value: 14×6 = (10×6) + (4×6).",
+    "explanation": "7 × 14 = 98",
+    "validation_rule": "numeric"
+  }
+]

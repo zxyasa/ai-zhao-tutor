@@ -21,6 +21,8 @@ class QuestionViewModel: ObservableObject {
     @Published var showExplanation: Bool = false
     @Published var isCorrect: Bool?
     @Published var timeSpent: Double = 0
+    @Published var dailyCompleted: Int = 0
+    @Published var dailyTarget: Int = 10
 
     // MARK: - Private Properties
 
@@ -48,6 +50,8 @@ class QuestionViewModel: ObservableObject {
         timeSpent = 0
 
         do {
+            _ = try? await apiClient.startDailySession(studentId: studentId)
+            await loadDailyStatus()
             let item = try await apiClient.fetchNextItem(studentId: studentId)
             currentItem = item
             startTimer()
@@ -83,6 +87,7 @@ class QuestionViewModel: ObservableObject {
 
         do {
             try await apiClient.submitEvent(event)
+            await loadDailyStatus()
             showExplanation = true
         } catch {
             errorMessage = handleError(error)
@@ -191,5 +196,12 @@ class QuestionViewModel: ObservableObject {
 
     deinit {
         timer?.invalidate()
+    }
+
+    private func loadDailyStatus() async {
+        if let status = try? await apiClient.fetchDailySessionStatus(studentId: studentId) {
+            dailyCompleted = status.completedQuestions
+            dailyTarget = status.targetQuestions
+        }
     }
 }

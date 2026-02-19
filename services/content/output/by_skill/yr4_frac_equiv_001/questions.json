@@ -1,0 +1,642 @@
+[
+  {
+    "item_id": "yr4_frac_equiv_001_d1_2440",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/6? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 6,
+      "multiplier": 2
+    },
+    "correct_answer": "8/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 6 by 2. Also multiply numerator: 4 × 2 = 8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_2795",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/6? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 6,
+      "multiplier": 2
+    },
+    "correct_answer": "8/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 6 by 2. Also multiply numerator: 4 × 2 = 8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_1415",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 5/6? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 5,
+      "base_denom": 6,
+      "multiplier": 2
+    },
+    "correct_answer": "10/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 6 by 2. Also multiply numerator: 5 × 2 = 10",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_2156",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/5? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 5,
+      "multiplier": 2
+    },
+    "correct_answer": "8/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 5 by 2. Also multiply numerator: 4 × 2 = 8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_5743",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/3? (Use denominator 6)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 3,
+      "multiplier": 2
+    },
+    "correct_answer": "2/6",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 6, multiply 3 by 2. Also multiply numerator: 1 × 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_9101",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 4)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 2
+    },
+    "correct_answer": "2/4",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 4, multiply 2 by 2. Also multiply numerator: 1 × 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_5319",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/3? (Use denominator 6)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 2
+    },
+    "correct_answer": "4/6",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 6, multiply 3 by 2. Also multiply numerator: 2 × 2 = 4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_4866",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/4? (Use denominator 8)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 4,
+      "multiplier": 2
+    },
+    "correct_answer": "4/8",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 8, multiply 4 by 2. Also multiply numerator: 2 × 2 = 4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_5303",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/5? (Use denominator 10)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 5,
+      "multiplier": 2
+    },
+    "correct_answer": "4/10",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 10, multiply 5 by 2. Also multiply numerator: 2 × 2 = 4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d1_4816",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 6/8? (Use denominator 16)",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "base_num": 6,
+      "base_denom": 8,
+      "multiplier": 2
+    },
+    "correct_answer": "12/16",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 16, multiply 8 by 2. Also multiply numerator: 6 × 2 = 12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_6521",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/4? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 4,
+      "multiplier": 3
+    },
+    "correct_answer": "6/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 4 by 3. Also multiply numerator: 2 × 3 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_6548",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/2? (Use denominator 4)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 2
+    },
+    "correct_answer": "2/4",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 4, multiply 2 by 2. Also multiply numerator: 1 × 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_2543",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/6? (Use denominator 18)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 6,
+      "multiplier": 3
+    },
+    "correct_answer": "3/18",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 18, multiply 6 by 3. Also multiply numerator: 1 × 3 = 3",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_6179",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/4? (Use denominator 8)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 4,
+      "multiplier": 2
+    },
+    "correct_answer": "2/8",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 8, multiply 4 by 2. Also multiply numerator: 1 × 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_2656",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/7? (Use denominator 14)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 7,
+      "multiplier": 2
+    },
+    "correct_answer": "4/14",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 14, multiply 7 by 2. Also multiply numerator: 2 × 2 = 4",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_2161",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/6? (Use denominator 18)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 6,
+      "multiplier": 3
+    },
+    "correct_answer": "12/18",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 18, multiply 6 by 3. Also multiply numerator: 4 × 3 = 12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_1218",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/8? (Use denominator 16)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 8,
+      "multiplier": 2
+    },
+    "correct_answer": "2/16",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 16, multiply 8 by 2. Also multiply numerator: 1 × 2 = 2",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_9233",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 5/8? (Use denominator 16)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 5,
+      "base_denom": 8,
+      "multiplier": 2
+    },
+    "correct_answer": "10/16",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 16, multiply 8 by 2. Also multiply numerator: 5 × 2 = 10",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_7077",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/3? (Use denominator 9)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "3/9",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 9, multiply 3 by 3. Also multiply numerator: 1 × 3 = 3",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d2_2130",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/3? (Use denominator 9)",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "6/9",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 9, multiply 3 by 3. Also multiply numerator: 2 × 3 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_5927",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/5? (Use denominator 15)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 5,
+      "multiplier": 3
+    },
+    "correct_answer": "3/15",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 15, multiply 5 by 3. Also multiply numerator: 1 × 3 = 3",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_3086",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/4? (Use denominator 16)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 4,
+      "multiplier": 4
+    },
+    "correct_answer": "12/16",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 16, multiply 4 by 4. Also multiply numerator: 3 × 4 = 12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_7763",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 6/7? (Use denominator 21)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 6,
+      "base_denom": 7,
+      "multiplier": 3
+    },
+    "correct_answer": "18/21",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 21, multiply 7 by 3. Also multiply numerator: 6 × 3 = 18",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_5635",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/5? (Use denominator 20)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 5,
+      "multiplier": 4
+    },
+    "correct_answer": "16/20",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 20, multiply 5 by 4. Also multiply numerator: 4 × 4 = 16",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_8731",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/5? (Use denominator 15)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 5,
+      "multiplier": 3
+    },
+    "correct_answer": "9/15",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 15, multiply 5 by 3. Also multiply numerator: 3 × 3 = 9",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_5634",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 2/5? (Use denominator 20)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 5,
+      "multiplier": 4
+    },
+    "correct_answer": "8/20",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 20, multiply 5 by 4. Also multiply numerator: 2 × 4 = 8",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_9477",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 1/4? (Use denominator 24)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 4,
+      "multiplier": 6
+    },
+    "correct_answer": "6/24",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 24, multiply 4 by 6. Also multiply numerator: 1 × 6 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_6033",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 3/6? (Use denominator 12)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 3,
+      "base_denom": 6,
+      "multiplier": 2
+    },
+    "correct_answer": "6/12",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 12, multiply 6 by 2. Also multiply numerator: 3 × 2 = 6",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_2507",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 4/8? (Use denominator 24)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 8,
+      "multiplier": 3
+    },
+    "correct_answer": "12/24",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 24, multiply 8 by 3. Also multiply numerator: 4 × 3 = 12",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d3_7829",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "What is an equivalent fraction to 5/7? (Use denominator 35)",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "base_num": 5,
+      "base_denom": 7,
+      "multiplier": 5
+    },
+    "correct_answer": "25/35",
+    "hint": "Multiply both numerator and denominator by the same number",
+    "explanation": "To get denominator 35, multiply 7 by 5. Also multiply numerator: 5 × 5 = 25",
+    "validation_rule": "equivalent_fraction"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_3979",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 4/8 = 12/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 4,
+      "base_denom": 8,
+      "multiplier": 3
+    },
+    "correct_answer": "24",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_9312",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 1/3 = ?/9",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "3",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_5557",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 2/3 = 6/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 3
+    },
+    "correct_answer": "9",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_4937",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 1/6 = ?/30",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 6,
+      "multiplier": 5
+    },
+    "correct_answer": "5",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_7045",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 1/5 = ?/15",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 5,
+      "multiplier": 3
+    },
+    "correct_answer": "3",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 3",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_2452",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 1/2 = 4/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 4
+    },
+    "correct_answer": "8",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 4",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_4478",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 2/3 = 10/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 2,
+      "base_denom": 3,
+      "multiplier": 5
+    },
+    "correct_answer": "15",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_9197",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing denominator: 1/2 = 2/?",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 2,
+      "multiplier": 2
+    },
+    "correct_answer": "4",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 2",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_3878",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 1/7 = ?/35",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 7,
+      "multiplier": 5
+    },
+    "correct_answer": "5",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr4_frac_equiv_001_d4_1074",
+    "skill_id": "yr4_frac_equiv_001",
+    "question_text": "Find the missing numerator: 1/6 = ?/24",
+    "question_type": "fraction",
+    "difficulty": 4,
+    "parameters": {
+      "base_num": 1,
+      "base_denom": 6,
+      "multiplier": 4
+    },
+    "correct_answer": "4",
+    "hint": "What number do you multiply the known values by?",
+    "explanation": "Multiply both parts by 4",
+    "validation_rule": "exact_match"
+  }
+]

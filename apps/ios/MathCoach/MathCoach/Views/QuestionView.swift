@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @StateObject private var viewModel = QuestionViewModel()
+    private let student: Student
+    @StateObject private var viewModel: QuestionViewModel
     @FocusState private var answerFieldFocused: Bool
+    @State private var showAchievements = false
+
+    init(student: Student) {
+        self.student = student
+        _viewModel = StateObject(wrappedValue: QuestionViewModel(studentId: student.id))
+    }
 
     var body: some View {
         ZStack {
@@ -42,6 +49,16 @@ struct QuestionView: View {
                 viewModel.errorMessage = "无法连接到后端服务器。请确保 Docker 服务正在运行。"
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("徽章") {
+                    showAchievements = true
+                }
+            }
+        }
+        .sheet(isPresented: $showAchievements) {
+            AchievementsView(student: student)
+        }
     }
 
     // MARK: - Welcome View
@@ -55,7 +72,7 @@ struct QuestionView: View {
             Text("MathCoach")
                 .font(.system(size: 48, weight: .bold))
 
-            Text("AI 数学训练系统")
+            Text("\(student.name) 的 AI 数学训练")
                 .font(.title2)
                 .foregroundColor(.secondary)
 
@@ -119,6 +136,12 @@ struct QuestionView: View {
             // Header with timer
             HStack {
                 Text("难度: \(item.difficulty)")
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+
+                Spacer()
+
+                Text("今日 \(viewModel.dailyCompleted)/\(viewModel.dailyTarget)")
                     .font(.headline)
                     .foregroundColor(.secondary)
 
@@ -335,5 +358,5 @@ struct QuestionView: View {
 }
 
 #Preview {
-    QuestionView()
+    QuestionView(student: Student(id: "preview", name: "Preview", yearLevel: 4))
 }

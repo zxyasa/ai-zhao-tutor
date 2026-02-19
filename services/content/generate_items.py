@@ -4,7 +4,7 @@ Generates deterministic math content for MathCoach platform
 """
 import json
 from curriculum.nsw_year3_6 import get_skill_tree
-from templates.fractions import TEMPLATES
+from templates import TEMPLATES
 
 
 def generate_all_items():
@@ -30,8 +30,8 @@ def generate_all_items():
 
         for template in templates:
             for difficulty in difficulty_levels:
-                # Generate 10 items per difficulty level
-                for i in range(10):
+                item_count = getattr(template, "items_per_difficulty", 10)
+                for i in range(item_count):
                     try:
                         item = template.generate(difficulty)
                         all_items.append(item)

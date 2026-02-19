@@ -1,0 +1,51 @@
+{
+  "_comment": "每次修改后保存，下次推送即生效。无需重启任何程序。",
+
+  "students": {
+    "jon": {
+      "id": "jon_zhao",
+      "name": "Jon",
+      "folder": "Jon Maths",
+      "count": 40,
+      "difficulty": 2,
+      "skills": ["addition_carrying", "subtraction_borrowing"]
+    },
+    "astrid": {
+      "id": "astrid_zhao",
+      "name": "Astrid",
+      "folder": "Astrid Maths",
+      "count": 40,
+      "difficulty": 1,
+      "skills": ["yr2_addition", "yr2_subtraction", "doubles", "skip_counting"]
+    }
+  },
+
+  "_difficulty_guide": {
+    "1": "Very easy — small numbers, build confidence",
+    "2": "Easy — grade level basics",
+    "3": "Medium — standard grade level",
+    "4": "Hard — stretch goal",
+    "5": "Challenge — above grade level"
+  },
+
+  "_skills_guide": {
+    "Jon (Year 4)": [
+      "addition_carrying      ← 两位数进位加法（当前）",
+      "subtraction_borrowing  ← 两位数借位减法（当前）",
+      "multiplication         ← 乘法口诀 6-9",
+      "division               ← 除法基础",
+      "addition               ← 普通加法（无强制进位）",
+      "subtraction            ← 普通减法（无强制借位）",
+      "decimal                ← 小数运算",
+      "fraction_equiv         ← 等价分数"
+    ],
+    "Astrid (Year 2)": [
+      "yr2_addition           ← 20以内加法（当前）",
+      "yr2_subtraction        ← 20以内减法（当前）",
+      "doubles                ← 双数事实 1+1 到 10+10",
+      "skip_counting          ← 跳数 2/5/10",
+      "time                   ← 时间读法",
+      "fraction_basic         ← 分数基础"
+    ]
+  }
+}

@@ -70,3 +70,13 @@ logs/
 # OS
 Thumbs.db
 .DS_Store
+
+# AI task management - lock file excluded (terminal-specific)
+.ai/lock.json
+
+# Sensitive local files
+.env.accounts
+.env.accounts.local
+data/token.json
+data/square_token.json
+data/reports/

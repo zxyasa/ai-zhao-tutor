@@ -1,0 +1,512 @@
+[
+  {
+    "item_id": "yr3_frac_compare_001_d1_1291",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 3/7 or 2/7?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 3,
+      "num2": 2,
+      "denom1": 7,
+      "denom2": 7
+    },
+    "correct_answer": "3/7",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 7, we compare numerators: 3 > 2, so 3/7 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_7697",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 6/9 or 4/9?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 6,
+      "num2": 4,
+      "denom1": 9,
+      "denom2": 9
+    },
+    "correct_answer": "6/9",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 9, we compare numerators: 6 > 4, so 6/9 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_5093",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 9/10 or 6/10?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 9,
+      "num2": 6,
+      "denom1": 10,
+      "denom2": 10
+    },
+    "correct_answer": "9/10",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 10, we compare numerators: 9 > 6, so 9/10 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_8726",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 6/8 or 3/8?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 6,
+      "num2": 3,
+      "denom1": 8,
+      "denom2": 8
+    },
+    "correct_answer": "6/8",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 8, we compare numerators: 6 > 3, so 6/8 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_3219",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/6 or 3/6?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 1,
+      "num2": 3,
+      "denom1": 6,
+      "denom2": 6
+    },
+    "correct_answer": "3/6",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 6, we compare numerators: 3 > 1, so 3/6 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_3273",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 5/7 or 6/7?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 5,
+      "num2": 6,
+      "denom1": 7,
+      "denom2": 7
+    },
+    "correct_answer": "6/7",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 7, we compare numerators: 6 > 5, so 6/7 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_4524",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 8/9 or 2/9?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 8,
+      "num2": 2,
+      "denom1": 9,
+      "denom2": 9
+    },
+    "correct_answer": "8/9",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 9, we compare numerators: 8 > 2, so 8/9 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_3306",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 6/9 or 4/9?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 6,
+      "num2": 4,
+      "denom1": 9,
+      "denom2": 9
+    },
+    "correct_answer": "6/9",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 9, we compare numerators: 6 > 4, so 6/9 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_3180",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/5 or 4/5?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 2,
+      "num2": 4,
+      "denom1": 5,
+      "denom2": 5
+    },
+    "correct_answer": "4/5",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 5, we compare numerators: 4 > 2, so 4/5 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d1_6507",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 5/10 or 2/10?",
+    "question_type": "fraction",
+    "difficulty": 1,
+    "parameters": {
+      "num1": 5,
+      "num2": 2,
+      "denom1": 10,
+      "denom2": 10
+    },
+    "correct_answer": "5/10",
+    "hint": "When denominators are the same, compare the numerators",
+    "explanation": "Since both fractions have denominator 10, we compare numerators: 5 > 2, so 5/10 is larger",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_3112",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/5 or 3/5?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 2,
+      "num2": 3,
+      "denom1": 5,
+      "denom2": 5
+    },
+    "correct_answer": "3/5",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 5. Compare numerators: 3 > 2",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_3819",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 15/19 or 5/19?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 15,
+      "num2": 5,
+      "denom1": 19,
+      "denom2": 19
+    },
+    "correct_answer": "15/19",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 19. Compare numerators: 15 > 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_4405",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 5/18 or 11/18?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 5,
+      "num2": 11,
+      "denom1": 18,
+      "denom2": 18
+    },
+    "correct_answer": "11/18",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 18. Compare numerators: 11 > 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_9587",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 7/15 or 8/15?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 7,
+      "num2": 8,
+      "denom1": 15,
+      "denom2": 15
+    },
+    "correct_answer": "8/15",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 15. Compare numerators: 8 > 7",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_4573",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 8/10 or 2/10?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 8,
+      "num2": 2,
+      "denom1": 10,
+      "denom2": 10
+    },
+    "correct_answer": "8/10",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 10. Compare numerators: 8 > 2",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_6992",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 14/15 or 7/15?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 14,
+      "num2": 7,
+      "denom1": 15,
+      "denom2": 15
+    },
+    "correct_answer": "14/15",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 15. Compare numerators: 14 > 7",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_4095",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/5 or 4/5?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 2,
+      "num2": 4,
+      "denom1": 5,
+      "denom2": 5
+    },
+    "correct_answer": "4/5",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 5. Compare numerators: 4 > 2",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_8871",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 7/18 or 5/18?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 7,
+      "num2": 5,
+      "denom1": 18,
+      "denom2": 18
+    },
+    "correct_answer": "7/18",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 18. Compare numerators: 7 > 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_9821",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 5/16 or 14/16?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 5,
+      "num2": 14,
+      "denom1": 16,
+      "denom2": 16
+    },
+    "correct_answer": "14/16",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 16. Compare numerators: 14 > 5",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d2_5070",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 13/15 or 12/15?",
+    "question_type": "fraction",
+    "difficulty": 2,
+    "parameters": {
+      "num1": 13,
+      "num2": 12,
+      "denom1": 15,
+      "denom2": 15
+    },
+    "correct_answer": "13/15",
+    "hint": "When denominators are the same, which numerator is larger?",
+    "explanation": "Both fractions have denominator 15. Compare numerators: 13 > 12",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_9648",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 3/4 or 7/8?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 3,
+      "num2": 7,
+      "denom1": 4,
+      "denom2": 8
+    },
+    "correct_answer": "7/8",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 8: 3/4 = 6/8 and 7/8 = 7/8. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_4330",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/4 or 3/8?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 3,
+      "denom1": 4,
+      "denom2": 8
+    },
+    "correct_answer": "2/4",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 8: 2/4 = 4/8 and 3/8 = 3/8. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_3198",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/2 or 4/6?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 4,
+      "denom1": 2,
+      "denom2": 6
+    },
+    "correct_answer": "4/6",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 6: 1/2 = 3/6 and 4/6 = 4/6. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_1773",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/5 or 3/10?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 3,
+      "denom1": 5,
+      "denom2": 10
+    },
+    "correct_answer": "2/5",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 10: 2/5 = 4/10 and 3/10 = 3/10. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_7043",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/2 or 2/6?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 2,
+      "denom1": 2,
+      "denom2": 6
+    },
+    "correct_answer": "1/2",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 6: 1/2 = 3/6 and 2/6 = 2/6. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_6409",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/4 or 1/8?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 1,
+      "denom1": 4,
+      "denom2": 8
+    },
+    "correct_answer": "1/4",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 8: 1/4 = 2/8 and 1/8 = 1/8. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_3643",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 2/5 or 7/15?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 2,
+      "num2": 7,
+      "denom1": 5,
+      "denom2": 15
+    },
+    "correct_answer": "7/15",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 15: 2/5 = 6/15 and 7/15 = 7/15. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_4634",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 1/2 or 3/4?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 1,
+      "num2": 3,
+      "denom1": 2,
+      "denom2": 4
+    },
+    "correct_answer": "3/4",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 4: 1/2 = 2/4 and 3/4 = 3/4. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_3663",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 3/4 or 3/12?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 3,
+      "num2": 3,
+      "denom1": 4,
+      "denom2": 12
+    },
+    "correct_answer": "3/4",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 12: 3/4 = 9/12 and 3/12 = 3/12. Then compare numerators.",
+    "validation_rule": "exact_match"
+  },
+  {
+    "item_id": "yr3_frac_compare_001_d3_5728",
+    "skill_id": "yr3_frac_compare_001",
+    "question_text": "Which is larger: 4/5 or 7/10?",
+    "question_type": "fraction",
+    "difficulty": 3,
+    "parameters": {
+      "num1": 4,
+      "num2": 7,
+      "denom1": 5,
+      "denom2": 10
+    },
+    "correct_answer": "4/5",
+    "hint": "Find a common denominator to compare fractions with different denominators",
+    "explanation": "Convert to common denominator 10: 4/5 = 8/10 and 7/10 = 7/10. Then compare numerators.",
+    "validation_rule": "exact_match"
+  }
+]

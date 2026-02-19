@@ -46,6 +46,86 @@ class APIClient {
 
     // MARK: - Fetch Next Item
 
+    /// Fetch available students.
+    func fetchStudents() async throws -> [Student] {
+        guard let url = URL(string: "\(baseURL)/students") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let (data, response) = try await session.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw APIError.serverError("Invalid response")
+            }
+            guard httpResponse.statusCode == 200 else {
+                throw APIError.serverError("HTTP \(httpResponse.statusCode)")
+            }
+
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            return try decoder.decode([Student].self, from: data)
+        } catch let error as DecodingError {
+            throw APIError.decodingError(error)
+        } catch {
+            throw APIError.networkError(error)
+        }
+    }
+
+    /// Start or get today's daily session for the student.
+    func startDailySession(studentId: String) async throws -> DailySessionStatus {
+        guard var components = URLComponents(string: "\(baseURL)/daily-session/start") else {
+            throw APIError.invalidURL
+        }
+        components.queryItems = [URLQueryItem(name: "student_id", value: studentId)]
+        guard let url = components.url else {
+            throw APIError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        do {
+            let (data, response) = try await session.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw APIError.serverError("Invalid response")
+            }
+            guard httpResponse.statusCode == 200 else {
+                throw APIError.serverError("HTTP \(httpResponse.statusCode)")
+            }
+
+            let decoder = JSONDecoder()
+            return try decoder.decode(DailySessionStatus.self, from: data)
+        } catch let error as DecodingError {
+            throw APIError.decodingError(error)
+        } catch {
+            throw APIError.networkError(error)
+        }
+    }
+
+    /// Fetch today's progress status for the student.
+    func fetchDailySessionStatus(studentId: String) async throws -> DailySessionStatus {
+        guard let url = URL(string: "\(baseURL)/daily-session/status/\(studentId)") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let (data, response) = try await session.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw APIError.serverError("Invalid response")
+            }
+            guard httpResponse.statusCode == 200 else {
+                throw APIError.serverError("HTTP \(httpResponse.statusCode)")
+            }
+
+            let decoder = JSONDecoder()
+            return try decoder.decode(DailySessionStatus.self, from: data)
+        } catch let error as DecodingError {
+            throw APIError.decodingError(error)
+        } catch {
+            throw APIError.networkError(error)
+        }
+    }
+
     /// Fetch the next math item for a student
     /// - Parameter studentId: The student's ID
     /// - Returns: The next Item to practice
@@ -80,6 +160,79 @@ class APIClient {
             let item = try decoder.decode(Item.self, from: data)
             return item
 
+        } catch let error as DecodingError {
+            throw APIError.decodingError(error)
+        } catch {
+            throw APIError.networkError(error)
+        }
+    }
+
+    /// Fetch parent daily summaries for all students.
+    func fetchParentDailySummaries() async throws -> [ParentDailySummary] {
+        guard let url = URL(string: "\(baseURL)/parent/daily-summary") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let (data, response) = try await session.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw APIError.serverError("Invalid response")
+            }
+            guard httpResponse.statusCode == 200 else {
+                throw APIError.serverError("HTTP \(httpResponse.statusCode)")
+            }
+
+            let decoder = JSONDecoder()
+            return try decoder.decode([ParentDailySummary].self, from: data)
+        } catch let error as DecodingError {
+            throw APIError.decodingError(error)
+        } catch {
+            throw APIError.networkError(error)
+        }
+    }
+
+    /// Fetch parent weekly summaries for all students.
+    func fetchParentWeeklySummaries() async throws -> [ParentWeeklySummary] {
+        guard let url = URL(string: "\(baseURL)/parent/weekly-summary") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let (data, response) = try await session.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw APIError.serverError("Invalid response")
+            }
+            guard httpResponse.statusCode == 200 else {
+                throw APIError.serverError("HTTP \(httpResponse.statusCode)")
+            }
+
+            let decoder = JSONDecoder()
+            return try decoder.decode([ParentWeeklySummary].self, from: data)
+        } catch let error as DecodingError {
+            throw APIError.decodingError(error)
+        } catch {
+            throw APIError.networkError(error)
+        }
+    }
+
+    /// Fetch achievements for a specific student.
+    func fetchAchievements(studentId: String) async throws -> [Achievement] {
+        guard let url = URL(string: "\(baseURL)/achievements/\(studentId)") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let (data, response) = try await session.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw APIError.serverError("Invalid response")
+            }
+            guard httpResponse.statusCode == 200 else {
+                throw APIError.serverError("HTTP \(httpResponse.statusCode)")
+            }
+
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            return try decoder.decode([Achievement].self, from: data)
         } catch let error as DecodingError {
             throw APIError.decodingError(error)
         } catch {

@@ -22,7 +22,7 @@ class FractionComparisonTemplate:
         5: Different denominators, requires LCM, up to 20
         """
         if difficulty == 1:
-            denom = random.randint(2, 10)
+            denom = random.randint(3, 10)
             num1 = random.randint(1, denom - 1)
             num2 = random.randint(1, denom - 1)
             while num1 == num2:
@@ -33,7 +33,7 @@ class FractionComparisonTemplate:
             explanation = f"Since both fractions have denominator {denom}, we compare numerators: {max(num1, num2)} > {min(num1, num2)}, so {max(num1, num2)}/{denom} is larger"
 
         elif difficulty == 2:
-            denom = random.randint(2, 20)
+            denom = random.randint(3, 20)
             num1 = random.randint(1, denom - 1)
             num2 = random.randint(1, denom - 1)
             while num1 == num2:
