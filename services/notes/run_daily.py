@@ -14,6 +14,8 @@ import sys
 import datetime
 import logging
 import os
+import json
+from pathlib import Path
 
 # 让 Python 能找到同目录的模块
 sys.path.insert(0, os.path.dirname(__file__))
@@ -31,8 +33,38 @@ STUDENTS = [
     {"id": "astrid_zhao", "name": "Astrid", "count": 10, "folder": "Astrid Maths"},
 ]
 
-# ─── 家长 iMessage 号码（填你的 Apple ID 或手机号）───
-PARENT_PHONE = "+61400000000"   # TODO: 替换成你的真实号码
+CONFIG_PATH = Path(__file__).with_name("config.json")
+API_BASE = os.getenv("MATHCOACH_API_BASE", "http://localhost:8000/api/v1")
+
+
+def _load_runtime_config() -> dict:
+    """读取 notes 配置文件，缺失时返回空字典。"""
+    if not CONFIG_PATH.exists():
+        return {}
+    try:
+        return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        log.warning(f"读取 config.json 失败: {exc}")
+        return {}
+
+
+def _get_parent_phone() -> str:
+    """
+    读取家长号码，优先级：
+    1. 环境变量 MATHCOACH_PARENT_PHONE
+    2. config.json parent.phone
+    3. 占位值（不会发送）
+    """
+    from_env = os.getenv("MATHCOACH_PARENT_PHONE", "").strip()
+    if from_env:
+        return from_env
+
+    cfg = _load_runtime_config()
+    from_file = str(cfg.get("parent", {}).get("phone", "")).strip()
+    if from_file:
+        return from_file
+
+    return "+61400000000"
 
 
 def run_morning(dry_run: bool = False, only_student: str | None = None):
@@ -81,27 +113,32 @@ def run_evening(dry_run: bool = False):
 
     log.info(f"晚间汇总内容:\n{summary_text}")
 
+    phone = _get_parent_phone()
     if not dry_run:
-        _send_imessage(PARENT_PHONE, summary_text)
+        if phone == "+61400000000":
+            log.warning("未配置家长手机号（仍为占位值），已跳过发送。")
+            log.info("可在 services/notes/config.json 添加 parent.phone，或设置 MATHCOACH_PARENT_PHONE。")
+            return
+        _send_imessage(phone, summary_text)
     else:
-        log.info("[dry-run] 会发送 iMessage 到 " + PARENT_PHONE)
+        log.info("[dry-run] 会发送 iMessage 到 " + phone)
 
 
 def _fetch_api_summary() -> str | None:
     """尝试从后端 API 获取今日汇总，失败返回 None"""
     try:
         import urllib.request
-        import json
-        url = "http://localhost:8000/api/v1/parent/summary"
+        url = f"{API_BASE}/parent/daily-summary"
         with urllib.request.urlopen(url, timeout=3) as resp:
             data = json.loads(resp.read())
         lines = [f"📊 MathCoach 日报 {datetime.date.today().strftime('%m月%d日')}"]
-        for s in data.get("students", []):
-            status = "✅" if s.get("completed") else "⏳ 未完成"
+        for s in data:
+            status = "✅ 已完成" if s.get("is_completed") else "⏳ 未完成"
             lines.append(
-                f"  {s['name']}: {status} "
-                f"正确率 {round(s.get('accuracy', 0) * 100)}% "
-                f"🔥 {s.get('streak', 0)}天"
+                f"  {s.get('student_name', 'Student')}: {status} "
+                f"进度 {s.get('completed_questions', 0)}/{s.get('target_questions', 0)} "
+                f"正确率 {round(float(s.get('accuracy_percent', 0.0)))}% "
+                f"🔥 {s.get('current_streak', 0)}天"
             )
         return "\n".join(lines)
     except Exception:
