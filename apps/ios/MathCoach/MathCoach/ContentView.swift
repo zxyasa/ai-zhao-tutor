@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedStudent: Student?
     @State private var showParentDashboard = false
+    @State private var hasAuthToken: Bool = APIClient.shared.hasAccessToken
+    @AppStorage("auth_role") private var authRole: String = ""
     @AppStorage("selected_student_id") private var selectedStudentId: String = ""
     @AppStorage("selected_student_name") private var selectedStudentName: String = ""
     @AppStorage("selected_student_year") private var selectedStudentYear: Int = 0
@@ -17,36 +19,59 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            if let student = selectedStudent {
-                QuestionView(student: student)
-                    .navigationTitle(student.name)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button("家长") {
-                                showParentDashboard = true
-                            }
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button("切换") {
-                                clearSelection()
-                            }
-                        }
+            if !hasAuthToken {
+                AuthView { token in
+                    hasAuthToken = APIClient.shared.hasAccessToken
+                    authRole = token.role
+                    if token.role == "student" {
+                        Task { await selectStudentById(token.subject) }
                     }
-            } else {
-                StudentPickerView { student in
-                    select(student)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("家长") {
-                            showParentDashboard = true
+                .navigationTitle("AJ Math Tutor")
+            } else {
+                if let student = selectedStudent {
+                    QuestionView(student: student)
+                        .navigationTitle(student.name)
+                        .toolbar {
+                            if authRole != "student" {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    Button("家长") {
+                                        showParentDashboard = true
+                                    }
+                                }
+                            }
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Menu("更多") {
+                                    if authRole != "student" {
+                                        Button("切换学生") { clearSelection() }
+                                    }
+                                    Button("退出登录", role: .destructive) { logout() }
+                                }
+                            }
+                        }
+                } else {
+                    StudentPickerView { student in
+                        select(student)
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Menu("更多") {
+                                if authRole != "student" {
+                                    Button("家长面板") { showParentDashboard = true }
+                                }
+                                Button("退出登录", role: .destructive) { logout() }
+                            }
                         }
                     }
                 }
             }
         }
         .onAppear {
+            hasAuthToken = APIClient.shared.hasAccessToken
             restoreSelection()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .apiClientUnauthorized)) { _ in
+            logout()
         }
         .sheet(isPresented: $showParentDashboard) {
             ParentDashboardView()
@@ -77,6 +102,35 @@ struct ContentView: View {
         selectedStudentName = ""
         selectedStudentYear = 0
         selectedStudentAvatar = "star"
+    }
+
+    private func logout() {
+        // Avoid notification feedback loop: clear token locally without reposting unauthorized event.
+        APIClient.shared.setAccessToken(nil)
+        hasAuthToken = false
+        authRole = ""
+        clearSelection()
+        showParentDashboard = false
+    }
+
+    private func selectStudentById(_ studentId: String) async {
+        do {
+            let students = try await APIClient.shared.fetchStudents()
+            if let matched = students.first(where: { $0.id == studentId }) {
+                select(matched)
+                return
+            }
+        } catch {
+            // Keep fallback below.
+        }
+        select(
+            Student(
+                id: studentId,
+                name: studentId,
+                yearLevel: 3,
+                avatar: "star"
+            )
+        )
     }
 }
 

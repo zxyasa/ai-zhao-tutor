@@ -15,7 +15,8 @@ struct QuestionView: View {
 
     init(student: Student) {
         self.student = student
-        _viewModel = StateObject(wrappedValue: QuestionViewModel(studentId: student.id))
+        let scopedStudentId = APIClient.shared.isStudentRole ? nil : student.id
+        _viewModel = StateObject(wrappedValue: QuestionViewModel(studentId: scopedStudentId))
     }
 
     var body: some View {
@@ -162,6 +163,7 @@ struct QuestionView: View {
             VStack(spacing: 30) {
                 Text(item.questionText)
                     .font(.system(size: 36, weight: .medium))
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -178,9 +180,19 @@ struct QuestionView: View {
                         .focused($answerFieldFocused)
                         .keyboardType(keyboardType(for: item.questionType))
                         .submitLabel(.done)
+                        .onChange(of: viewModel.studentAnswer) { _, _ in
+                            viewModel.inputValidationMessage = nil
+                        }
                         .onSubmit {
                             submitAnswer()
                         }
+
+                    if let validation = viewModel.inputValidationMessage {
+                        Text(validation)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
+                    }
 
                     Text("按 Return 键提交答案")
                         .font(.caption)

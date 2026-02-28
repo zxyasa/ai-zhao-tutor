@@ -23,17 +23,18 @@ class QuestionViewModel: ObservableObject {
     @Published var timeSpent: Double = 0
     @Published var dailyCompleted: Int = 0
     @Published var dailyTarget: Int = 10
+    @Published var inputValidationMessage: String?
 
     // MARK: - Private Properties
 
     private let apiClient = APIClient.shared
-    private let studentId: String
+    private let studentId: String?
     private var startTime: Date?
     private var timer: Timer?
 
     // MARK: - Initialization
 
-    init(studentId: String = "test_001") {
+    init(studentId: String? = nil) {
         self.studentId = studentId
     }
 
@@ -46,13 +47,29 @@ class QuestionViewModel: ObservableObject {
         isCorrect = nil
         showHint = false
         showExplanation = false
+        inputValidationMessage = nil
         studentAnswer = ""
         timeSpent = 0
 
         do {
-            _ = try? await apiClient.startDailySession(studentId: studentId)
+            if apiClient.isStudentRole {
+                _ = try? await apiClient.startDailySession()
+            } else {
+                guard let studentId, !studentId.isEmpty else {
+                    throw APIError.serverError("student_id is required for parent role")
+                }
+                _ = try? await apiClient.startDailySession(studentId: studentId)
+            }
             await loadDailyStatus()
-            let item = try await apiClient.fetchNextItem(studentId: studentId)
+            let item: Item
+            if apiClient.isStudentRole {
+                item = try await apiClient.fetchNextItem()
+            } else {
+                guard let studentId, !studentId.isEmpty else {
+                    throw APIError.serverError("student_id is required for parent role")
+                }
+                item = try await apiClient.fetchNextItem(studentId: studentId)
+            }
             currentItem = item
             startTimer()
         } catch {
@@ -66,8 +83,13 @@ class QuestionViewModel: ObservableObject {
     func submitAnswer() async {
         guard let item = currentItem else { return }
 
-        stopTimer()
+        inputValidationMessage = nil
+        if let validationError = validateInputFormat(item: item, answer: studentAnswer) {
+            inputValidationMessage = validationError
+            return
+        }
 
+        stopTimer()
         isLoading = true
         errorMessage = nil
 
@@ -76,8 +98,20 @@ class QuestionViewModel: ObservableObject {
         isCorrect = correct
 
         // Create event
+        let scopedStudentId: String?
+        if apiClient.isStudentRole {
+            scopedStudentId = nil
+        } else {
+            guard let studentId, !studentId.isEmpty else {
+                isLoading = false
+                errorMessage = "student_id is required for parent role"
+                return
+            }
+            scopedStudentId = studentId
+        }
+
         let event = Event(
-            studentId: studentId,
+            studentId: scopedStudentId,
             itemId: item.id,
             answerGiven: studentAnswer,
             isCorrect: correct,
@@ -134,6 +168,38 @@ class QuestionViewModel: ObservableObject {
         timer = nil
         if let startTime = startTime {
             timeSpent = Date().timeIntervalSince(startTime)
+        }
+    }
+
+    private func validateInputFormat(item: Item, answer: String) -> String? {
+        let trimmed = answer.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            return "请输入答案"
+        }
+
+        switch item.validationRule {
+        case "numeric":
+            // 数字题：仅允许数字，或小数格式。
+            let pattern = #"^\d+(\.\d+)?$"#
+            let isNumeric = trimmed.range(of: pattern, options: .regularExpression) != nil
+            if !isNumeric {
+                return "这道题只能输入数字（可含小数点）"
+            }
+            return nil
+        case "fraction":
+            // 分数题：仅允许 a/b 形式，分母不能为 0。
+            let pattern = #"^\d+/\d+$"#
+            let isFraction = trimmed.range(of: pattern, options: .regularExpression) != nil
+            if !isFraction {
+                return "分数题请输入 a/b 格式（只允许数字和 /）"
+            }
+            let parts = trimmed.split(separator: "/")
+            if parts.count == 2, let denom = Int(parts[1]), denom == 0 {
+                return "分母不能为 0"
+            }
+            return nil
+        default:
+            return nil
         }
     }
 
@@ -199,7 +265,17 @@ class QuestionViewModel: ObservableObject {
     }
 
     private func loadDailyStatus() async {
-        if let status = try? await apiClient.fetchDailySessionStatus(studentId: studentId) {
+        let status: DailySessionStatus?
+        if apiClient.isStudentRole {
+            status = try? await apiClient.fetchDailySessionStatus()
+        } else {
+            guard let studentId, !studentId.isEmpty else {
+                inputValidationMessage = "缺少学生信息，请返回重选学生"
+                return
+            }
+            status = try? await apiClient.fetchDailySessionStatus(studentId: studentId)
+        }
+        if let status {
             dailyCompleted = status.completedQuestions
             dailyTarget = status.targetQuestions
         }

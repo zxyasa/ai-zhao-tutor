@@ -23,14 +23,14 @@ STUDENTS = [
         "name": "Jon",
         "year_level": 4,
         "avatar": "lion",
-        "target_daily_questions": 10,
+        "target_daily_questions": 40,
     },
     {
         "id": "astrid_zhao",
         "name": "Astrid",
         "year_level": 3,
         "avatar": "unicorn",
-        "target_daily_questions": 10,
+        "target_daily_questions": 40,
     },
 ]
 
@@ -88,28 +88,48 @@ def seed_students() -> bool:
 
 
 def _ensure_student_schema(db) -> None:
-    if engine.dialect.name != "sqlite":
+    dialect = engine.dialect.name
+
+    if dialect == "sqlite":
+        existing_cols = {
+            row[1]
+            for row in db.execute(text("PRAGMA table_info(students)")).fetchall()
+        }
+
+        alter_statements = {
+            "avatar": "ALTER TABLE students ADD COLUMN avatar VARCHAR DEFAULT 'star' NOT NULL",
+            "target_daily_questions": "ALTER TABLE students ADD COLUMN target_daily_questions INTEGER DEFAULT 10 NOT NULL",
+            "current_streak": "ALTER TABLE students ADD COLUMN current_streak INTEGER DEFAULT 0 NOT NULL",
+            "longest_streak": "ALTER TABLE students ADD COLUMN longest_streak INTEGER DEFAULT 0 NOT NULL",
+            "last_practice_date": "ALTER TABLE students ADD COLUMN last_practice_date DATE",
+            "total_sessions": "ALTER TABLE students ADD COLUMN total_sessions INTEGER DEFAULT 0 NOT NULL",
+            "parent_id": "ALTER TABLE students ADD COLUMN parent_id VARCHAR",
+            "pin_hash": "ALTER TABLE students ADD COLUMN pin_hash VARCHAR",
+        }
+
+        for col_name, statement in alter_statements.items():
+            if col_name not in existing_cols:
+                db.execute(text(statement))
+
+        db.commit()
         return
 
-    existing_cols = {
-        row[1]
-        for row in db.execute(text("PRAGMA table_info(students)")).fetchall()
-    }
-
-    alter_statements = {
-        "avatar": "ALTER TABLE students ADD COLUMN avatar VARCHAR DEFAULT 'star' NOT NULL",
-        "target_daily_questions": "ALTER TABLE students ADD COLUMN target_daily_questions INTEGER DEFAULT 10 NOT NULL",
-        "current_streak": "ALTER TABLE students ADD COLUMN current_streak INTEGER DEFAULT 0 NOT NULL",
-        "longest_streak": "ALTER TABLE students ADD COLUMN longest_streak INTEGER DEFAULT 0 NOT NULL",
-        "last_practice_date": "ALTER TABLE students ADD COLUMN last_practice_date DATE",
-        "total_sessions": "ALTER TABLE students ADD COLUMN total_sessions INTEGER DEFAULT 0 NOT NULL",
-    }
-
-    for col_name, statement in alter_statements.items():
-        if col_name not in existing_cols:
+    if dialect == "postgresql":
+        # Keep old databases forward-compatible with new Student fields.
+        statements = [
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS avatar VARCHAR NOT NULL DEFAULT 'star'",
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS target_daily_questions INTEGER NOT NULL DEFAULT 10",
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS current_streak INTEGER NOT NULL DEFAULT 0",
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS longest_streak INTEGER NOT NULL DEFAULT 0",
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS last_practice_date DATE",
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS total_sessions INTEGER NOT NULL DEFAULT 0",
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS parent_id VARCHAR",
+            "ALTER TABLE students ADD COLUMN IF NOT EXISTS pin_hash VARCHAR",
+        ]
+        for statement in statements:
             db.execute(text(statement))
-
-    db.commit()
+        db.commit()
+        return
 
 
 if __name__ == "__main__":

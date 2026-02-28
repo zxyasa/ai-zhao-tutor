@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import items, events, placement, mastery, students, daily_sessions, parent, achievements
+from .routers import items, events, placement, mastery, students, daily_sessions, parent, achievements, auth
 from .database import init_db
 from .config import settings
+
+# Guard against unsafe production startup configuration.
+settings.validate_runtime()
 
 # Initialize database
 init_db()
@@ -17,7 +20,7 @@ app = FastAPI(
 # CORS middleware for iOS app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, restrict to specific origins
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,6 +35,7 @@ app.include_router(students.router, prefix="/api/v1", tags=["students"])
 app.include_router(daily_sessions.router, prefix="/api/v1", tags=["daily_session"])
 app.include_router(parent.router, prefix="/api/v1", tags=["parent"])
 app.include_router(achievements.router, prefix="/api/v1", tags=["achievements"])
+app.include_router(auth.router, prefix="/api/v1", tags=["auth"])
 
 
 @app.get("/")

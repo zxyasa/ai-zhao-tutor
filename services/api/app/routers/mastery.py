@@ -1,24 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from typing import List
-import sys
-sys.path.append("../../packages/shared")
 
+from ..auth.dependencies import get_token_claims, require_student_access
 from ..database import get_db
 from ..models import Mastery as DBMastery
 
 router = APIRouter()
 
 
-@router.get("/mastery/{student_id}")
-async def get_mastery(
-    student_id: str,
-    db: Session = Depends(get_db)
-):
-    """
-    Get all mastery data for a student.
-    Returns mastery scores for all skills the student has attempted.
-    """
+def _fetch_mastery_payload(db: Session, student_id: str) -> list[dict]:
     mastery_records = db.query(DBMastery).filter(
         DBMastery.student_id == student_id
     ).all()
@@ -26,7 +16,6 @@ async def get_mastery(
     if not mastery_records:
         return []
 
-    # Convert to response format
     result = []
     for record in mastery_records:
         result.append({
@@ -37,5 +26,28 @@ async def get_mastery(
             "mastery_score": record.mastery_score,
             "last_updated": record.last_updated.isoformat()
         })
-
     return result
+
+
+@router.get("/mastery/{student_id}")
+async def get_mastery(
+    student_id: str,
+    db: Session = Depends(get_db),
+    claims: dict = Depends(get_token_claims),
+):
+    """
+    Get all mastery data for a student.
+    Returns mastery scores for all skills the student has attempted.
+    """
+    resolved_id = None if student_id == "me" else student_id
+    student = require_student_access(db=db, claims=claims, student_id=resolved_id)
+    return _fetch_mastery_payload(db, student.id)
+
+
+@router.get("/mastery/me")
+async def get_mastery_me(
+    db: Session = Depends(get_db),
+    claims: dict = Depends(get_token_claims),
+):
+    student = require_student_access(db=db, claims=claims, student_id=None)
+    return _fetch_mastery_payload(db, student.id)

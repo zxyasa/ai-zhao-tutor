@@ -8,11 +8,11 @@
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/python3</string>
-        <string>/Users/michaelzhao/agents/ai-zhao-tutor/scripts/generate_daily_maths_notes.py</string>
+        <string>/Users/michaelzhao/agents/apps/ai-zhao-tutor/scripts/generate_daily_maths_notes.py</string>
     </array>
 
     <key>WorkingDirectory</key>
-    <string>/Users/michaelzhao/agents/ai-zhao-tutor</string>
+    <string>/Users/michaelzhao/agents/apps/ai-zhao-tutor</string>
 
     <key>StartCalendarInterval</key>
     <dict>
@@ -26,9 +26,9 @@
     <false/>
 
     <key>StandardOutPath</key>
-    <string>/Users/michaelzhao/agents/ai-zhao-tutor/logs/daily_maths_notes.out.log</string>
+    <string>/Users/michaelzhao/agents/apps/ai-zhao-tutor/logs/daily_maths_notes.out.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/michaelzhao/agents/ai-zhao-tutor/logs/daily_maths_notes.err.log</string>
+    <string>/Users/michaelzhao/agents/apps/ai-zhao-tutor/logs/daily_maths_notes.err.log</string>
 </dict>
 </plist>
 

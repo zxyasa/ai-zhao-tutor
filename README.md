@@ -50,7 +50,7 @@ python validate_items.py
 
 This generates:
 - `output/skill_tree_v0.json` - NSW curriculum skill tree
-- `output/content_pack_v0.json` - 300+ math items
+- `output/content_pack_v0.json` - 1275 validated math items
 
 ### 3. Load Content into Database
 
@@ -151,6 +151,15 @@ Returns a sequence of 10 items across different difficulties.
 ### GET /api/v1/mastery/{student_id}
 Get student's mastery data for all attempted skills.
 
+### GET /api/v1/streak/{student_id}
+Get student's streak status for daily practice continuity.
+
+### GET /api/v1/parent/{student_id}/progress
+Get single-student timeline data (daily progress, accuracy, speed) for parent dashboard charts.
+
+### GET /api/v1/achievements/{student_id}/new
+Get newly unlocked achievements, supports `since` or rolling lookback window.
+
 ## Content Service
 
 ### Skill Tree
@@ -173,7 +182,7 @@ cd services/content
 python generate_items.py
 ```
 
-Output: `300+ deterministic math items`
+Output: `1275 deterministic math items`
 
 ### Validation
 ```bash
@@ -190,6 +199,24 @@ Recomputes all answers to verify correctness.
 cd services/api
 pip install -r requirements.txt
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Production Safety Checks (Phase 8)
+
+Before production startup, set environment variables:
+
+```bash
+export ENVIRONMENT=production
+export DEBUG=false
+export SECRET_KEY="<long-random-secret-at-least-32-chars>"
+export CORS_ORIGINS_RAW="https://your-app.example.com"
+```
+
+Run readiness check:
+
+```bash
+cd services/api
+PYTHONPATH=. python scripts/check_phase8_readiness.py
 ```
 
 ### Local Content Development

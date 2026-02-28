@@ -1,127 +1,131 @@
 """
-Validate generated items by recomputing answers
-Ensures all items have correct, deterministic answers
+Validate generated items by recomputing expected answers from parameters.
 """
 import json
 from fractions import Fraction
-import math
 
 
-def validate_fraction_comparison(item):
-    """Validate fraction comparison item"""
-    params = item["parameters"]
-    num1 = params["num1"]
-    num2 = params["num2"]
-    denom1 = params["denom1"]
-    denom2 = params["denom2"]
-
-    frac1 = Fraction(num1, denom1)
-    frac2 = Fraction(num2, denom2)
-
-    if frac1 > frac2:
-        expected = f"{num1}/{denom1}"
-    else:
-        expected = f"{num2}/{denom2}"
-
-    return expected
+def _to_fraction(value: str) -> Fraction:
+    if "/" in value:
+        n, d = value.split("/", 1)
+        return Fraction(int(n), int(d))
+    return Fraction(value)
 
 
-def validate_fraction_addition(item):
-    """Validate fraction addition item"""
-    params = item["parameters"]
-
-    # Recompute the answer
-    num1 = params["num1"]
-    num2 = params["num2"]
-    denom1 = params["denom1"]
-    denom2 = params["denom2"]
-
-    result = Fraction(num1, denom1) + Fraction(num2, denom2)
-
-    # Check if stored result matches
-    stored_result = Fraction(params["result_num"], params["result_denom"])
-
-    if result != stored_result:
-        return None  # Invalid
-
-    return f"{params['result_num']}/{params['result_denom']}"
+def _normalize_answer(value) -> str:
+    if isinstance(value, Fraction):
+        return f"{value.numerator}/{value.denominator}"
+    return str(value)
 
 
-def validate_equivalent_fraction(item):
-    """Validate equivalent fraction item"""
-    params = item["parameters"]
-    base_num = params["base_num"]
-    base_denom = params["base_denom"]
-    multiplier = params.get("multiplier", 1)
+def expected_answer(item: dict):
+    p = item.get("parameters", {})
+    op = p.get("operation")
+    skill_id = item.get("skill_id", "")
 
-    # The correct answer should be equivalent to base fraction
-    correct = item["correct_answer"]
+    # Generic arithmetic operations used by numeric templates.
+    if op == "add":
+        return p["a"] + p["b"]
+    if op == "sub":
+        return p["a"] - p["b"]
+    if op == "mul":
+        return p["a"] * p["b"]
+    if op == "div":
+        return p["a"]
 
-    if "/" in correct:
-        # It's a fraction
-        parts = correct.split("/")
-        result_num = int(parts[0])
-        result_denom = int(parts[1])
+    # Identity type templates store direct expected answer.
+    if op == "identity":
+        if "answer" in p:
+            return p["answer"]
+        if "x" in p:
+            return p["x"]
+        if "num" in p and "denom" in p:
+            return Fraction(p["num"], p["denom"])
 
-        frac1 = Fraction(base_num, base_denom)
-        frac2 = Fraction(result_num, result_denom)
+    # Fraction operations.
+    if op == "max_fraction":
+        f1 = Fraction(p["num1"], p["denom1"])
+        f2 = Fraction(p["num2"], p["denom2"])
+        return f1 if f1 > f2 else f2
+    if op == "equivalent":
+        # Accept any equivalent answer, fallback expected uses multiplied form.
+        return Fraction(p["num"], p["denom"])
+    if op == "simplify":
+        return Fraction(p["num"], p["denom"])
+    if op == "add_frac":
+        return Fraction(p["num1"], p["denom1"]) + Fraction(p["num2"], p["denom2"])
+    if op == "sub_frac":
+        return Fraction(p["num1"], p["denom1"]) - Fraction(p["num2"], p["denom2"])
+    if op == "mul_frac":
+        return Fraction(p["num1"], p["denom1"]) * Fraction(p["num2"], p["denom2"])
+    if op == "div_frac":
+        return Fraction(p["num1"], p["denom1"]) / Fraction(p["num2"], p["denom2"])
+    if op == "to_improper":
+        return Fraction(p["whole"] * p["denom"] + p["num"], p["denom"])
+    if op == "to_mixed_num_only":
+        return p["improper_num"] % p["denom"]
 
-        if frac1 != frac2:
-            return None  # Not equivalent
+    # Backward compatibility with legacy fraction templates.
+    if {"a", "b"}.issubset(p.keys()) and skill_id == "yr4_mult_div_001":
+        return p["a"] * p["b"]
+    if "compare" in skill_id and {"num1", "num2", "denom1", "denom2"}.issubset(p.keys()):
+        f1 = Fraction(p["num1"], p["denom1"])
+        f2 = Fraction(p["num2"], p["denom2"])
+        return f1 if f1 > f2 else f2
+    if "equiv" in skill_id and {"base_num", "base_denom"}.issubset(p.keys()):
+        return Fraction(p["base_num"], p["base_denom"])
+    if "add" in skill_id and {"num1", "num2", "denom1", "denom2"}.issubset(p.keys()):
+        return Fraction(p["num1"], p["denom1"]) + Fraction(p["num2"], p["denom2"])
 
-    return correct
+    return None
 
 
-def validate_item(item):
-    """Validate a single item based on its question type and skill"""
-    skill_id = item["skill_id"]
+def validate_item(item: dict) -> dict:
+    expected = expected_answer(item)
+    if expected is None:
+        return {"status": "skipped", "reason": "Unknown schema"}
+
+    actual_raw = item.get("correct_answer", "")
+    rule = item.get("validation_rule", "")
 
     try:
-        if "compare" in skill_id:
-            expected = validate_fraction_comparison(item)
-        elif "add" in skill_id:
-            expected = validate_fraction_addition(item)
-        elif "equiv" in skill_id:
-            expected = validate_equivalent_fraction(item)
-        else:
-            # Unknown type - skip validation
-            return {"status": "skipped", "reason": "Unknown skill type"}
-
-        if expected is None:
-            return {"status": "invalid", "expected": "N/A", "actual": item["correct_answer"]}
-
-        # Check equivalence for fractions
-        if item.get("validation_rule") == "equivalent_fraction" and "/" in expected and "/" in item["correct_answer"]:
-            expected_frac = Fraction(expected.split("/")[0], expected.split("/")[1])
-            actual_frac = Fraction(item["correct_answer"].split("/")[0], item["correct_answer"].split("/")[1])
-
+        if rule in {"fraction", "equivalent_fraction"} or isinstance(expected, Fraction):
+            expected_frac = expected if isinstance(expected, Fraction) else _to_fraction(str(expected))
+            actual_frac = _to_fraction(str(actual_raw))
             if expected_frac == actual_frac:
                 return {"status": "valid"}
-            else:
-                return {"status": "invalid", "expected": expected, "actual": item["correct_answer"]}
+            return {
+                "status": "invalid",
+                "expected": _normalize_answer(expected_frac),
+                "actual": str(actual_raw),
+            }
 
-        # Exact match
-        if expected == item["correct_answer"]:
+        if rule in {"numeric", "exact_match"}:
+            exp_val = float(expected)
+            act_val = float(actual_raw)
+            if abs(exp_val - act_val) < 1e-6:
+                return {"status": "valid"}
+            return {"status": "invalid", "expected": str(expected), "actual": str(actual_raw)}
+
+        # Default exact string compare.
+        if str(expected) == str(actual_raw):
             return {"status": "valid"}
-        else:
-            return {"status": "invalid", "expected": expected, "actual": item["correct_answer"]}
+        return {"status": "invalid", "expected": str(expected), "actual": str(actual_raw)}
 
-    except Exception as e:
-        return {"status": "error", "error": str(e)}
+    except Exception as exc:
+        return {"status": "error", "error": str(exc)}
 
 
-def validate_content_pack():
-    """Validate all items in content pack"""
+def validate_content_pack() -> bool:
     print("=" * 60)
-    print("MathCoach Content Validator v0.1")
+    print("MathCoach Content Validator v0.2")
     print("=" * 60)
     print()
 
-    with open('output/content_pack_v0.json') as f:
+    with open("output/content_pack_v0.json", encoding="utf-8") as f:
         items = json.load(f)
 
-    print(f"Validating {len(items)} items...")
-    print()
+    print(f"Validating {len(items)} items...\n")
 
     invalid_items = []
     error_items = []
@@ -130,52 +134,37 @@ def validate_content_pack():
 
     for item in items:
         result = validate_item(item)
-
         if result["status"] == "valid":
             valid_count += 1
         elif result["status"] == "invalid":
-            invalid_items.append({
-                "item_id": item["item_id"],
-                "skill_id": item["skill_id"],
-                "expected": result.get("expected"),
-                "actual": result.get("actual"),
-                "parameters": item["parameters"]
-            })
+            invalid_items.append(
+                {
+                    "item_id": item["item_id"],
+                    "skill_id": item["skill_id"],
+                    "expected": result.get("expected"),
+                    "actual": result.get("actual"),
+                    "parameters": item.get("parameters", {}),
+                }
+            )
         elif result["status"] == "error":
-            error_items.append({
-                "item_id": item["item_id"],
-                "error": result["error"]
-            })
-        elif result["status"] == "skipped":
-            skipped_items.append({
-                "item_id": item["item_id"],
-                "reason": result["reason"]
-            })
+            error_items.append({"item_id": item["item_id"], "error": result["error"]})
+        else:
+            skipped_items.append({"item_id": item["item_id"], "reason": result["reason"]})
 
-    # Print results
     print(f"✅ Valid items: {valid_count}/{len(items)}")
-
     if skipped_items:
-        print(f"⏭️  Skipped: {len(skipped_items)} items")
-
+        print(f"⏭️  Skipped: {len(skipped_items)}")
     if error_items:
-        print(f"\n⚠️  Errors: {len(error_items)} items")
-        for err in error_items[:5]:  # Show first 5
+        print(f"⚠️  Errors: {len(error_items)}")
+        for err in error_items[:5]:
             print(f"  {err['item_id']}: {err['error']}")
-
     if invalid_items:
-        print(f"\n❌ Invalid items: {len(invalid_items)}")
-        for inv in invalid_items[:10]:  # Show first 10
-            print(f"  {inv['item_id']} ({inv['skill_id']})")
-            print(f"    Expected: {inv['expected']}")
-            print(f"    Actual: {inv['actual']}")
-            print(f"    Params: {inv['parameters']}")
-            print()
-
-        # Save invalid items to file
-        with open('output/invalid_items.json', 'w') as f:
+        print(f"❌ Invalid items: {len(invalid_items)}")
+        for inv in invalid_items[:10]:
+            print(f"  {inv['item_id']} ({inv['skill_id']}): expected {inv['expected']} actual {inv['actual']}")
+        with open("output/invalid_items.json", "w", encoding="utf-8") as f:
             json.dump(invalid_items, f, indent=2)
-        print(f"📝 Invalid items saved to output/invalid_items.json")
+        print("📝 Invalid items saved to output/invalid_items.json")
     else:
         print("\n🎉 All items validated successfully!")
 
@@ -184,4 +173,4 @@ def validate_content_pack():
 
 if __name__ == "__main__":
     success = validate_content_pack()
-    exit(0 if success else 1)
+    raise SystemExit(0 if success else 1)

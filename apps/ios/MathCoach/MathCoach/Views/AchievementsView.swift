@@ -61,7 +61,11 @@ struct AchievementsView: View {
         errorMessage = nil
 
         do {
-            achievements = try await APIClient.shared.fetchAchievements(studentId: student.id)
+            if APIClient.shared.isStudentRole {
+                achievements = try await APIClient.shared.fetchAchievements()
+            } else {
+                achievements = try await APIClient.shared.fetchAchievements(studentId: student.id)
+            }
         } catch {
             errorMessage = "后端暂不可用，暂时无法加载徽章。"
             achievements = []

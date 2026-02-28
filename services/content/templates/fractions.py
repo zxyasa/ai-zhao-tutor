@@ -1,267 +1,423 @@
 """
-Fraction item templates with deterministic generation and validation
+Fraction templates with deterministic-style generation and explicit parameters for validation.
 """
-import random
-from fractions import Fraction as FractionCalc
 import math
+import random
+from fractions import Fraction
 
 
-class FractionComparisonTemplate:
-    """Compare two fractions - which is larger?"""
-    skill_id = "yr3_frac_compare_001"
+def _rand_fraction(min_denom: int = 2, max_denom: int = 12) -> tuple[int, int]:
+    denom = random.randint(min_denom, max_denom)
+    num = random.randint(1, denom - 1)
+    return num, denom
+
+
+def _format_fraction(frac: Fraction) -> str:
+    return f"{frac.numerator}/{frac.denominator}"
+
+
+class FractionIntroTemplate:
+    skill_id = "yr3_frac_intro_001"
     question_type = "fraction"
+    items_per_difficulty = 15
 
     @staticmethod
     def generate(difficulty: int):
-        """
-        Difficulty scaling:
-        1: Same denominator, denominators ≤ 10
-        2: Same denominator, denominators ≤ 20
-        3: Different denominators, both ≤ 10, one is multiple of other
-        4: Different denominators, both ≤ 12
-        5: Different denominators, requires LCM, up to 20
-        """
-        if difficulty == 1:
-            denom = random.randint(3, 10)
-            num1 = random.randint(1, denom - 1)
-            num2 = random.randint(1, denom - 1)
-            while num1 == num2:
-                num2 = random.randint(1, denom - 1)
-
-            correct = f"{max(num1, num2)}/{denom}"
-            hint = "When denominators are the same, compare the numerators"
-            explanation = f"Since both fractions have denominator {denom}, we compare numerators: {max(num1, num2)} > {min(num1, num2)}, so {max(num1, num2)}/{denom} is larger"
-
-        elif difficulty == 2:
-            denom = random.randint(3, 20)
-            num1 = random.randint(1, denom - 1)
-            num2 = random.randint(1, denom - 1)
-            while num1 == num2:
-                num2 = random.randint(1, denom - 1)
-
-            correct = f"{max(num1, num2)}/{denom}"
-            hint = "When denominators are the same, which numerator is larger?"
-            explanation = f"Both fractions have denominator {denom}. Compare numerators: {max(num1, num2)} > {min(num1, num2)}"
-
-        else:  # difficulty 3-5: different denominators
-            if difficulty == 3:
-                denom1 = random.randint(2, 5)
-                denom2 = denom1 * random.randint(2, 3)
-            elif difficulty == 4:
-                denom1 = random.randint(2, 12)
-                denom2 = random.randint(2, 12)
-                while denom2 == denom1:
-                    denom2 = random.randint(2, 12)
-            else:  # 5
-                denom1 = random.randint(2, 20)
-                denom2 = random.randint(2, 20)
-                while denom2 == denom1:
-                    denom2 = random.randint(2, 20)
-
-            num1 = random.randint(1, denom1 - 1)
-            num2 = random.randint(1, denom2 - 1)
-
-            # Use fractions library for correct comparison
-            frac1 = FractionCalc(num1, denom1)
-            frac2 = FractionCalc(num2, denom2)
-
-            if frac1 == frac2:
-                num2 = num2 + 1 if num2 < denom2 - 1 else num2 - 1
-                frac2 = FractionCalc(num2, denom2)
-
-            correct = f"{num1}/{denom1}" if frac1 > frac2 else f"{num2}/{denom2}"
-            hint = "Find a common denominator to compare fractions with different denominators"
-            lcm = (denom1 * denom2) // math.gcd(denom1, denom2)
-            explanation = f"Convert to common denominator {lcm}: {num1}/{denom1} = {num1 * (lcm // denom1)}/{lcm} and {num2}/{denom2} = {num2 * (lcm // denom2)}/{lcm}. Then compare numerators."
-
-        item_id = f"{FractionComparisonTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
-
+        total = random.randint(4, 8 + difficulty * 2)
+        shaded = random.randint(1, total - 1)
+        answer = f"{shaded}/{total}"
+        item_id = f"{FractionIntroTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
         return {
             "item_id": item_id,
-            "skill_id": FractionComparisonTemplate.skill_id,
-            "question_text": f"Which is larger: {num1}/{denom if difficulty <= 2 else denom1} or {num2}/{denom if difficulty <= 2 else denom2}?",
-            "question_type": FractionComparisonTemplate.question_type,
+            "skill_id": FractionIntroTemplate.skill_id,
+            "question_text": f"A shape is split into {total} equal parts and {shaded} are shaded. Write the fraction shaded.",
+            "question_type": FractionIntroTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {
-                "num1": num1,
-                "num2": num2,
-                "denom1": denom if difficulty <= 2 else denom1,
-                "denom2": denom if difficulty <= 2 else denom2
-            },
-            "correct_answer": correct,
-            "hint": hint,
-            "explanation": explanation,
-            "validation_rule": "exact_match"
+            "parameters": {"operation": "identity", "num": shaded, "denom": total},
+            "correct_answer": answer,
+            "hint": "Fraction = shaded parts / total equal parts.",
+            "explanation": f"Shaded {shaded} out of {total}, so the fraction is {answer}.",
+            "validation_rule": "fraction",
         }
 
 
-class FractionAdditionTemplate:
-    """Add two fractions"""
-    skill_id = "yr5_frac_add_001"
+class FractionComparisonTemplate:
+    skill_id = "yr3_frac_compare_001"
     question_type = "fraction"
+    items_per_difficulty = 15
 
     @staticmethod
     def generate(difficulty: int):
-        """
-        Difficulty scaling:
-        1: Same denominator ≤ 10, sum < 1
-        2: Same denominator ≤ 10, sum may be improper
-        3: Different denominators, one multiple of other
-        4: Different denominators, need LCM
-        5: Different denominators, result needs simplification
-        """
         if difficulty <= 2:
-            denom = random.randint(2, 10)
-            if difficulty == 1:
-                num1 = random.randint(1, denom - 2)
-                num2 = random.randint(1, denom - num1 - 1)
-            else:
-                num1 = random.randint(1, denom - 1)
-                num2 = random.randint(1, denom - 1)
+            denom = random.randint(3, 12 + difficulty * 3)
+            n1 = random.randint(1, denom - 1)
+            n2 = random.randint(1, denom - 1)
+            while n1 == n2:
+                n2 = random.randint(1, denom - 1)
+            left = Fraction(n1, denom)
+            right = Fraction(n2, denom)
+            d1, d2 = denom, denom
+        else:
+            n1, d1 = _rand_fraction(3, 10 + difficulty * 2)
+            n2, d2 = _rand_fraction(3, 10 + difficulty * 2)
+            left = Fraction(n1, d1)
+            right = Fraction(n2, d2)
+            while left == right:
+                n2, d2 = _rand_fraction(3, 10 + difficulty * 2)
+                right = Fraction(n2, d2)
 
-            result_num = num1 + num2
-            result_denom = denom
-
-            hint = "When denominators are the same, add the numerators and keep the denominator"
-            explanation = f"Since both fractions have denominator {denom}, add numerators: {num1} + {num2} = {result_num}. Answer: {result_num}/{result_denom}"
-
-        else:  # different denominators
-            if difficulty == 3:
-                denom1 = random.randint(2, 5)
-                denom2 = denom1 * random.randint(2, 3)
-            else:
-                denom1 = random.randint(2, 12)
-                denom2 = random.randint(2, 12)
-                while denom2 == denom1:
-                    denom2 = random.randint(2, 12)
-
-            num1 = random.randint(1, denom1 - 1)
-            num2 = random.randint(1, denom2 - 1)
-
-            # Calculate using fractions library
-            frac_result = FractionCalc(num1, denom1) + FractionCalc(num2, denom2)
-
-            if difficulty == 5:
-                # Keep in simplified form
-                result_num = frac_result.numerator
-                result_denom = frac_result.denominator
-            else:
-                # Use common denominator
-                lcm = (denom1 * denom2) // math.gcd(denom1, denom2)
-                result_num = num1 * (lcm // denom1) + num2 * (lcm // denom2)
-                result_denom = lcm
-
-            hint = "Find a common denominator, then add the numerators"
-            explanation = f"Common denominator is {result_denom}. Convert and add: ({num1 * (result_denom // denom1)} + {num2 * (result_denom // denom2)}) / {result_denom} = {result_num}/{result_denom}"
-
-        correct_answer = f"{result_num}/{result_denom}"
-        item_id = f"{FractionAdditionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
-
+        answer = f"{n1}/{d1}" if left > right else f"{n2}/{d2}"
+        item_id = f"{FractionComparisonTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
         return {
             "item_id": item_id,
-            "skill_id": FractionAdditionTemplate.skill_id,
-            "question_text": f"What is {num1}/{denom if difficulty <= 2 else denom1} + {num2}/{denom if difficulty <= 2 else denom2}?",
-            "question_type": FractionAdditionTemplate.question_type,
+            "skill_id": FractionComparisonTemplate.skill_id,
+            "question_text": f"Which is larger: {n1}/{d1} or {n2}/{d2}?",
+            "question_type": FractionComparisonTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {
-                "num1": num1,
-                "num2": num2,
-                "denom1": denom if difficulty <= 2 else denom1,
-                "denom2": denom if difficulty <= 2 else denom2,
-                "result_num": result_num,
-                "result_denom": result_denom
-            },
-            "correct_answer": correct_answer,
-            "hint": hint,
-            "explanation": explanation,
-            "validation_rule": "equivalent_fraction"
+            "parameters": {"operation": "max_fraction", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "correct_answer": answer,
+            "hint": "Use a common denominator when needed.",
+            "explanation": "Convert to a common denominator and compare numerators.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionIdentifyTemplate:
+    skill_id = "yr3_frac_identify_001"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        total = random.randint(3, 10 + difficulty * 2)
+        shaded = random.randint(1, total - 1)
+        answer = f"{shaded}/{total}"
+        item_id = f"{FractionIdentifyTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionIdentifyTemplate.skill_id,
+            "question_text": f"Out of {total} equal parts, {shaded} are highlighted. What fraction is highlighted?",
+            "question_type": FractionIdentifyTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "identity", "num": shaded, "denom": total},
+            "correct_answer": answer,
+            "hint": "Write highlighted over total parts.",
+            "explanation": f"That is {shaded}/{total}.",
+            "validation_rule": "fraction",
         }
 
 
 class EquivalentFractionTemplate:
-    """Find equivalent fraction"""
     skill_id = "yr4_frac_equiv_001"
     question_type = "fraction"
+    items_per_difficulty = 15
 
     @staticmethod
     def generate(difficulty: int):
-        """
-        Difficulty scaling:
-        1: Multiply numerator and denominator by 2
-        2: Multiply by 3 or 4
-        3: Multiply by values up to 6
-        4: Find missing numerator or denominator
-        5: Simplify to lowest terms
-        """
-        base_denom = random.randint(2, 8)
-        base_num = random.randint(1, base_denom - 1)
+        num, denom = _rand_fraction(2, 9)
+        factor = random.randint(2, 2 + difficulty)
 
         if difficulty <= 3:
-            multiplier = 2 if difficulty == 1 else (random.randint(2, 3) if difficulty == 2 else random.randint(2, 6))
-            target_num = base_num * multiplier
-            target_denom = base_denom * multiplier
-
-            question = f"What is an equivalent fraction to {base_num}/{base_denom}? (Use denominator {target_denom})"
-            correct = f"{target_num}/{target_denom}"
-            hint = "Multiply both numerator and denominator by the same number"
-            explanation = f"To get denominator {target_denom}, multiply {base_denom} by {multiplier}. Also multiply numerator: {base_num} × {multiplier} = {target_num}"
-
-        elif difficulty == 4:
-            multiplier = random.randint(2, 5)
-            if random.choice([True, False]):
-                # Missing numerator
-                target_denom = base_denom * multiplier
-                target_num = base_num * multiplier
-                question = f"Find the missing numerator: {base_num}/{base_denom} = ?/{target_denom}"
-                correct = str(target_num)
-            else:
-                # Missing denominator
-                target_num = base_num * multiplier
-                target_denom = base_denom * multiplier
-                question = f"Find the missing denominator: {base_num}/{base_denom} = {target_num}/?"
-                correct = str(target_denom)
-
-            hint = "What number do you multiply the known values by?"
-            explanation = f"Multiply both parts by {multiplier}"
-
-        else:  # difficulty == 5: simplify
-            multiplier = random.randint(2, 6)
-            unsimplified_num = base_num * multiplier
-            unsimplified_denom = base_denom * multiplier
-
-            question = f"Simplify {unsimplified_num}/{unsimplified_denom} to lowest terms"
-            correct = f"{base_num}/{base_denom}"
-            hint = "Find the greatest common divisor and divide both numerator and denominator by it"
-            explanation = f"GCD of {unsimplified_num} and {unsimplified_denom} is {multiplier}. Divide both: {unsimplified_num}÷{multiplier} = {base_num}, {unsimplified_denom}÷{multiplier} = {base_denom}"
+            target_denom = denom * factor
+            answer = f"{num * factor}/{target_denom}"
+            q = f"Find an equivalent fraction to {num}/{denom} with denominator {target_denom}."
+        else:
+            uns_num = num * factor
+            uns_den = denom * factor
+            answer = f"{num}/{denom}"
+            q = f"Simplify {uns_num}/{uns_den} to lowest terms."
 
         item_id = f"{EquivalentFractionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
-
         return {
             "item_id": item_id,
             "skill_id": EquivalentFractionTemplate.skill_id,
-            "question_text": question,
+            "question_text": q,
             "question_type": EquivalentFractionTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {
-                "base_num": base_num,
-                "base_denom": base_denom,
-                "multiplier": multiplier
-            },
-            "correct_answer": correct,
-            "hint": hint,
-            "explanation": explanation,
-            "validation_rule": "equivalent_fraction" if "/" in correct else "exact_match"
+            "parameters": {"operation": "equivalent", "num": num, "denom": denom, "factor": factor},
+            "correct_answer": answer,
+            "hint": "Multiply or divide numerator and denominator by the same number.",
+            "explanation": "Equivalent fractions keep the same value.",
+            "validation_rule": "fraction",
         }
 
 
-# Template registry
+class FractionCompareAdvancedTemplate:
+    skill_id = "yr4_frac_compare_002"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        n1, d1 = _rand_fraction(3, 12 + difficulty * 2)
+        n2, d2 = _rand_fraction(3, 12 + difficulty * 2)
+        left = Fraction(n1, d1)
+        right = Fraction(n2, d2)
+        while left == right:
+            n2, d2 = _rand_fraction(3, 12 + difficulty * 2)
+            right = Fraction(n2, d2)
+
+        answer = f"{n1}/{d1}" if left > right else f"{n2}/{d2}"
+        item_id = f"{FractionCompareAdvancedTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionCompareAdvancedTemplate.skill_id,
+            "question_text": f"Which is larger: {n1}/{d1} or {n2}/{d2}?",
+            "question_type": FractionCompareAdvancedTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "max_fraction", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "correct_answer": answer,
+            "hint": "Use LCM/common denominator.",
+            "explanation": "Convert to common denominator and compare.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionSimplifyTemplate:
+    skill_id = "yr4_frac_simplify_001"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        base_n, base_d = _rand_fraction(2, 10)
+        factor = random.randint(2, 4 + difficulty)
+        n = base_n * factor
+        d = base_d * factor
+        answer = f"{base_n}/{base_d}"
+        item_id = f"{FractionSimplifyTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionSimplifyTemplate.skill_id,
+            "question_text": f"Simplify {n}/{d} to lowest terms.",
+            "question_type": FractionSimplifyTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "simplify", "num": n, "denom": d},
+            "correct_answer": answer,
+            "hint": "Divide numerator and denominator by the GCD.",
+            "explanation": f"GCD({n}, {d}) = {factor}.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionAdditionTemplate:
+    skill_id = "yr5_frac_add_001"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        denom = random.randint(3, 10 + difficulty)
+        n1 = random.randint(1, denom - 1)
+        n2 = random.randint(1, denom - 1)
+        result = Fraction(n1, denom) + Fraction(n2, denom)
+        answer = _format_fraction(result)
+        item_id = f"{FractionAdditionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionAdditionTemplate.skill_id,
+            "question_text": f"What is {n1}/{denom} + {n2}/{denom}?",
+            "question_type": FractionAdditionTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "add_frac", "num1": n1, "denom1": denom, "num2": n2, "denom2": denom},
+            "correct_answer": answer,
+            "hint": "Same denominator: add numerators.",
+            "explanation": "Then simplify if needed.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionAdditionDiffTemplate:
+    skill_id = "yr5_frac_add_002"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        n1, d1 = _rand_fraction(2, 8 + difficulty)
+        n2, d2 = _rand_fraction(2, 8 + difficulty)
+        result = Fraction(n1, d1) + Fraction(n2, d2)
+        answer = _format_fraction(result)
+        item_id = f"{FractionAdditionDiffTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionAdditionDiffTemplate.skill_id,
+            "question_text": f"What is {n1}/{d1} + {n2}/{d2}?",
+            "question_type": FractionAdditionDiffTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "add_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "correct_answer": answer,
+            "hint": "Use a common denominator.",
+            "explanation": "Add converted numerators and simplify.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionSubtractionTemplate:
+    skill_id = "yr5_frac_sub_001"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        denom = random.randint(3, 10 + difficulty)
+        n1 = random.randint(2, denom)
+        n2 = random.randint(1, n1 - 1)
+        result = Fraction(n1, denom) - Fraction(n2, denom)
+        answer = _format_fraction(result)
+        item_id = f"{FractionSubtractionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionSubtractionTemplate.skill_id,
+            "question_text": f"What is {n1}/{denom} - {n2}/{denom}?",
+            "question_type": FractionSubtractionTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "sub_frac", "num1": n1, "denom1": denom, "num2": n2, "denom2": denom},
+            "correct_answer": answer,
+            "hint": "Same denominator: subtract numerators.",
+            "explanation": "Then simplify if possible.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionSubtractionDiffTemplate:
+    skill_id = "yr5_frac_sub_002"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        n1, d1 = _rand_fraction(2, 8 + difficulty)
+        n2, d2 = _rand_fraction(2, 8 + difficulty)
+        while Fraction(n1, d1) <= Fraction(n2, d2):
+            n1, d1 = _rand_fraction(2, 8 + difficulty)
+            n2, d2 = _rand_fraction(2, 8 + difficulty)
+        result = Fraction(n1, d1) - Fraction(n2, d2)
+        answer = _format_fraction(result)
+        item_id = f"{FractionSubtractionDiffTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionSubtractionDiffTemplate.skill_id,
+            "question_text": f"What is {n1}/{d1} - {n2}/{d2}?",
+            "question_type": FractionSubtractionDiffTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "sub_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "correct_answer": answer,
+            "hint": "Convert to a common denominator first.",
+            "explanation": "Subtract converted numerators and simplify.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionMultiplyTemplate:
+    skill_id = "yr6_frac_mult_001"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        n1, d1 = _rand_fraction(2, 8 + difficulty)
+        n2, d2 = _rand_fraction(2, 8 + difficulty)
+        result = Fraction(n1, d1) * Fraction(n2, d2)
+        answer = _format_fraction(result)
+        item_id = f"{FractionMultiplyTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionMultiplyTemplate.skill_id,
+            "question_text": f"What is {n1}/{d1} × {n2}/{d2}?",
+            "question_type": FractionMultiplyTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "mul_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "correct_answer": answer,
+            "hint": "Multiply numerators, multiply denominators.",
+            "explanation": "Simplify final answer.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionDivideTemplate:
+    skill_id = "yr6_frac_div_001"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        n1, d1 = _rand_fraction(2, 8 + difficulty)
+        n2, d2 = _rand_fraction(2, 8 + difficulty)
+        result = Fraction(n1, d1) / Fraction(n2, d2)
+        answer = _format_fraction(result)
+        item_id = f"{FractionDivideTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionDivideTemplate.skill_id,
+            "question_text": f"What is {n1}/{d1} ÷ {n2}/{d2}?",
+            "question_type": FractionDivideTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": {"operation": "div_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "correct_answer": answer,
+            "hint": "Multiply by the reciprocal of the second fraction.",
+            "explanation": "Invert second fraction, then multiply.",
+            "validation_rule": "fraction",
+        }
+
+
+class FractionMixedTemplate:
+    skill_id = "yr6_frac_mixed_001"
+    question_type = "fraction"
+    items_per_difficulty = 15
+
+    @staticmethod
+    def generate(difficulty: int):
+        mode = random.choice(["to_improper", "to_mixed"])
+
+        whole = random.randint(1, 6 + difficulty)
+        frac_num = random.randint(1, 7)
+        frac_denom = random.randint(frac_num + 1, 12)
+
+        if mode == "to_improper":
+            improper = Fraction(whole * frac_denom + frac_num, frac_denom)
+            answer = _format_fraction(improper)
+            question = f"Convert {whole} {frac_num}/{frac_denom} to an improper fraction."
+            parameters = {"operation": "to_improper", "whole": whole, "num": frac_num, "denom": frac_denom}
+            rule = "fraction"
+        else:
+            num = whole * frac_denom + frac_num
+            question = f"Convert {num}/{frac_denom} to a mixed number. Enter only the numerator of the fractional part. {whole} ?/{frac_denom}"
+            answer = str(frac_num)
+            parameters = {"operation": "to_mixed_num_only", "improper_num": num, "denom": frac_denom, "whole": whole}
+            rule = "numeric"
+
+        item_id = f"{FractionMixedTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        return {
+            "item_id": item_id,
+            "skill_id": FractionMixedTemplate.skill_id,
+            "question_text": question,
+            "question_type": FractionMixedTemplate.question_type,
+            "difficulty": difficulty,
+            "parameters": parameters,
+            "correct_answer": answer,
+            "hint": "Use whole × denominator + numerator for improper conversion.",
+            "explanation": "Mixed and improper fractions represent the same value.",
+            "validation_rule": rule,
+        }
+
+
 TEMPLATES = [
+    FractionIntroTemplate,
     FractionComparisonTemplate,
+    FractionIdentifyTemplate,
+    EquivalentFractionTemplate,
+    FractionCompareAdvancedTemplate,
+    FractionSimplifyTemplate,
     FractionAdditionTemplate,
-    EquivalentFractionTemplate
+    FractionAdditionDiffTemplate,
+    FractionSubtractionTemplate,
+    FractionSubtractionDiffTemplate,
+    FractionMultiplyTemplate,
+    FractionDivideTemplate,
+    FractionMixedTemplate,
 ]
 
 
 def get_templates_for_skill(skill_id):
-    """Get all templates for a specific skill"""
     return [t for t in TEMPLATES if t.skill_id == skill_id]

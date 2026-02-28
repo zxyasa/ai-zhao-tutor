@@ -1,10 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from typing import List
-import sys
-sys.path.append("../../packages/shared")
 
+from ..auth.dependencies import get_token_claims, require_student_access
 from ..database import get_db
 from ..models import Item as DBItem
 
@@ -13,14 +11,17 @@ router = APIRouter()
 
 @router.post("/placement/start")
 async def start_placement_test(
-    student_id: str,
     year_level: int,
-    db: Session = Depends(get_db)
+    student_id: str | None = None,
+    db: Session = Depends(get_db),
+    claims: dict = Depends(get_token_claims),
 ):
     """
     Start a placement test for a student.
     Returns a sequence of items across different skills and difficulty levels.
     """
+    student = require_student_access(db=db, claims=claims, student_id=student_id)
+
     if year_level < 3 or year_level > 6:
         raise HTTPException(status_code=400, detail="Year level must be between 3 and 6")
 
@@ -51,7 +52,7 @@ async def start_placement_test(
         raise HTTPException(status_code=404, detail="No placement test items available")
 
     return {
-        "student_id": student_id,
+        "student_id": student.id,
         "year_level": year_level,
         "items": items,
         "total_items": len(items)

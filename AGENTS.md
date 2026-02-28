@@ -14,6 +14,17 @@ Full-stack AI math training system for NSW Year 3-6 students
 
 This project uses a file-based task state system in `.ai/` that allows ANY AI agent (Claude Code, Codex, etc.) to resume work after interruption, across any terminal.
 
+## Planning Documents (read once per task, not every session)
+
+| Document | When to read | Purpose |
+|----------|-------------|---------|
+| `ENGINEERING_DELIVERY_PLAN.md` | When starting a **new task** or when asked "what's next?" | Authoritative WBS, DoD, rollback strategy, ADRs |
+| `UPGRADE_PLAN_2026.md` | When you need design rationale or architecture background | Design reference only, not execution baseline |
+| `CURRENT_STATUS.md` | On every session start | Phase completion snapshot |
+
+> **Rule:** Every WBS task ID (e.g. `W8C-00`, `W8D-03`) maps 1:1 to a step in `.ai/tasks/<task>/progress.md`.
+> When the user says "do W8C-00", look it up in `ENGINEERING_DELIVERY_PLAN.md` Part 4 for the exact DoD and file paths.
+
 ## 1. Startup Protocol (MANDATORY — first thing every session)
 
 ```

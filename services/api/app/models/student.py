@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, Date
+from sqlalchemy import Column, String, Integer, DateTime, Date, ForeignKey
 from sqlalchemy.orm import relationship, declarative_base
 
 Base = declarative_base()
@@ -16,9 +16,12 @@ class Student(Base):
     longest_streak = Column(Integer, nullable=False, default=0)
     last_practice_date = Column(Date, nullable=True)
     total_sessions = Column(Integer, nullable=False, default=0)
+    parent_id = Column(String, ForeignKey("parents.id"), nullable=True, index=True)
+    pin_hash = Column(String, nullable=True)
     created_at = Column(DateTime, nullable=False)
 
     # Relationships
+    parent = relationship("Parent", back_populates="students")
     events = relationship("Event", back_populates="student", cascade="all, delete-orphan")
     mastery = relationship("Mastery", back_populates="student", cascade="all, delete-orphan")
 

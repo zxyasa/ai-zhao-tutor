@@ -1,206 +1,204 @@
-# 今天的工作计划
+# 今日工作计划
 
-**时间:** 剩余 3 小时 (下班前)
-**设备:** Windows PC
-**今晚:** Mac Studio
-
----
-
-## ✅ 已完成 (刚才)
-
-- ✅ 完整的 monorepo 结构
-- ✅ Backend API (FastAPI + SQLAlchemy)
-- ✅ Content Service (生成器 + 验证器)
-- ✅ Shared schemas (Pydantic)
-- ✅ Docker Compose 配置
-- ✅ 完整文档
-- ✅ Git 仓库初始化
-
-## 📋 Windows 上接下来要做 (剩余时间)
-
-### ⏰ 任务 1: Git 配置和 GitHub 推送 (30 分钟)
-
-**步骤:**
-
-1. **配置 Git 用户信息**
-   ```bash
-   git config --global user.name "Your Name"
-   git config --global user.email "your.email@example.com"
-   ```
-
-2. **提交代码**
-   ```bash
-   cd c:\Users\zxyas\Workplace\mathcoach
-   git add .
-   git commit -m "Initial commit: MathCoach full-stack platform"
-   ```
-
-3. **创建 GitHub 仓库**
-   - 登录 GitHub
-   - 新建仓库: `mathcoach`
-   - Private 或 Public (你决定)
-   - 不要勾选 "Initialize with README"
-
-4. **推送到 GitHub**
-   ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/mathcoach.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-5. **验证**
-   - 打开 GitHub 仓库链接
-   - 确认所有文件已上传
-
-**参考:** [GITHUB_SETUP.md](GITHUB_SETUP.md)
+**日期：** 2026-02-21
+**当前阶段：** Phase 8 — 认证与发布收尾（进行中）
 
 ---
 
-### ⏰ 任务 2: 阅读和理解文档 (30 分钟)
+## 背景
 
-浏览以下文档,了解今晚在 Mac 上的工作:
+Phase 0-6 功能验证已完成。当前最大风险不是功能缺失，而是三层架构边界未固化：
+- 引擎层有副作用（写 DB）
+- 路由层有业务决策（mastery + streak + achievement 全混在 events.py）
+- 行为层与引擎层未解耦
 
-1. **MAC_SETUP.md** (`docs/MAC_SETUP.md`)
-   - Mac 环境设置
-   - 如何启动后端
-   - 如何生成内容
-
-2. **iOS_CHECKLIST.md** (`docs/iOS_CHECKLIST.md`)
-   - iOS 开发步骤
-   - 预计时间:11 小时 (2-3 个晚上)
-   - 分阶段清单
-
-3. **项目架构** (`README.md`)
-   - 整体架构
-   - API 端点
-   - 技术栈
+今日目标：完成 Phase 8 收尾（权限回归、生产门禁、发布清单与联调演练）。
 
 ---
 
-### ⏰ 任务 3: (可选) 补充文档或优化 (1-2 小时)
+## ✅ 今日任务（Phase 6.5 已完成记录）
 
-如果还有时间,可以:
+### 任务 1：创建 `engine/protocol.py`（30 分钟）
 
-#### 选项 A: 创建 API 测试脚本
-创建 `services/api/tests/test_endpoints.sh`:
-```bash
-#!/bin/bash
-# Test all API endpoints
+**文件：** `services/api/app/engine/protocol.py`
 
-echo "Testing health endpoint..."
-curl http://localhost:8000/health
+定义引擎标准输入/输出数据类：
 
-echo "\nTesting next-item endpoint..."
-curl "http://localhost:8000/api/v1/next-item?student_id=test123"
+```python
+from dataclasses import dataclass, field
+from typing import Optional
 
-# ... 更多测试
+@dataclass
+class SelectionRequest:
+    student_id: str
+    skill_id: Optional[str] = None
+    year_level: Optional[int] = None
+
+@dataclass
+class SelectionResult:
+    item_id: str
+    skill_id: str
+    question_text: str
+    question_type: str
+    difficulty: int
+    correct_answer: str
+    hint: str
+    explanation: str
+    parameters: dict = field(default_factory=dict)
+    validation_rule: str = "numeric"
+    # 引擎元数据（内部用，不透传客户端）
+    selection_reason: str = "unknown"
+    difficulty_delta: int = 0
 ```
 
-#### 选项 B: 添加更多内容模板
-在 `services/content/templates/` 中添加:
-- `subtraction.py` - 分数减法
-- `multiplication.py` - 分数乘法
-- `decimals.py` - 小数运算
-
-#### 选项 C: 完善文档
-- 添加架构图
-- 补充 API 使用示例
-- 写一些常见问题 FAQ
+验收：文件创建完毕，import 无报错。
 
 ---
 
-## 🌙 今晚在 Mac Studio 上的工作
+### 任务 2：创建 `services/` 目录结构（15 分钟）
 
-### 预计时间: 3-4 小时 (第一晚)
-
-#### 1. 环境设置 (1 小时)
-按照 `docs/MAC_SETUP.md`:
-- Clone GitHub 仓库
-- 安装依赖 (Python, Docker Desktop)
-- 启动后端服务
-- 生成内容
-- 测试 API
-
-#### 2. iOS 项目创建 (30 分钟)
-按照 `docs/iOS_CHECKLIST.md` Phase 1:
-- 创建 Xcode 项目
-- 配置项目设置
-- 创建基础文件夹结构
-
-#### 3. 数据模型实现 (1 小时)
-按照 Phase 2:
-- Student.swift
-- Item.swift
-- Event.swift
-- Mastery.swift
-- AnyCodable.swift
-
-#### 4. Services 层开始 (1-2 小时)
-按照 Phase 3:
-- APIClient.swift (开始实现)
-- StorageService.swift
-
-**今晚目标:** 完成 Phases 1-3,明天晚上继续 Phases 4-7
+```bash
+mkdir -p services/api/app/services
+touch services/api/app/services/__init__.py
+touch services/api/app/services/achievement_service.py
+touch services/api/app/services/mastery_service.py
+touch services/api/app/services/event_processor.py
+```
 
 ---
 
-## 📊 整体进度规划
+### 任务 3：迁移 Achievement 逻辑（45 分钟）
 
-### Week 1 (本周)
-- [x] Day 1: 后端 + 内容服务 (今天白天)
-- [ ] Day 1 晚: iOS Models + Services
-- [ ] Day 2 晚: iOS ViewModels
-- [ ] Day 3 晚: iOS Views (基础)
+**从：** `services/api/app/routers/events.py`（第 156-192 行）
+**到：** `services/api/app/services/achievement_service.py`
 
-### Week 2
-- [ ] Day 4 晚: iOS Views (完善)
-- [ ] Day 5 晚: 集成测试
-- [ ] Day 6 晚: Bug 修复 + 优化
+迁移内容：
+- `BADGE_DEFS` 字典
+- `_unlock_achievements()` 函数
+- `_maybe_grant_badge()` 函数
 
-**总预计:** 约 20-25 小时 → 2 周完成 MVP
+`events.py` 路由改为 import 调用：
+```python
+from ..services.achievement_service import unlock_achievements
+```
 
----
-
-## 🎯 优先级
-
-### 必须完成 (P0)
-- ✅ 推送代码到 GitHub
-- ✅ 阅读 Mac 设置文档
-
-### 重要 (P1)
-- 今晚: 完成 iOS Models + Services
-
-### 可选 (P2)
-- 补充更多内容模板
-- 添加单元测试
-- 完善文档
+验收：`POST /events` 接口行为不变，Badge 逻辑仍正常触发。
 
 ---
 
-## 📝 Notes
+### 任务 4：创建 `engine/tracks/` 目录（30 分钟）
 
-- **不要过度优化**:先完成基础功能
-- **频繁提交**: 每完成一个小功能就 commit
-- **测试驱动**: 每个组件完成后立即测试
-- **保持简单**: UI 保持 minimal,专注功能
+```bash
+mkdir -p services/api/app/engine/tracks
+touch services/api/app/engine/tracks/__init__.py
+touch services/api/app/engine/tracks/base.py
+```
+
+**`tracks/base.py` 内容：**
+
+```python
+from abc import ABC, abstractmethod
+from sqlalchemy.orm import Session
+
+class TrackPlugin(ABC):
+    @property
+    @abstractmethod
+    def student_id(self) -> str: ...
+
+    @abstractmethod
+    def build_item(self, db: Session) -> dict: ...
+```
+
+只创建基类和目录结构，Jon/Astrid 逻辑迁移留在 Step 3。
 
 ---
 
-## 🚨 重要提醒
+### 任务 5：执行现有测试（15 分钟）
 
-1. **今天下班前务必完成:**
-   - ✅ Git 配置
-   - ✅ GitHub 推送
-   - ✅ 验证上传成功
+```bash
+cd services/api
+pip install -r requirements.txt
+pytest tests/ -v
+```
 
-2. **今晚第一件事:**
-   - Clone 仓库到 Mac
-   - 按照 MAC_SETUP.md 设置环境
-
-3. **随时可以:**
-   - 查看 `docs/iOS_CHECKLIST.md` 了解详细步骤
-   - 参考 `.claude/plans/sprightly-giggling-lemon.md` 查看完整计划
+记录当前测试通过状态（基线），确保 Step 1 改动后测试仍通过。
 
 ---
 
-**祝开发顺利! 🚀**
+## 📋 今日完成标准
+
+- [x] `engine/protocol.py` 创建完毕，import 无报错
+- [x] `services/` 目录结构已创建
+- [x] `achievement_service.py` 包含 BADGE_DEFS + 两个函数
+- [x] `events.py` 路由 achievement 部分改为 import 调用
+- [x] `engine/tracks/base.py` 创建完毕
+- [x] pytest 基线已记录（当前全量 `27 passed`）
+
+---
+
+## ⏭️ 后续计划（更新）
+
+**Step 2（已完成）：**
+- ✅ `services/event_processor.py` — 已剥离 events 路由业务逻辑
+- ✅ `services/mastery_service.py` — 已剥离 mastery 更新逻辑
+- ✅ 已添加 `EventCreate` Pydantic 模型（`app/schemas.py`）
+
+**Step 3（已完成）：**
+- ✅ `engine/tracks/jon.py` + `engine/tracks/astrid.py`
+- ✅ 已移除引擎内 `db.add()` / `db.commit()`（持久化迁移到路由侧 `item_service.py`）
+- ✅ 引擎主函数改为 Registry 查找
+
+**Step 4（已完成）：**
+- ✅ 修复 `sys.path.append` hack
+- ✅ 全量 pytest 通过（当前 `27 passed`）
+- ✅ CORS 收紧（从 `*` 改为配置化白名单）
+
+---
+
+## 📝 结果备注
+
+- 今日已超额完成：Step 1-4 全部落地。
+- `POST /events` 仍可用，并通过测试回归。
+
+---
+
+## 🔵 当前待办（Phase 7）
+
+- [x] 定义并输出评估指标：完成率、波动度、恢复速度
+- [x] 为 Phase 7 指标新增后端测试用例
+- [x] 家长端详情页补充趋势图可视化（最近7天准确率趋势）
+- [x] 日报卡片补充指标摘要（完成率/波动度/恢复速度）
+- [x] 家长主页面补充图表化趋势视图（日报卡片最近7天准确率迷你趋势图）
+- [x] 周报页多指标联动图表（跨学生周维度对比）
+
+---
+
+## ⏭️ 下一阶段（Phase 8 启动清单）
+
+- [x] 建立认证数据模型：`Parent` + `students.parent_id` + `students.pin_hash`
+- [x] 新增认证路由：`/auth/register`、`/auth/login`、`/auth/student-login`
+- [x] 新增 JWT 与权限依赖：`require_parent` / `require_student`
+- [x] 家长接口加 `parent_id` 数据隔离
+- [x] iOS APIClient 引入 token 存储与请求头注入
+- [x] iOS 登录入口（家长登录/注册 + 学生 PIN 登录）已接通
+- [x] 学生相关接口完成全链路角色收口（parent/student 均按 `student_id` 授权）
+- [x] iOS 401 统一处理：清 token + 自动回跳登录页
+- [x] 验证：后端 `27 passed`；iOS `xcodebuild ... build` 通过
+- [x] iOS token 存储升级到 Keychain（含旧 UserDefaults token 迁移）
+- [x] 学生模式核心做题链路支持不传 `student_id`（后端从 token 推导；家长模式保留显式 student_id）
+- [x] 学生查询接口新增 `me` 风格入口（`/mastery/me`、`/streak/me`、`/achievements/me`）
+- [x] `events` 支持学生模式省略 `student_id`（后端自动绑定 token 的 `sub`）
+- [x] iOS 提交事件在学生模式下不再显式发送 `student_id`
+- [x] `students` 路由补齐 `"me"` 别名兼容（`/students/me`、`/streak/me` 兼容动态路由匹配）
+- [x] `daily-session/status/{student_id}` 补齐 `"me"` 别名兼容（动态路由与 `/daily-session/status` 行为一致）
+- [x] iOS 学生角色查询统一走 `me` 路径（status/mastery/streak/achievements）
+- [x] iOS APIClient 学生相关接口参数收敛：`studentId` 改为可选（student 角色省略；parent 角色保留强校验）
+- [x] 学生端页面调用开始切换无参模式（QuestionViewModel/AchievementsView）
+- [x] `QuestionView` 学生模式下不再向 ViewModel 传递显式 `studentId`
+- [x] 新增 Phase 8 HTTP 级权限回归测试（auth + `me` + 越权拦截 + parent 作用域）
+- [x] 新增 Phase 8 生产安全门禁：`ENVIRONMENT=production` 下启动配置校验 + 预检脚本
+- [x] 补齐发布资产：`services/api/.env.example` + `docs/qa/PHASE8_RELEASE_CHECKLIST.md`
+- [x] 补齐联调脚本：`services/api/scripts/smoke_phase8_auth.py`
+- [x] 本仓库 API（8010）完成端到端 smoke 演练：parent + student 全通过
+- [x] 补齐发布签核模板：`docs/qa/PHASE8_RELEASE_APPROVAL.md`
+- [x] 验证更新：后端 `41 passed`；iOS `xcodebuild ... build` 通过

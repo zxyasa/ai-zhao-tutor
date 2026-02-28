@@ -9,7 +9,7 @@ import Foundation
 
 struct Event: Codable {
     let eventId: String
-    let studentId: String
+    let studentId: String?
     let itemId: String
     let answerGiven: String
     let isCorrect: Bool
@@ -30,7 +30,7 @@ struct Event: Codable {
 
     init(
         eventId: String = UUID().uuidString,
-        studentId: String,
+        studentId: String? = nil,
         itemId: String,
         answerGiven: String,
         isCorrect: Bool,
@@ -51,7 +51,7 @@ struct Event: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         eventId = try container.decode(String.self, forKey: .eventId)
-        studentId = try container.decode(String.self, forKey: .studentId)
+        studentId = try container.decodeIfPresent(String.self, forKey: .studentId)
         itemId = try container.decode(String.self, forKey: .itemId)
         answerGiven = try container.decode(String.self, forKey: .answerGiven)
         isCorrect = try container.decode(Bool.self, forKey: .isCorrect)

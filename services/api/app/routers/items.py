@@ -1,85 +1,62 @@
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import func
-from typing import Optional
-import sys
-sys.path.append("../../packages/shared")
 
+from ..auth.dependencies import get_token_claims, require_student_access
 from ..database import get_db
-from ..models import Item as DBItem, Event as DBEvent, Mastery as DBMastery
+from ..engine.adaptive import select_next_item
+from ..models import ParentContextEvent as DBParentContextEvent
+from ..services.item_service import persist_dynamic_item_if_needed
 
 router = APIRouter()
 
 
 @router.get("/next-item")
 async def get_next_item(
-    student_id: str,
+    student_id: str | None = None,
     skill_id: Optional[str] = None,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    claims: dict = Depends(get_token_claims),
 ):
     """
-    Fetch next item for a student based on their mastery level.
-    If skill_id is provided, filter items for that skill.
-    Otherwise, select based on student's weakest skills.
+    Fetch next item using adaptive selection logic.
+    - Weakest skill priority when skill_id is not provided.
+    - Mastery-based difficulty with streak adjustment.
+    - Student-specific tracks for Jon and Astrid.
     """
-    # Get student's mastery data
-    if skill_id:
-        mastery = db.query(DBMastery).filter(
-            DBMastery.student_id == student_id,
-            DBMastery.skill_id == skill_id
-        ).first()
-
-        # Determine difficulty based on mastery score
-        if mastery:
-            if mastery.mastery_score < 0.3:
-                target_difficulty = 1
-            elif mastery.mastery_score < 0.5:
-                target_difficulty = 2
-            elif mastery.mastery_score < 0.7:
-                target_difficulty = 3
-            elif mastery.mastery_score < 0.9:
-                target_difficulty = 4
-            else:
-                target_difficulty = 5
-        else:
-            # No mastery data, start with difficulty 1
-            target_difficulty = 1
-
-        # Fetch item with target difficulty
-        item = db.query(DBItem).filter(
-            DBItem.skill_id == skill_id,
-            DBItem.difficulty == target_difficulty
-        ).order_by(func.random()).first()
-    else:
-        # No skill specified - find weakest skill and provide item for it
-        weakest_skill = db.query(DBMastery).filter(
-            DBMastery.student_id == student_id
-        ).order_by(DBMastery.mastery_score).first()
-
-        if weakest_skill:
-            skill_id = weakest_skill.skill_id
-            item = db.query(DBItem).filter(
-                DBItem.skill_id == skill_id
-            ).order_by(func.random()).first()
-        else:
-            # Student has no mastery data - select any item
-            item = db.query(DBItem).filter(
-                DBItem.difficulty == 1
-            ).order_by(func.random()).first()
-
+    student = require_student_access(db=db, claims=claims, student_id=student_id)
+    engine_hint = _latest_engine_hint(db, parent_id=student.parent_id, student_id=student.id)
+    item = select_next_item(db, student_id=student.id, skill_id=skill_id, engine_hint=engine_hint)
     if not item:
         raise HTTPException(status_code=404, detail="No items available")
+    return persist_dynamic_item_if_needed(db, item)
 
-    # Convert to dict format matching Pydantic schema
-    return {
-        "item_id": item.id,
-        "skill_id": item.skill_id,
-        "question_text": item.question_text,
-        "question_type": item.question_type,
-        "difficulty": item.difficulty,
-        "parameters": item.parameters,
-        "correct_answer": item.correct_answer,
-        "hint": item.hint,
-        "explanation": item.explanation,
-        "validation_rule": item.validation_rule
-    }
+
+def _latest_engine_hint(db: Session, *, parent_id: str | None, student_id: str) -> str | None:
+    if not parent_id:
+        return None
+    scoped = (
+        db.query(DBParentContextEvent)
+        .filter(
+            DBParentContextEvent.parent_id == parent_id,
+            DBParentContextEvent.student_id == student_id,
+            DBParentContextEvent.engine_hint.isnot(None),
+        )
+        .order_by(DBParentContextEvent.created_at.desc())
+        .first()
+    )
+    if scoped and scoped.engine_hint:
+        return scoped.engine_hint
+
+    general = (
+        db.query(DBParentContextEvent)
+        .filter(
+            DBParentContextEvent.parent_id == parent_id,
+            DBParentContextEvent.student_id.is_(None),
+            DBParentContextEvent.engine_hint.isnot(None),
+        )
+        .order_by(DBParentContextEvent.created_at.desc())
+        .first()
+    )
+    return general.engine_hint if general else None

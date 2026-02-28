@@ -28,6 +28,7 @@ services:
     environment:
       DATABASE_URL: postgresql://mathcoach:dev_password@postgres:5432/mathcoach
       DEBUG: "true"
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
     depends_on:
       postgres:
         condition: service_healthy

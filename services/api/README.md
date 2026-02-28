@@ -27,10 +27,71 @@ DATABASE_URL=sqlite:///./mathcoach.db
 # DATABASE_URL=postgresql://mathcoach:password@localhost:5432/mathcoach
 ```
 
+You can start from:
+
+```bash
+cp .env.example .env
+```
+
+### Production Readiness (Phase 8)
+
+Required production settings:
+
+```env
+ENVIRONMENT=production
+DEBUG=false
+SECRET_KEY=<random secret with at least 32 chars>
+CORS_ORIGINS_RAW=https://your-frontend.example.com
+```
+
+Run preflight check before startup:
+
+```bash
+PYTHONPATH=. python scripts/check_phase8_readiness.py
+```
+
+Optional auth smoke after server is up:
+
+```bash
+export PHASE8_PARENT_EMAIL=parent@example.com
+export PHASE8_PARENT_PASSWORD=your-parent-password
+export PHASE8_STUDENT_ID=jon_zhao
+export PHASE8_STUDENT_PIN=1234
+PYTHONPATH=. python scripts/smoke_phase8_auth.py
+```
+
+You can run parent-only smoke by setting `PHASE8_SKIP_STUDENT=1`.
+
 ### Run Server
 
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Deploy to Railway
+
+1. In Railway, create a service using this folder: `services/api`.
+2. Add PostgreSQL in the same Railway project.
+3. Set runtime variables:
+
+```env
+ENVIRONMENT=production
+DEBUG=false
+SECRET_KEY=<random secret with at least 32 chars>
+DATABASE_URL=<railway postgres url>
+CORS_ORIGINS_RAW=https://<your-api-domain>
+```
+
+4. Use start command:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+5. Before deploy, run local config check:
+
+```bash
+PYTHONPATH=. python scripts/check_phase8_readiness.py
 ```
 
 ### Access API Docs

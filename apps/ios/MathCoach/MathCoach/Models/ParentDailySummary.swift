@@ -15,6 +15,7 @@ struct ParentDailySummary: Codable, Identifiable {
     let currentStreak: Int
     let longestStreak: Int
     let badgeCount: Int
+    let aiInsight: String?
 
     enum CodingKeys: String, CodingKey {
         case studentId = "student_id"
@@ -31,6 +32,7 @@ struct ParentDailySummary: Codable, Identifiable {
         case currentStreak = "current_streak"
         case longestStreak = "longest_streak"
         case badgeCount = "badge_count"
+        case aiInsight = "ai_insight"
     }
 
     var id: String { studentId }
