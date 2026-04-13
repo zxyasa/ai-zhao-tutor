@@ -24,6 +24,9 @@ struct AuthView: View {
     @State private var infoMessage: String?
     @State private var biometricContext: LAContext?
     @State private var hasAutoPromptedBiometrics = false
+    @State private var showConnectionSettings = false
+    @State private var apiBaseURLInput: String = ""
+    @State private var isTestingConnection = false
 
     @AppStorage("last_auth_account_type") private var lastAuthAccountType: String = ""
     @AppStorage("last_parent_email") private var lastParentEmail: String = ""
@@ -93,6 +96,47 @@ struct AuthView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
 
+            DisclosureGroup("连接设置", isExpanded: $showConnectionSettings) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("真机不会继承 Xcode Scheme 的环境变量。iPad 上请在这里填写实际 API 地址。")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    TextField("https://your-api-domain/api/v1", text: $apiBaseURLInput)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .keyboardType(.URL)
+                        .textFieldStyle(.roundedBorder)
+
+                    Text("当前服务：\(APIClient.shared.resolvedBaseURL)")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                        .textSelection(.enabled)
+
+                    HStack {
+                        Button("保存地址") {
+                            saveBaseURLOverride()
+                        }
+                        .buttonStyle(.bordered)
+
+                        Button(isTestingConnection ? "测试中..." : "测试连接") {
+                            Task { await testConnection() }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(isTestingConnection)
+
+                        if APIClient.shared.isUsingCustomBaseURL {
+                            Button("清除自定义") {
+                                clearBaseURLOverride()
+                            }
+                            .buttonStyle(.bordered)
+                        }
+                    }
+                }
+                .padding(.top, 6)
+            }
+            .font(.subheadline)
+
             Button {
                 Task { await submit() }
             } label: {
@@ -111,6 +155,9 @@ struct AuthView: View {
         .onAppear {
             if let restoredType = AccountType(rawValue: lastAuthAccountType) {
                 accountType = restoredType
+            }
+            if apiBaseURLInput.isEmpty {
+                apiBaseURLInput = APIClient.shared.resolvedBaseURL
             }
             autoPromptBiometricsIfNeeded()
         }
@@ -227,6 +274,34 @@ struct AuthView: View {
         }
     }
 
+    private func saveBaseURLOverride() {
+        let normalized = APIClient.shared.setBaseURLOverride(apiBaseURLInput)
+        apiBaseURLInput = normalized
+        errorMessage = nil
+        infoMessage = "已保存服务地址"
+    }
+
+    private func clearBaseURLOverride() {
+        APIClient.shared.clearBaseURLOverride()
+        apiBaseURLInput = APIClient.shared.resolvedBaseURL
+        errorMessage = nil
+        infoMessage = "已清除自定义服务地址"
+    }
+
+    private func testConnection() async {
+        isTestingConnection = true
+        errorMessage = nil
+        infoMessage = nil
+        defer { isTestingConnection = false }
+
+        let isHealthy = await APIClient.shared.checkHealth(baseURL: apiBaseURLInput)
+        if isHealthy {
+            infoMessage = "服务连接正常"
+        } else {
+            errorMessage = "当前服务地址不可用，请检查网络或 API 地址。"
+        }
+    }
+
     private func friendlyAuthErrorMessage(_ error: Error) -> String {
         let lowercased = error.localizedDescription.lowercased()
 
@@ -243,16 +318,22 @@ struct AuthView: View {
             return "This email is already registered. Please sign in."
         }
         if lowercased.contains("inactive") {
-            return "This account is unavailable. Please contact support."
+            return "账号已停用，请联系支持。"
+        }
+        if lowercased.contains("application not found") {
+            return "当前 API 地址无效，后端服务未找到。请检查连接设置。"
+        }
+        if lowercased.contains("student pin is not configured") {
+            return "该学生账号尚未配置 PIN，请先由家长设置。"
         }
         if lowercased.contains("network error") || lowercased.contains("cannot find host") {
-            return "Network error. Make sure your iPad and backend are on the same network."
+            return "网络错误。请检查 iPad 网络，或确认连接设置里的 API 地址。"
         }
         if lowercased.contains("timed out") {
             return "Request timed out. Please try again."
         }
         if lowercased.contains("http 5") {
-            return "Service is temporarily unavailable. Please try again later."
+            return "后端服务暂不可用，请稍后再试。"
         }
         return "Sign-in failed. Please try again."
     }

@@ -47,7 +47,7 @@ struct QuestionView: View {
             if isHealthy {
                 await viewModel.loadNextQuestion()
             } else {
-                viewModel.errorMessage = "无法连接到后端服务器。请确保 Docker 服务正在运行。"
+                viewModel.errorMessage = "无法连接到后端服务。请检查网络，或回到登录页确认 API 地址。"
             }
         }
         .toolbar {

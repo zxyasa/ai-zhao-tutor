@@ -42,17 +42,11 @@ class APIClient {
 
     private static let defaultBaseURL = "https://mathcoach-api.micleah.com/api/v1"
     private static let baseURLEnvKey = "MATHCOACH_API_BASE_URL"
-    private let baseURL: String
+    private static let baseURLOverrideDefaultsKey = "mathcoach_api_base_url_override"
     private let session: URLSession
     private var accessToken: String?
 
     private init() {
-        if let configuredBaseURL = ProcessInfo.processInfo.environment[Self.baseURLEnvKey],
-           !configuredBaseURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            self.baseURL = configuredBaseURL
-        } else {
-            self.baseURL = Self.defaultBaseURL
-        }
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 30
         self.session = URLSession(configuration: config)
@@ -74,6 +68,61 @@ class APIClient {
             }
             UserDefaults.standard.removeObject(forKey: APIClient.authTokenDefaultsKey)
         }
+    }
+
+    private static func normalizeBaseURL(_ raw: String) -> String {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return defaultBaseURL }
+
+        let base = trimmed.hasSuffix("/") ? String(trimmed.dropLast()) : trimmed
+        guard let url = URL(string: base) else { return base }
+
+        if url.path.isEmpty || url.path == "/" {
+            return "\(base)/api/v1"
+        }
+        return base
+    }
+
+    private static func storedBaseURLOverride() -> String? {
+        guard let raw = UserDefaults.standard.string(forKey: baseURLOverrideDefaultsKey) else {
+            return nil
+        }
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        return normalizeBaseURL(trimmed)
+    }
+
+    private static func resolveBaseURL() -> String {
+        if let override = storedBaseURLOverride() {
+            return override
+        }
+        if let configuredBaseURL = ProcessInfo.processInfo.environment[baseURLEnvKey],
+           !configuredBaseURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return normalizeBaseURL(configuredBaseURL)
+        }
+        return defaultBaseURL
+    }
+
+    var resolvedBaseURL: String {
+        Self.resolveBaseURL()
+    }
+
+    var isUsingCustomBaseURL: Bool {
+        Self.storedBaseURLOverride() != nil
+    }
+
+    func setBaseURLOverride(_ raw: String?) -> String {
+        let normalized = Self.normalizeBaseURL(raw ?? "")
+        UserDefaults.standard.set(normalized, forKey: Self.baseURLOverrideDefaultsKey)
+        return normalized
+    }
+
+    func clearBaseURLOverride() {
+        UserDefaults.standard.removeObject(forKey: Self.baseURLOverrideDefaultsKey)
+    }
+
+    private var baseURL: String {
+        resolvedBaseURL
     }
 
     func setAccessToken(_ token: String?) {
@@ -732,8 +781,23 @@ class APIClient {
 
     /// Check if the backend API is healthy
     /// - Returns: True if healthy, false otherwise
-    func checkHealth() async -> Bool {
-        guard let url = URL(string: "http://192.168.86.63:8000/health") else {
+    func checkHealth(baseURL override: String? = nil) async -> Bool {
+        let healthBaseURL = override.map(Self.normalizeBaseURL) ?? baseURL
+        guard
+            let components = URLComponents(string: healthBaseURL),
+            let scheme = components.scheme,
+            let host = components.host
+        else {
+            return false
+        }
+
+        var healthComponents = URLComponents()
+        healthComponents.scheme = scheme
+        healthComponents.host = host
+        healthComponents.port = components.port
+        healthComponents.path = "/health"
+
+        guard let url = healthComponents.url else {
             return false
         }
 
