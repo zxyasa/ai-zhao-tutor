@@ -24,6 +24,9 @@ class QuestionViewModel: ObservableObject {
     @Published var dailyCompleted: Int = 0
     @Published var dailyTarget: Int = 10
     @Published var inputValidationMessage: String?
+    // Phase 9.3: graduation celebration + worked example overlays
+    @Published var pendingCelebrationLabel: String?
+    @Published var pendingWorkedExample: WorkedExample?
 
     // MARK: - Private Properties
 
@@ -71,6 +74,12 @@ class QuestionViewModel: ObservableObject {
                 item = try await apiClient.fetchNextItem(studentId: studentId)
             }
             currentItem = item
+            if let label = item.graduatedToLabel {
+                pendingCelebrationLabel = label
+            }
+            if let example = item.workedExample {
+                pendingWorkedExample = example
+            }
             startTimer()
         } catch {
             errorMessage = handleError(error)
@@ -133,6 +142,16 @@ class QuestionViewModel: ObservableObject {
     /// Toggle hint visibility
     func toggleHint() {
         showHint.toggle()
+    }
+
+    /// Dismiss the graduation celebration overlay
+    func dismissCelebration() {
+        pendingCelebrationLabel = nil
+    }
+
+    /// Dismiss the worked-example overlay
+    func dismissWorkedExample() {
+        pendingWorkedExample = nil
     }
 
     /// Move to next question after viewing explanation

@@ -3,6 +3,7 @@ Fraction templates with deterministic-style generation and explicit parameters f
 """
 import math
 import random
+import uuid
 from fractions import Fraction
 
 
@@ -19,14 +20,14 @@ def _format_fraction(frac: Fraction) -> str:
 class FractionIntroTemplate:
     skill_id = "yr3_frac_intro_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
         total = random.randint(4, 8 + difficulty * 2)
         shaded = random.randint(1, total - 1)
         answer = f"{shaded}/{total}"
-        item_id = f"{FractionIntroTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionIntroTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionIntroTemplate.skill_id,
@@ -44,7 +45,7 @@ class FractionIntroTemplate:
 class FractionComparisonTemplate:
     skill_id = "yr3_frac_compare_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -67,7 +68,7 @@ class FractionComparisonTemplate:
                 right = Fraction(n2, d2)
 
         answer = f"{n1}/{d1}" if left > right else f"{n2}/{d2}"
-        item_id = f"{FractionComparisonTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionComparisonTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionComparisonTemplate.skill_id,
@@ -85,14 +86,14 @@ class FractionComparisonTemplate:
 class FractionIdentifyTemplate:
     skill_id = "yr3_frac_identify_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
         total = random.randint(3, 10 + difficulty * 2)
         shaded = random.randint(1, total - 1)
         answer = f"{shaded}/{total}"
-        item_id = f"{FractionIdentifyTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionIdentifyTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionIdentifyTemplate.skill_id,
@@ -110,7 +111,7 @@ class FractionIdentifyTemplate:
 class EquivalentFractionTemplate:
     skill_id = "yr4_frac_equiv_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -127,7 +128,7 @@ class EquivalentFractionTemplate:
             answer = f"{num}/{denom}"
             q = f"Simplify {uns_num}/{uns_den} to lowest terms."
 
-        item_id = f"{EquivalentFractionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{EquivalentFractionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": EquivalentFractionTemplate.skill_id,
@@ -145,7 +146,7 @@ class EquivalentFractionTemplate:
 class FractionCompareAdvancedTemplate:
     skill_id = "yr4_frac_compare_002"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -158,7 +159,7 @@ class FractionCompareAdvancedTemplate:
             right = Fraction(n2, d2)
 
         answer = f"{n1}/{d1}" if left > right else f"{n2}/{d2}"
-        item_id = f"{FractionCompareAdvancedTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionCompareAdvancedTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionCompareAdvancedTemplate.skill_id,
@@ -176,7 +177,7 @@ class FractionCompareAdvancedTemplate:
 class FractionSimplifyTemplate:
     skill_id = "yr4_frac_simplify_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -185,7 +186,7 @@ class FractionSimplifyTemplate:
         n = base_n * factor
         d = base_d * factor
         answer = f"{base_n}/{base_d}"
-        item_id = f"{FractionSimplifyTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionSimplifyTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionSimplifyTemplate.skill_id,
@@ -203,7 +204,7 @@ class FractionSimplifyTemplate:
 class FractionAdditionTemplate:
     skill_id = "yr5_frac_add_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -212,7 +213,7 @@ class FractionAdditionTemplate:
         n2 = random.randint(1, denom - 1)
         result = Fraction(n1, denom) + Fraction(n2, denom)
         answer = _format_fraction(result)
-        item_id = f"{FractionAdditionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionAdditionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionAdditionTemplate.skill_id,
@@ -230,7 +231,7 @@ class FractionAdditionTemplate:
 class FractionAdditionDiffTemplate:
     skill_id = "yr5_frac_add_002"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -238,7 +239,7 @@ class FractionAdditionDiffTemplate:
         n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) + Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionAdditionDiffTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionAdditionDiffTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionAdditionDiffTemplate.skill_id,
@@ -256,7 +257,7 @@ class FractionAdditionDiffTemplate:
 class FractionSubtractionTemplate:
     skill_id = "yr5_frac_sub_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -265,7 +266,7 @@ class FractionSubtractionTemplate:
         n2 = random.randint(1, n1 - 1)
         result = Fraction(n1, denom) - Fraction(n2, denom)
         answer = _format_fraction(result)
-        item_id = f"{FractionSubtractionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionSubtractionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionSubtractionTemplate.skill_id,
@@ -283,7 +284,7 @@ class FractionSubtractionTemplate:
 class FractionSubtractionDiffTemplate:
     skill_id = "yr5_frac_sub_002"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -294,7 +295,7 @@ class FractionSubtractionDiffTemplate:
             n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) - Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionSubtractionDiffTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionSubtractionDiffTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionSubtractionDiffTemplate.skill_id,
@@ -312,7 +313,7 @@ class FractionSubtractionDiffTemplate:
 class FractionMultiplyTemplate:
     skill_id = "yr6_frac_mult_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -320,7 +321,7 @@ class FractionMultiplyTemplate:
         n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) * Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionMultiplyTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionMultiplyTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionMultiplyTemplate.skill_id,
@@ -338,7 +339,7 @@ class FractionMultiplyTemplate:
 class FractionDivideTemplate:
     skill_id = "yr6_frac_div_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -346,7 +347,7 @@ class FractionDivideTemplate:
         n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) / Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionDivideTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionDivideTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionDivideTemplate.skill_id,
@@ -364,7 +365,7 @@ class FractionDivideTemplate:
 class FractionMixedTemplate:
     skill_id = "yr6_frac_mixed_001"
     question_type = "fraction"
-    items_per_difficulty = 15
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -387,7 +388,7 @@ class FractionMixedTemplate:
             parameters = {"operation": "to_mixed_num_only", "improper_num": num, "denom": frac_denom, "whole": whole}
             rule = "numeric"
 
-        item_id = f"{FractionMixedTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{FractionMixedTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": FractionMixedTemplate.skill_id,

@@ -40,7 +40,30 @@ struct QuestionView: View {
             } else {
                 welcomeView
             }
+
+            // Phase 9.3 overlays (top of z-stack)
+            if let example = viewModel.pendingWorkedExample, viewModel.pendingCelebrationLabel == nil {
+                WorkedExampleView(
+                    skillLabel: viewModel.currentItem?.skillId,
+                    example: example
+                ) {
+                    viewModel.dismissWorkedExample()
+                    answerFieldFocused = true
+                }
+                .transition(.opacity)
+                .zIndex(20)
+            }
+
+            if let label = viewModel.pendingCelebrationLabel {
+                GraduationCelebrationView(stageLabel: label) {
+                    viewModel.dismissCelebration()
+                }
+                .transition(.opacity)
+                .zIndex(30)
+            }
         }
+        .animation(.easeInOut(duration: 0.25), value: viewModel.pendingCelebrationLabel)
+        .animation(.easeInOut(duration: 0.25), value: viewModel.pendingWorkedExample)
         .task {
             // Check backend health on appear
             let isHealthy = await viewModel.checkBackendHealth()
@@ -161,6 +184,13 @@ struct QuestionView: View {
 
             // Question card
             VStack(spacing: 30) {
+                if item.questionType == "fraction",
+                   let fractionBar = FractionBarView.extract(from: item.parameters) {
+                    fractionBar
+                        .frame(maxWidth: 400)
+                        .padding(.horizontal)
+                }
+
                 Text(item.questionText)
                     .font(.system(size: 36, weight: .medium))
                     .foregroundColor(.black)

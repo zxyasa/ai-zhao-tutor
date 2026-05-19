@@ -2,12 +2,13 @@
 Multiplication fact templates (times tables) for Year 3-4 learners.
 """
 import random
+import uuid
 
 
 class MultiplicationFactsTemplate:
     skill_id = "yr4_mult_div_001"
     question_type = "numeric"
-    items_per_difficulty = 25  # 4 levels * 25 = 100 items total
+    items_per_difficulty = 100  # 4 levels * 25 = 100 items total
 
     @staticmethod
     def generate(difficulty: int):
@@ -32,7 +33,7 @@ class MultiplicationFactsTemplate:
             a, b = b, a
 
         answer = a * b
-        item_id = f"{MultiplicationFactsTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{MultiplicationFactsTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
 
         return {
             "item_id": item_id,

@@ -3,6 +3,7 @@ Templates for multiplication/division and ratio skills.
 """
 import math
 import random
+import uuid
 
 
 class MultiplicationDivisionTemplate:
@@ -10,7 +11,7 @@ class MultiplicationDivisionTemplate:
 
     skill_id = "yr4_mult_div_001"
     question_type = "numeric"
-    items_per_difficulty = 20
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -41,7 +42,7 @@ class MultiplicationDivisionTemplate:
             hint = "Think of the related multiplication fact."
             explanation = f"Because {a} × {b} = {product}, {product} ÷ {b} = {a}."
 
-        item_id = f"{MultiplicationDivisionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{MultiplicationDivisionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": MultiplicationDivisionTemplate.skill_id,
@@ -61,7 +62,7 @@ class RatioTemplate:
 
     skill_id = "yr6_ratio_001"
     question_type = "numeric"
-    items_per_difficulty = 20
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -94,7 +95,7 @@ class RatioTemplate:
             answer = a * factor
             explanation = f"Scale both parts by {factor}: {a}:{b} -> {a * factor}:{b * factor}."
 
-        item_id = f"{RatioTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{RatioTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": RatioTemplate.skill_id,

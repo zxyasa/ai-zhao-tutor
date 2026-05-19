@@ -22,6 +22,20 @@ GRADUATION_MIN_ATTEMPTS = 100
 LIFETIME_OVERRIDE_ATTEMPTS = 1000
 LIFETIME_OVERRIDE_ACCURACY = 0.8
 
+STAGE_LABELS: dict[str, list[str]] = {
+    "jon_zhao": [
+        "Year 3 Carry & Borrow within 100",
+        "Year 4 Fractions & Decimals",
+        "Year 5 Fractions & Percent",
+        "Year 6 Fractions, Ratio & Algebra",
+    ],
+    "astrid_zhao": [
+        "Year 2 Semester 1 Foundations",
+        "Year 3 Fractions & Place Value",
+        "Year 4 Fractions & Decimals",
+    ],
+}
+
 SKILL_GRAPH: dict[str, list[list[str]]] = {
     "jon_zhao": [
         ["jon_carry_add_sub_100"],
@@ -98,6 +112,41 @@ def active_skills(db: Session, student_id: str) -> Optional[set[str]]:
             return unmastered
 
     return set(groups[-1])
+
+
+def current_stage_index(db: Session, student_id: str) -> Optional[int]:
+    """Return the index of the student's currently-active skill group.
+
+    Returns 0 for the first group, len(groups)-1 if all groups are mastered,
+    and None when the student has no graph entry.
+    """
+    groups = SKILL_GRAPH.get(student_id)
+    if not groups:
+        return None
+
+    mastery_rows = (
+        db.query(DBMastery)
+        .filter(DBMastery.student_id == student_id)
+        .all()
+    )
+    mastery_by_skill = {row.skill_id: row for row in mastery_rows}
+
+    for idx, group in enumerate(groups):
+        unmastered = {s for s in group if not _is_skill_mastered(s, mastery_by_skill)}
+        if unmastered:
+            return idx
+
+    return len(groups) - 1
+
+
+def stage_label(student_id: str, index: int) -> Optional[str]:
+    """Return a human-friendly label for a given stage index."""
+    labels = STAGE_LABELS.get(student_id)
+    if not labels:
+        return None
+    if index < 0 or index >= len(labels):
+        return None
+    return labels[index]
 
 
 def _is_skill_mastered(

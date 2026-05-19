@@ -18,6 +18,10 @@ struct Item: Codable, Identifiable {
     let hint: String
     let explanation: String
     let validationRule: String
+    // Phase 9.1 backend fields (nil when not provided by server)
+    let graduatedToIndex: Int?
+    let graduatedToLabel: String?
+    let workedExample: WorkedExample?
 
     enum CodingKeys: String, CodingKey {
         case id = "item_id"
@@ -30,6 +34,9 @@ struct Item: Codable, Identifiable {
         case hint
         case explanation
         case validationRule = "validation_rule"
+        case graduatedToIndex = "graduated_to_index"
+        case graduatedToLabel = "graduated_to_label"
+        case workedExample = "worked_example"
     }
 
     init(
@@ -42,7 +49,10 @@ struct Item: Codable, Identifiable {
         correctAnswer: String,
         hint: String,
         explanation: String,
-        validationRule: String
+        validationRule: String,
+        graduatedToIndex: Int? = nil,
+        graduatedToLabel: String? = nil,
+        workedExample: WorkedExample? = nil
     ) {
         self.id = id
         self.skillId = skillId
@@ -54,5 +64,8 @@ struct Item: Codable, Identifiable {
         self.hint = hint
         self.explanation = explanation
         self.validationRule = validationRule
+        self.graduatedToIndex = graduatedToIndex
+        self.graduatedToLabel = graduatedToLabel
+        self.workedExample = workedExample
     }
 }

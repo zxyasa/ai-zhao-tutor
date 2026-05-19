@@ -11,6 +11,10 @@ from ..services.item_service import persist_dynamic_item_if_needed
 
 router = APIRouter()
 
+# Metadata keys produced by the engine that must be preserved through the
+# item-persistence pipeline (which only persists "core" item columns).
+_ENGINE_METADATA_KEYS = ("graduated_to_index", "graduated_to_label", "worked_example")
+
 
 @router.get("/next-item")
 async def get_next_item(
@@ -24,13 +28,19 @@ async def get_next_item(
     - Weakest skill priority when skill_id is not provided.
     - Mastery-based difficulty with streak adjustment.
     - Student-specific tracks for Jon and Astrid.
+    - 9.1.2: graduation indicators when the student just crossed into a new stage.
+    - 9.1.4: worked_example on the first attempt of any new skill.
     """
     student = require_student_access(db=db, claims=claims, student_id=student_id)
     engine_hint = _latest_engine_hint(db, parent_id=student.parent_id, student_id=student.id)
     item = select_next_item(db, student_id=student.id, skill_id=skill_id, engine_hint=engine_hint)
     if not item:
         raise HTTPException(status_code=404, detail="No items available")
-    return persist_dynamic_item_if_needed(db, item)
+
+    metadata = {key: item[key] for key in _ENGINE_METADATA_KEYS if key in item}
+    payload = persist_dynamic_item_if_needed(db, item)
+    payload.update(metadata)
+    return payload
 
 
 def _latest_engine_hint(db: Session, *, parent_id: str | None, student_id: str) -> str | None:

@@ -2,6 +2,7 @@
 Templates for decimal and percent skills.
 """
 import random
+import uuid
 
 
 class DecimalTemplate:
@@ -9,7 +10,7 @@ class DecimalTemplate:
 
     skill_id = "yr4_decimal_001"
     question_type = "numeric"
-    items_per_difficulty = 20
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -39,7 +40,7 @@ class DecimalTemplate:
             answer = f"{answer_val:.2f}"
             explanation = f"Compare whole numbers first, then tenths/hundredths. Larger value is {answer}."
 
-        item_id = f"{DecimalTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{DecimalTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": DecimalTemplate.skill_id,
@@ -59,7 +60,7 @@ class PercentTemplate:
 
     skill_id = "yr5_percent_001"
     question_type = "numeric"
-    items_per_difficulty = 20
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -83,7 +84,7 @@ class PercentTemplate:
             question = f"Convert {num}/{denom} to a percentage (number only)."
             explanation = f"{num}/{denom} = {answer}/100, so it is {answer}%."
 
-        item_id = f"{PercentTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{PercentTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": PercentTemplate.skill_id,

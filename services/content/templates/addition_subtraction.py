@@ -2,6 +2,7 @@
 Templates for place value, arithmetic, and intro algebra skills.
 """
 import random
+import uuid
 
 
 class PlaceValueTemplate:
@@ -9,7 +10,7 @@ class PlaceValueTemplate:
 
     skill_id = "yr3_num_place_001"
     question_type = "numeric"
-    items_per_difficulty = 20
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -40,7 +41,7 @@ class PlaceValueTemplate:
             hint = "Combine hundreds, tens, and ones."
             explanation = f"{h * 100} + {t * 10} + {o} = {answer}."
 
-        item_id = f"{PlaceValueTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{PlaceValueTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": PlaceValueTemplate.skill_id,
@@ -60,7 +61,7 @@ class AdditionSubtractionTemplate:
 
     skill_id = "yr3_add_sub_001"
     question_type = "numeric"
-    items_per_difficulty = 25
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -92,7 +93,7 @@ class AdditionSubtractionTemplate:
             hint = "Subtract ones, tens, and hundreds in order."
             explanation = f"{a} - {b} = {answer}."
 
-        item_id = f"{AdditionSubtractionTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{AdditionSubtractionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": AdditionSubtractionTemplate.skill_id,
@@ -112,7 +113,7 @@ class AlgebraIntroTemplate:
 
     skill_id = "yr6_algebra_001"
     question_type = "numeric"
-    items_per_difficulty = 20
+    items_per_difficulty = 100
 
     @staticmethod
     def generate(difficulty: int):
@@ -148,7 +149,7 @@ class AlgebraIntroTemplate:
             answer = x
             explanation = f"Multiply both sides by {c}: x = {x}."
 
-        item_id = f"{AlgebraIntroTemplate.skill_id}_d{difficulty}_{random.randint(1000, 9999)}"
+        item_id = f"{AlgebraIntroTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
         return {
             "item_id": item_id,
             "skill_id": AlgebraIntroTemplate.skill_id,
