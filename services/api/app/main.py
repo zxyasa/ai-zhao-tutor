@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routers import items, events, placement, mastery, students, daily_sessions, parent, achievements, auth
+from .routers import items, events, placement, mastery, students, daily_sessions, parent, achievements, auth, admin
 from .database import init_db
 from .config import settings
 
@@ -36,6 +36,7 @@ app.include_router(daily_sessions.router, prefix="/api/v1", tags=["daily_session
 app.include_router(parent.router, prefix="/api/v1", tags=["parent"])
 app.include_router(achievements.router, prefix="/api/v1", tags=["achievements"])
 app.include_router(auth.router, prefix="/api/v1", tags=["auth"])
+app.include_router(admin.router, prefix="/api/v1", tags=["admin"])
 
 
 @app.get("/")
