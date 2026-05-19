@@ -777,6 +777,46 @@ class APIClient {
         }
     }
 
+    // MARK: - Wrong Items
+
+    /// Fetch wrong-answer history for the mistake book view.
+    /// - Parameters:
+    ///   - studentId: Required for parent role; ignored for student role (server uses token).
+    ///   - since: Time window. Accepted: "today", "7d", "30d".
+    /// - Returns: Array of WrongItem entries, newest first (server-decided order).
+    func fetchWrongItems(studentId: String?, since: String = "today") async throws -> [WrongItem] {
+        guard var components = URLComponents(string: "\(baseURL)/wrong-items") else {
+            throw APIError.invalidURL
+        }
+        var query = [URLQueryItem(name: "since", value: since)]
+        if tokenRole != "student" {
+            guard let studentId, !studentId.isEmpty else {
+                throw APIError.serverError("student_id is required for parent role")
+            }
+            query.append(URLQueryItem(name: "student_id", value: studentId))
+        }
+        components.queryItems = query
+        guard let url = components.url else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            var request = URLRequest(url: url)
+            applyAuthHeader(to: &request)
+            let (data, response) = try await session.data(for: request)
+            try ensureSuccess(response, data: data)
+
+            let decoder = JSONDecoder()
+            return try decoder.decode([WrongItem].self, from: data)
+        } catch let error as DecodingError {
+            throw APIError.decodingError(error)
+        } catch let error as APIError {
+            throw error
+        } catch {
+            throw APIError.networkError(error)
+        }
+    }
+
     // MARK: - Health Check
 
     /// Check if the backend API is healthy

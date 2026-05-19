@@ -14,7 +14,7 @@ struct GraduationCelebrationView: View {
     @State private var startedAt: Date = .now
     @State private var sparkleOpacity: Double = 0
 
-    private static let confettiColors: [Color] = [
+    fileprivate static let confettiColors: [Color] = [
         .red, .orange, .yellow, .green, .blue, .purple, .pink
     ]
 

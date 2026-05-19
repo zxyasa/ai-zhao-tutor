@@ -12,6 +12,7 @@ struct QuestionView: View {
     @StateObject private var viewModel: QuestionViewModel
     @FocusState private var answerFieldFocused: Bool
     @State private var showAchievements = false
+    @State private var showWrongItems = false
 
     init(student: Student) {
         self.student = student
@@ -79,9 +80,17 @@ struct QuestionView: View {
                     showAchievements = true
                 }
             }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("错题本") {
+                    showWrongItems = true
+                }
+            }
         }
         .sheet(isPresented: $showAchievements) {
             AchievementsView(student: student)
+        }
+        .sheet(isPresented: $showWrongItems) {
+            WrongItemsView(student: student)
         }
     }
 
@@ -201,21 +210,18 @@ struct QuestionView: View {
                     .cornerRadius(20)
                     .shadow(radius: 5)
 
-                // Answer input
-                VStack(spacing: 15) {
-                    TextField("输入答案", text: $viewModel.studentAnswer)
-                        .font(.system(size: 32))
-                        .textFieldStyle(.roundedBorder)
-                        .multilineTextAlignment(.center)
-                        .focused($answerFieldFocused)
-                        .keyboardType(keyboardType(for: item.questionType))
-                        .submitLabel(.done)
-                        .onChange(of: viewModel.studentAnswer) { _, _ in
-                            viewModel.inputValidationMessage = nil
-                        }
-                        .onSubmit {
-                            submitAnswer()
-                        }
+                // Answer display (read-only — keypad drives input)
+                VStack(spacing: 12) {
+                    Text(viewModel.studentAnswer.isEmpty ? " " : viewModel.studentAnswer)
+                        .font(.system(size: 40, weight: .bold, design: .rounded))
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, minHeight: 64)
+                        .background(Color.white)
+                        .cornerRadius(14)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(Color.blue.opacity(0.3), lineWidth: 2)
+                        )
 
                     if let validation = viewModel.inputValidationMessage {
                         Text(validation)
@@ -223,15 +229,9 @@ struct QuestionView: View {
                             .foregroundColor(.red)
                             .multilineTextAlignment(.center)
                     }
-
-                    Text("按 Return 键提交答案")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
                 }
                 .padding(.horizontal, 40)
             }
-
-            Spacer()
 
             // Hint section
             if viewModel.showHint {
@@ -247,8 +247,19 @@ struct QuestionView: View {
                 .padding(.horizontal)
             }
 
-            // Action buttons
-            HStack(spacing: 20) {
+            // Keypad + hint toggle
+            VStack(spacing: 12) {
+                MathKeypad(
+                    value: $viewModel.studentAnswer,
+                    allowSlash: item.questionType == "fraction",
+                    allowDot: item.questionType == "numeric",
+                    onSubmit: submitAnswer
+                )
+                .padding(.horizontal, 20)
+                .onChange(of: viewModel.studentAnswer) { _, _ in
+                    viewModel.inputValidationMessage = nil
+                }
+
                 Button {
                     viewModel.toggleHint()
                 } label: {
@@ -256,22 +267,10 @@ struct QuestionView: View {
                 }
                 .buttonStyle(.bordered)
                 .controlSize(.large)
-
-                Button {
-                    submitAnswer()
-                } label: {
-                    Label("提交答案", systemImage: "checkmark.circle.fill")
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .disabled(viewModel.studentAnswer.trimmingCharacters(in: .whitespaces).isEmpty)
             }
-            .padding(.bottom, 30)
+            .padding(.bottom, 20)
         }
         .padding()
-        .onAppear {
-            answerFieldFocused = true
-        }
     }
 
     // MARK: - Explanation View
@@ -372,6 +371,13 @@ struct QuestionView: View {
             .padding(.bottom, 30)
         }
         .padding()
+        .onAppear {
+            if viewModel.isCorrect == true {
+                Feedback.correct()
+            } else if viewModel.isCorrect == false {
+                Feedback.incorrect()
+            }
+        }
     }
 
     // MARK: - Helper Methods
@@ -387,15 +393,6 @@ struct QuestionView: View {
         let minutes = Int(seconds) / 60
         let secs = Int(seconds) % 60
         return String(format: "%d:%02d", minutes, secs)
-    }
-
-    private func keyboardType(for questionType: String) -> UIKeyboardType {
-        switch questionType {
-        case "numeric", "fraction":
-            return .numbersAndPunctuation
-        default:
-            return .default
-        }
     }
 }
 

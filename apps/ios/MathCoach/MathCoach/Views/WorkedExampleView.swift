@@ -51,9 +51,9 @@ struct WorkedExampleView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 16) {
-                    SectionBlock(title: "题目", body: example.question)
-                    SectionBlock(title: "答案", body: example.answer, accent: .green)
-                    SectionBlock(title: "怎么想", body: example.walkthrough, accent: .blue)
+                    SectionBlock(title: "题目", text: example.question)
+                    SectionBlock(title: "答案", text: example.answer, accent: .green)
+                    SectionBlock(title: "怎么想", text: example.walkthrough, accent: .blue)
                 }
                 .padding(.horizontal, 24)
 
@@ -84,7 +84,7 @@ struct WorkedExampleView: View {
 
 private struct SectionBlock: View {
     let title: String
-    let body: String
+    let text: String
     var accent: Color = .primary
 
     var body: some View {
@@ -92,7 +92,7 @@ private struct SectionBlock: View {
             Text(title)
                 .font(.caption.bold())
                 .foregroundColor(.secondary)
-            Text(body)
+            Text(text)
                 .font(.body)
                 .foregroundColor(accent)
                 .fixedSize(horizontal: false, vertical: true)
