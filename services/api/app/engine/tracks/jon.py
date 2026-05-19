@@ -1,4 +1,5 @@
 import random
+from typing import Optional
 from uuid import uuid4
 
 from sqlalchemy.orm import Session
@@ -11,7 +12,15 @@ class JonTrackPlugin(TrackPlugin):
     def student_id(self) -> str:
         return "jon_zhao"
 
-    def build_item(self, db: Session) -> dict:  # db kept for interface compatibility
+    def build_item(
+        self,
+        db: Session,
+        *,
+        allowed_skills: Optional[set[str]] = None,
+    ) -> Optional[dict]:  # db kept for interface compatibility
+        if allowed_skills is not None and "jon_carry_add_sub_100" not in allowed_skills:
+            return None
+
         rng = random.Random()
         is_add = rng.choice([True, False])
 

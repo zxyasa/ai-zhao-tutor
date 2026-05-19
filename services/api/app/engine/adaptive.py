@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 from ..models import Event as DBEvent
 from ..models import Item as DBItem
 from ..models import Mastery as DBMastery
+from . import progression
 from .tracks import get_track_plugin
 
 
@@ -33,11 +34,19 @@ def select_next_item(
     skill_id: Optional[str] = None,
     engine_hint: Optional[str] = None,
 ) -> Optional[dict]:
+    allowed = progression.active_skills(db, student_id)
+
     plugin = get_track_plugin(student_id)
     if plugin:
-        return plugin.build_item(db)
+        item = plugin.build_item(db, allowed_skills=allowed)
+        if item:
+            return item
 
-    target_skill_id = skill_id or _pick_weakest_skill(db, student_id)
+    target_skill_id = skill_id
+    if target_skill_id is None and allowed:
+        target_skill_id = _pick_weakest_skill_in(db, student_id, allowed)
+    if target_skill_id is None:
+        target_skill_id = _pick_weakest_skill(db, student_id)
 
     if target_skill_id:
         base_difficulty = _difficulty_from_mastery(db, student_id, target_skill_id)
@@ -71,6 +80,31 @@ def _pick_weakest_skill(db: Session, student_id: str) -> Optional[str]:
     if weakest_skill:
         return weakest_skill.skill_id
     return None
+
+
+def _pick_weakest_skill_in(
+    db: Session,
+    student_id: str,
+    allowed_skills: set[str],
+) -> Optional[str]:
+    if not allowed_skills:
+        return None
+
+    rows = (
+        db.query(DBMastery)
+        .filter(
+            DBMastery.student_id == student_id,
+            DBMastery.skill_id.in_(allowed_skills),
+        )
+        .all()
+    )
+    scores = {row.skill_id: row.mastery_score for row in rows}
+
+    unseen = [s for s in allowed_skills if s not in scores]
+    if unseen:
+        return sorted(unseen)[0]
+
+    return min(scores.items(), key=lambda kv: (kv[1], kv[0]))[0]
 
 
 def _difficulty_from_mastery(db: Session, student_id: str, skill_id: str) -> int:

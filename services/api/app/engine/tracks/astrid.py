@@ -1,9 +1,19 @@
 import random
+from typing import Optional
 from uuid import uuid4
 
 from sqlalchemy.orm import Session
 
 from .base import TrackPlugin
+
+_STYLE_TO_SKILL = {
+    "add_no_carry": "yr2_sem1_add_sub_100",
+    "sub_no_borrow": "yr2_sem1_add_sub_100",
+    "missing_number": "yr2_sem1_missing_number",
+    "place_value": "yr2_sem1_place_value",
+    "compare": "yr2_sem1_compare_100",
+    "word_problem": "yr2_sem1_word_problem",
+}
 
 
 class AstridTrackPlugin(TrackPlugin):
@@ -11,9 +21,19 @@ class AstridTrackPlugin(TrackPlugin):
     def student_id(self) -> str:
         return "astrid_zhao"
 
-    def build_item(self, db: Session) -> dict:  # db kept for interface compatibility
+    def build_item(
+        self,
+        db: Session,
+        *,
+        allowed_skills: Optional[set[str]] = None,
+    ) -> Optional[dict]:  # db kept for interface compatibility
         rng = random.Random()
-        style = rng.choice(["add_no_carry", "sub_no_borrow", "missing_number", "place_value", "compare", "word_problem"])
+        styles = list(_STYLE_TO_SKILL.keys())
+        if allowed_skills is not None:
+            styles = [s for s in styles if _STYLE_TO_SKILL[s] in allowed_skills]
+        if not styles:
+            return None
+        style = rng.choice(styles)
 
         if style == "add_no_carry":
             while True:
