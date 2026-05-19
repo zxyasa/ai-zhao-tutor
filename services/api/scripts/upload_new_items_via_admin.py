@@ -19,8 +19,8 @@ import os
 import sys
 import time
 from pathlib import Path
-
-import requests
+from urllib import request as urlrequest
+from urllib.error import HTTPError, URLError
 
 EXISTING_SKILLS = {
     "jon_carry_add_sub_100",
@@ -91,25 +91,17 @@ def main() -> int:
 
     for offset in range(0, len(new_items), CHUNK_SIZE):
         chunk = new_items[offset : offset + CHUNK_SIZE]
-        body = {"items": chunk}
+        body = json.dumps({"items": chunk}).encode("utf-8")
         attempt = 0
         while True:
             attempt += 1
             t0 = time.time()
+            req = urlrequest.Request(url, data=body, headers=headers, method="POST")
             try:
-                resp = requests.post(url, headers=headers, json=body, timeout=120)
+                with urlrequest.urlopen(req, timeout=180) as resp:
+                    raw = resp.read().decode("utf-8")
+                    data = json.loads(raw)
                 dt = time.time() - t0
-                if resp.status_code != 200:
-                    print(
-                        f"  chunk @ offset {offset}: HTTP {resp.status_code} "
-                        f"in {dt:.1f}s — {resp.text[:200]}"
-                    )
-                    if attempt < 3:
-                        time.sleep(2 * attempt)
-                        continue
-                    failures.append((offset, len(chunk), resp.text[:200]))
-                    break
-                data = resp.json()
                 total_received += data.get("received", 0)
                 total_inserted += data.get("inserted", 0)
                 total_skipped += data.get("skipped", 0)
@@ -119,8 +111,19 @@ def main() -> int:
                     f"skip={data.get('skipped')} in {dt:.1f}s"
                 )
                 break
-            except requests.RequestException as exc:
-                print(f"  chunk @ offset {offset}: exception {exc!r}")
+            except HTTPError as exc:
+                dt = time.time() - t0
+                body_text = exc.read().decode("utf-8", errors="replace")[:200]
+                print(
+                    f"  chunk @ offset {offset}: HTTP {exc.code} in {dt:.1f}s — {body_text}"
+                )
+                if attempt < 3:
+                    time.sleep(2 * attempt)
+                    continue
+                failures.append((offset, len(chunk), f"HTTP {exc.code}: {body_text}"))
+                break
+            except URLError as exc:
+                print(f"  chunk @ offset {offset}: URLError {exc!r}")
                 if attempt < 3:
                     time.sleep(2 * attempt)
                     continue
