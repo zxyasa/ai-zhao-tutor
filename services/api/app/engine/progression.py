@@ -25,8 +25,27 @@ LIFETIME_OVERRIDE_ACCURACY = 0.8
 SKILL_GRAPH: dict[str, list[list[str]]] = {
     "jon_zhao": [
         ["jon_carry_add_sub_100"],
-        ["yr4_frac_equiv_001"],
-        ["yr5_frac_add_001"],
+        [
+            "yr4_frac_equiv_001",
+            "yr4_mult_div_001",
+            "yr4_decimal_001",
+            "yr4_frac_simplify_001",
+            "yr4_frac_compare_002",
+        ],
+        [
+            "yr5_frac_add_001",
+            "yr5_frac_add_002",
+            "yr5_frac_sub_001",
+            "yr5_frac_sub_002",
+            "yr5_percent_001",
+        ],
+        [
+            "yr6_frac_mult_001",
+            "yr6_frac_div_001",
+            "yr6_frac_mixed_001",
+            "yr6_ratio_001",
+            "yr6_algebra_001",
+        ],
     ],
     "astrid_zhao": [
         [
@@ -36,8 +55,20 @@ SKILL_GRAPH: dict[str, list[list[str]]] = {
             "yr2_sem1_word_problem",
             "yr2_sem1_missing_number",
         ],
-        ["yr3_frac_compare_001"],
-        ["yr4_frac_equiv_001"],
+        [
+            "yr3_frac_intro_001",
+            "yr3_frac_identify_001",
+            "yr3_frac_compare_001",
+            "yr3_num_place_001",
+            "yr3_add_sub_001",
+        ],
+        [
+            "yr4_frac_equiv_001",
+            "yr4_mult_div_001",
+            "yr4_decimal_001",
+            "yr4_frac_simplify_001",
+            "yr4_frac_compare_002",
+        ],
     ],
 }
 

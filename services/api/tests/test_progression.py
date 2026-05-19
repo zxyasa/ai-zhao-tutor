@@ -143,8 +143,11 @@ def test_active_skills_unknown_student_returns_none(db_session):
 
 
 def test_active_skills_all_mastered_returns_last_group(db_session, seeded_students):
-    for skill in ("jon_carry_add_sub_100", "yr4_frac_equiv_001", "yr5_frac_add_001"):
-        _add_mastery(db_session, "jon_zhao", skill, 1.0, 400)
+    for group in progression.SKILL_GRAPH["jon_zhao"]:
+        for skill in group:
+            _add_mastery(db_session, "jon_zhao", skill, 1.0, 400)
     db_session.commit()
 
-    assert progression.active_skills(db_session, "jon_zhao") == {"yr5_frac_add_001"}
+    assert progression.active_skills(db_session, "jon_zhao") == set(
+        progression.SKILL_GRAPH["jon_zhao"][-1]
+    )
