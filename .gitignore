@@ -80,3 +80,9 @@ Thumbs.db
 data/token.json
 data/square_token.json
 data/reports/
+
+# App Store Connect credentials
+secrets/
+
+.env
+.env.*
