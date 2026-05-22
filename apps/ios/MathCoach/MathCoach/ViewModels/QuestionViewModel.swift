@@ -23,6 +23,7 @@ class QuestionViewModel: ObservableObject {
     @Published var timeSpent: Double = 0
     @Published var dailyCompleted: Int = 0
     @Published var dailyTarget: Int = 10
+    @Published var dailyBonus: Int = 0
     @Published var inputValidationMessage: String?
     // Phase 9.3: graduation celebration + worked example overlays
     @Published var pendingCelebrationLabel: String?
@@ -297,6 +298,7 @@ class QuestionViewModel: ObservableObject {
         if let status {
             dailyCompleted = status.completedQuestions
             dailyTarget = status.targetQuestions
+            dailyBonus = status.bonusQuestions ?? 0
         }
     }
 }

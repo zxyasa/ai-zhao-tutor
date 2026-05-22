@@ -98,10 +98,12 @@ def update_daily_session_progress(db: Session, student: DBStudent, event_timesta
         )
         db.add(session)
 
-    session.completed_questions += 1
-
-    if (not session.is_completed) and session.completed_questions >= session.target_questions:
-        session.is_completed = True
-        session.completed_at = event_timestamp
+    if session.is_completed:
+        session.bonus_questions += 1
+    else:
+        session.completed_questions += 1
+        if session.completed_questions >= session.target_questions:
+            session.is_completed = True
+            session.completed_at = event_timestamp
 
     return session

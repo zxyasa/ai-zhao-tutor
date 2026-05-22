@@ -174,9 +174,17 @@ struct QuestionView: View {
 
                 Spacer()
 
-                Text("今日 \(viewModel.dailyCompleted)/\(viewModel.dailyTarget)")
-                    .font(.headline)
-                    .foregroundColor(.secondary)
+                Group {
+                    if viewModel.dailyCompleted < viewModel.dailyTarget {
+                        Text("今日 \(viewModel.dailyCompleted)/\(viewModel.dailyTarget)")
+                    } else if viewModel.dailyBonus == 0 {
+                        Text("今日 \(viewModel.dailyTarget)/\(viewModel.dailyTarget) ✅")
+                    } else {
+                        Text("今日 \(viewModel.dailyTarget)/\(viewModel.dailyTarget) ✅ +\(viewModel.dailyBonus) 加分")
+                    }
+                }
+                .font(.headline)
+                .foregroundColor(.secondary)
 
                 Spacer()
 
@@ -204,6 +212,7 @@ struct QuestionView: View {
                     .font(.system(size: 36, weight: .medium))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.white)

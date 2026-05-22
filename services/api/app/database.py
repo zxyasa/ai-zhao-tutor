@@ -43,6 +43,7 @@ def _ensure_student_schema_compat() -> None:
             "ALTER TABLE students ADD COLUMN total_sessions INTEGER DEFAULT 0 NOT NULL",
             "ALTER TABLE students ADD COLUMN parent_id VARCHAR",
             "ALTER TABLE students ADD COLUMN pin_hash VARCHAR",
+            "ALTER TABLE daily_sessions ADD COLUMN bonus_questions INTEGER DEFAULT 0 NOT NULL",
         ],
         "postgresql": [
             "ALTER TABLE students ADD COLUMN IF NOT EXISTS avatar VARCHAR NOT NULL DEFAULT 'star'",
@@ -53,6 +54,7 @@ def _ensure_student_schema_compat() -> None:
             "ALTER TABLE students ADD COLUMN IF NOT EXISTS total_sessions INTEGER NOT NULL DEFAULT 0",
             "ALTER TABLE students ADD COLUMN IF NOT EXISTS parent_id VARCHAR",
             "ALTER TABLE students ADD COLUMN IF NOT EXISTS pin_hash VARCHAR",
+            "ALTER TABLE daily_sessions ADD COLUMN IF NOT EXISTS bonus_questions INTEGER NOT NULL DEFAULT 0",
         ],
     }
 

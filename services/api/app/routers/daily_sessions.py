@@ -69,6 +69,7 @@ async def get_daily_session_status(
             "session_date": today.isoformat(),
             "completed_questions": 0,
             "target_questions": student.target_daily_questions,
+            "bonus_questions": 0,
             "is_completed": False,
             "started_at": None,
             "completed_at": None,
@@ -101,6 +102,7 @@ async def get_daily_session_status_me(
             "session_date": today.isoformat(),
             "completed_questions": 0,
             "target_questions": student.target_daily_questions,
+            "bonus_questions": 0,
             "is_completed": False,
             "started_at": None,
             "completed_at": None,
@@ -122,6 +124,7 @@ def _serialize_daily_session(session: DBDailySession) -> dict:
         "started_at": session.started_at.isoformat(),
         "completed_questions": session.completed_questions,
         "target_questions": session.target_questions,
+        "bonus_questions": session.bonus_questions,
         "is_completed": session.is_completed,
         "completed_at": session.completed_at.isoformat() if session.completed_at else None,
     }

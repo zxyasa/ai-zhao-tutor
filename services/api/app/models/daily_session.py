@@ -12,6 +12,7 @@ class DailySession(Base):
     started_at = Column(DateTime, nullable=False)
     completed_questions = Column(Integer, nullable=False, default=0)
     target_questions = Column(Integer, nullable=False, default=10)
+    bonus_questions = Column(Integer, nullable=False, default=0)
     is_completed = Column(Boolean, nullable=False, default=False)
     completed_at = Column(DateTime, nullable=True)
 
@@ -20,5 +21,5 @@ class DailySession(Base):
     def __repr__(self):
         return (
             f"<DailySession(student={self.student_id}, date={self.session_date}, "
-            f"completed={self.completed_questions}/{self.target_questions})>"
+            f"completed={self.completed_questions}/{self.target_questions}, bonus={self.bonus_questions})>"
         )
