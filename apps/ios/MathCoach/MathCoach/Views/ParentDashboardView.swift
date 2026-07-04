@@ -16,15 +16,8 @@ struct ParentDashboardView: View {
     }
 
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var viewModel = ParentDashboardViewModel()
     @State private var mode: Mode = .daily
-    @State private var summaries: [ParentDailySummary] = []
-    @State private var weeklySummaries: [ParentWeeklySummary] = []
-    @State private var newBadgeCountByStudent: [String: Int] = [:]
-    @State private var streakAtRiskByStudent: [String: Bool] = [:]
-    @State private var learningRiskByStudent: [String: String] = [:]
-    @State private var learningRiskReasonsByStudent: [String: [String]] = [:]
-    @State private var progressMetricsByStudent: [String: ProgressMetricsSnapshot] = [:]
-    @State private var progressTrendByStudent: [String: [ParentProgress.DayPoint]] = [:]
     @State private var selectedDailySummary: ParentDailySummary?
     @State private var selectedContextStudentId: String = ""
     @State private var selectedContextTags: Set<String> = []
@@ -46,13 +39,11 @@ struct ParentDashboardView: View {
     @State private var changePasswordMessage: String?
     @AppStorage("parent_signal_seen_date") private var seenDate: String = ""
     @AppStorage("parent_signal_seen_keys") private var seenSignalKeysCSV: String = ""
-    @State private var isLoading = false
-    @State private var errorMessage: String?
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 14) {
-                if isLoading {
+                if viewModel.isLoading {
                     ProgressView(mode == .daily ? "加载日报中..." : "加载周报中...")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
@@ -67,11 +58,11 @@ struct ParentDashboardView: View {
                         parentContextCard
                     }
 
-                    if let errorMessage {
+                    if let viewModel.errorMessage {
                         HStack(spacing: 8) {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .foregroundColor(.orange)
-                            Text(errorMessage)
+                            Text(viewModel.errorMessage)
                                 .foregroundColor(.secondary)
                             Spacer()
                         }
@@ -87,13 +78,13 @@ struct ParentDashboardView: View {
                             accountSecurityCard
 
                             if mode == .daily {
-                                if summaries.isEmpty {
+                                if viewModel.summaries.isEmpty {
                                     emptyStateView(
                                         title: "今天还没有日报数据",
                                         subtitle: "孩子完成练习后，这里会自动更新进度和风险信号。"
                                     )
                                 } else {
-                                    ForEach(summaries) { summary in
+                                    ForEach(viewModel.summaries) { summary in
                                         DailySummaryCardView(
                                             summary: summary,
                                             signals: makeSignals(for: summary),
@@ -105,13 +96,13 @@ struct ParentDashboardView: View {
                                     }
                                 }
                             } else {
-                                if weeklySummaries.isEmpty {
+                                if viewModel.weeklySummaries.isEmpty {
                                     emptyStateView(
                                         title: "本周还没有周报数据",
                                         subtitle: "累计几天练习后，这里会展示达标天数与周趋势。"
                                     )
                                 } else {
-                                    ForEach(weeklySummaries) { summary in
+                                    ForEach(viewModel.weeklySummaries) { summary in
                                         weeklyCard(summary)
                                     }
                                 }
@@ -168,48 +159,16 @@ struct ParentDashboardView: View {
     /// so the daily card view doesn't need to know about our six `@State` maps.
     private func makeSignals(for summary: ParentDailySummary) -> DailySummarySignals {
         DailySummarySignals(
-            newBadgeCount: newBadgeCountByStudent[summary.studentId] ?? 0,
-            streakAtRisk: streakAtRiskByStudent[summary.studentId] ?? false,
-            learningRiskLevel: learningRiskByStudent[summary.studentId],
-            learningRiskReasons: learningRiskReasonsByStudent[summary.studentId] ?? [],
-            progressMetrics: progressMetricsByStudent[summary.studentId],
-            progressTrend: progressTrendByStudent[summary.studentId],
+            newBadgeCount: viewModel.newBadgeCountByStudent[summary.studentId] ?? 0,
+            streakAtRisk: viewModel.streakAtRiskByStudent[summary.studentId] ?? false,
+            learningRiskLevel: viewModel.learningRiskByStudent[summary.studentId],
+            learningRiskReasons: viewModel.learningRiskReasonsByStudent[summary.studentId] ?? [],
+            progressMetrics: viewModel.progressMetricsByStudent[summary.studentId],
+            progressTrend: viewModel.progressTrendByStudent[summary.studentId],
             badgeUnread: isSignalUnread(studentId: summary.studentId, kind: .newBadge),
             streakUnread: isSignalUnread(studentId: summary.studentId, kind: .streakRisk),
             learningUnread: isSignalUnread(studentId: summary.studentId, kind: .learningRisk)
         )
-    }
-
-    private func loadSummaries() async {
-        rolloverSeenStateIfNeeded()
-        isLoading = true
-        errorMessage = nil
-
-        do {
-            if mode == .daily {
-                let fetched = try await APIClient.shared.fetchParentDailySummaries()
-                summaries = fetched.isEmpty ? fallbackSummaries() : fetched
-                await enrichDailySignals(for: summaries)
-            } else {
-                let fetched = try await APIClient.shared.fetchParentWeeklySummaries()
-                weeklySummaries = fetched.isEmpty ? fallbackWeeklySummaries() : fetched
-                newBadgeCountByStudent = [:]
-                streakAtRiskByStudent = [:]
-                learningRiskByStudent = [:]
-                learningRiskReasonsByStudent = [:]
-                progressMetricsByStudent = [:]
-                progressTrendByStudent = [:]
-            }
-        } catch {
-            if mode == .daily {
-                summaries = fallbackSummaries()
-            } else {
-                weeklySummaries = fallbackWeeklySummaries()
-            }
-            errorMessage = "后端暂不可用，显示本地示例数据。"
-        }
-
-        isLoading = false
     }
 
     private var parentContextCard: some View {
@@ -219,7 +178,7 @@ struct ParentDashboardView: View {
 
             Picker("学生", selection: $selectedContextStudentId) {
                 Text("全部孩子").tag("")
-                ForEach(summaries) { summary in
+                ForEach(viewModel.summaries) { summary in
                     Text(summary.studentName).tag(summary.studentId)
                 }
             }
@@ -359,11 +318,11 @@ struct ParentDashboardView: View {
     }
 
     private var studentAccounts: [StudentAccount] {
-        if !summaries.isEmpty {
-            return summaries.map { StudentAccount(id: $0.studentId, name: $0.studentName) }
+        if !viewModel.summaries.isEmpty {
+            return viewModel.summaries.map { StudentAccount(id: $0.studentId, name: $0.studentName) }
         }
-        if !weeklySummaries.isEmpty {
-            return weeklySummaries.map { StudentAccount(id: $0.studentId, name: $0.studentName) }
+        if !viewModel.weeklySummaries.isEmpty {
+            return viewModel.weeklySummaries.map { StudentAccount(id: $0.studentId, name: $0.studentName) }
         }
         return []
     }
@@ -491,62 +450,6 @@ struct ParentDashboardView: View {
         "\(studentId)|\(kind.rawValue)"
     }
 
-    private func enrichDailySignals(for dailySummaries: [ParentDailySummary]) async {
-        var newBadgeMap: [String: Int] = [:]
-        var streakRiskMap: [String: Bool] = [:]
-        var learningRiskMap: [String: String] = [:]
-        var learningRiskReasonsMap: [String: [String]] = [:]
-        var metricsMap: [String: ProgressMetricsSnapshot] = [:]
-        var trendMap: [String: [ParentProgress.DayPoint]] = [:]
-
-        for summary in dailySummaries {
-            do {
-                let newAchievements = try await APIClient.shared.fetchNewAchievements(
-                    studentId: summary.studentId,
-                    lookbackHours: 24
-                )
-                newBadgeMap[summary.studentId] = newAchievements.count
-            } catch {
-                newBadgeMap[summary.studentId] = 0
-            }
-
-            do {
-                let streakStatus = try await APIClient.shared.fetchStreakStatus(studentId: summary.studentId)
-                streakRiskMap[summary.studentId] = streakStatus.isStreakAtRisk
-            } catch {
-                streakRiskMap[summary.studentId] = false
-            }
-
-            do {
-                let progress = try await APIClient.shared.fetchParentProgress(studentId: summary.studentId, days: 30)
-                learningRiskMap[summary.studentId] = progress.riskLevel
-                learningRiskReasonsMap[summary.studentId] = progress.riskReasons
-                metricsMap[summary.studentId] = ProgressMetricsSnapshot(
-                    completionRatePercent: progress.completionRatePercent,
-                    accuracyVolatility: progress.accuracyVolatility,
-                    recoverySpeedDays: progress.recoverySpeedDays
-                )
-                trendMap[summary.studentId] = Array(progress.timeline.suffix(7))
-            } catch {
-                learningRiskMap[summary.studentId] = "low"
-                learningRiskReasonsMap[summary.studentId] = []
-                metricsMap[summary.studentId] = ProgressMetricsSnapshot(
-                    completionRatePercent: 0.0,
-                    accuracyVolatility: 0.0,
-                    recoverySpeedDays: nil
-                )
-                trendMap[summary.studentId] = []
-            }
-        }
-
-        newBadgeCountByStudent = newBadgeMap
-        streakAtRiskByStudent = streakRiskMap
-        learningRiskByStudent = learningRiskMap
-        learningRiskReasonsByStudent = learningRiskReasonsMap
-        progressMetricsByStudent = metricsMap
-        progressTrendByStudent = trendMap
-    }
-
     private func weeklyCard(_ summary: ParentWeeklySummary) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -670,75 +573,6 @@ struct ParentDashboardView: View {
         .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 
-    private func fallbackSummaries() -> [ParentDailySummary] {
-        [
-            ParentDailySummary(
-                studentId: "jon_zhao",
-                studentName: "Jon",
-                avatar: "lion",
-                sessionDate: "2026-02-18",
-                completedQuestions: 0,
-                targetQuestions: 10,
-                isCompleted: false,
-                eventsTotal: 0,
-                correctAnswers: 0,
-                accuracyPercent: 0,
-                averageTimeSpentSeconds: 0,
-                currentStreak: 0,
-                longestStreak: 0,
-                badgeCount: 0,
-                aiInsight: nil
-            ),
-            ParentDailySummary(
-                studentId: "astrid_zhao",
-                studentName: "Astrid",
-                avatar: "unicorn",
-                sessionDate: "2026-02-18",
-                completedQuestions: 0,
-                targetQuestions: 10,
-                isCompleted: false,
-                eventsTotal: 0,
-                correctAnswers: 0,
-                accuracyPercent: 0,
-                averageTimeSpentSeconds: 0,
-                currentStreak: 0,
-                longestStreak: 0,
-                badgeCount: 0,
-                aiInsight: nil
-            ),
-        ]
-    }
-
-    private func fallbackWeeklySummaries() -> [ParentWeeklySummary] {
-        [
-            ParentWeeklySummary(
-                studentId: "jon_zhao",
-                studentName: "Jon",
-                avatar: "lion",
-                fromDate: "2026-02-12",
-                toDate: "2026-02-18",
-                completedDays: 0,
-                totalCompletedQuestions: 0,
-                totalEvents: 0,
-                accuracyPercent: 0,
-                currentStreak: 0,
-                longestStreak: 0
-            ),
-            ParentWeeklySummary(
-                studentId: "astrid_zhao",
-                studentName: "Astrid",
-                avatar: "unicorn",
-                fromDate: "2026-02-12",
-                toDate: "2026-02-18",
-                completedDays: 0,
-                totalCompletedQuestions: 0,
-                totalEvents: 0,
-                accuracyPercent: 0,
-                currentStreak: 0,
-                longestStreak: 0
-            ),
-        ]
-    }
 }
 
 private extension DateFormatter {
