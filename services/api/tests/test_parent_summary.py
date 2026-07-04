@@ -1,10 +1,10 @@
 from datetime import date, datetime, timedelta
 
 from app.models import Achievement, DailySession, Event, Parent, ParentContextEvent, Student
-from app.routers.parent import (
-    _build_student_daily_summary,
-    _build_student_progress_series,
-    _build_student_weekly_summary,
+from app.services.parent_analytics_service import (
+    build_student_daily_summary as _build_student_daily_summary,
+    build_student_progress_series as _build_student_progress_series,
+    build_student_weekly_summary as _build_student_weekly_summary,
 )
 
 
