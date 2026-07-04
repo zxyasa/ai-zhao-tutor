@@ -2,11 +2,9 @@ import SwiftUI
 import UIKit
 
 struct ParentDashboardView: View {
-    struct ProgressMetricsSnapshot {
-        let completionRatePercent: Double
-        let accuracyVolatility: Double
-        let recoverySpeedDays: Int?
-    }
+    // `ProgressMetricsSnapshot` — moved to Views/DailySummaryCardView.swift (file scope).
+    // `SignalKind` — moved to Views/DailySummaryCardView.swift (file scope).
+
     struct StudentAccount: Identifiable {
         let id: String
         let name: String
@@ -15,11 +13,6 @@ struct ParentDashboardView: View {
     enum Mode: String, CaseIterable {
         case daily = "日报"
         case weekly = "周报"
-    }
-    enum SignalKind: String {
-        case newBadge
-        case streakRisk
-        case learningRisk
     }
 
     @Environment(\.dismiss) private var dismiss
@@ -101,7 +94,14 @@ struct ParentDashboardView: View {
                                     )
                                 } else {
                                     ForEach(summaries) { summary in
-                                        summaryCard(summary)
+                                        DailySummaryCardView(
+                                            summary: summary,
+                                            signals: makeSignals(for: summary),
+                                            onSignalTapped: { kind in
+                                                markSignalSeen(studentId: summary.studentId, kind: kind)
+                                                selectedDailySummary = summary
+                                            }
+                                        )
                                     }
                                 }
                             } else {
@@ -164,122 +164,20 @@ struct ParentDashboardView: View {
         }
     }
 
-    private func summaryCard(_ summary: ParentDailySummary) -> some View {
-        let badgeUnread = isSignalUnread(studentId: summary.studentId, kind: .newBadge)
-        let streakUnread = isSignalUnread(studentId: summary.studentId, kind: .streakRisk)
-        let learningUnread = isSignalUnread(studentId: summary.studentId, kind: .learningRisk)
-        return VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(summary.avatarEmoji)
-                    .font(.system(size: 36))
-                VStack(alignment: .leading) {
-                    Text(summary.studentName)
-                        .font(.headline)
-                    Text("连击 \(summary.currentStreak) 天 (历史 \(summary.longestStreak))")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text("徽章 \(summary.badgeCount)")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    if let newCount = newBadgeCountByStudent[summary.studentId], newCount > 0 {
-                        Button("🆕 今日新徽章 \(newCount)") {
-                            markSignalSeen(studentId: summary.studentId, kind: .newBadge)
-                            selectedDailySummary = summary
-                        }
-                        .buttonStyle(.plain)
-                        .font(.caption)
-                        .foregroundColor(badgeUnread ? .green : .secondary)
-                    }
-                    if streakAtRiskByStudent[summary.studentId] == true {
-                        Button("⚠️ 连击今天有中断风险") {
-                            markSignalSeen(studentId: summary.studentId, kind: .streakRisk)
-                            selectedDailySummary = summary
-                        }
-                        .buttonStyle(.plain)
-                        .font(.caption)
-                        .foregroundColor(streakUnread ? .orange : .secondary)
-                    }
-                    if let riskLevel = learningRiskByStudent[summary.studentId],
-                       riskLevel == "high" || riskLevel == "medium" {
-                        Button("📉 学习风险：\(riskLevelLabel(riskLevel))") {
-                            markSignalSeen(studentId: summary.studentId, kind: .learningRisk)
-                            selectedDailySummary = summary
-                        }
-                        .buttonStyle(.plain)
-                        .font(.caption)
-                        .foregroundColor(learningUnread ? riskLevelColor(riskLevel) : .secondary)
-                    }
-                    if let reasons = learningRiskReasonsByStudent[summary.studentId], !reasons.isEmpty {
-                        Text("主要信号 \(riskReasonLabel(reasons[0]))")
-                            .font(.caption2.weight(.medium))
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(riskLevelColor(learningRiskByStudent[summary.studentId] ?? "low").opacity(0.12))
-                            .foregroundColor(.secondary)
-                            .clipShape(RoundedRectangle(cornerRadius: 6))
-                    }
-                    if let metrics = progressMetricsByStudent[summary.studentId] {
-                        Text(
-                            "完成率 \(String(format: "%.0f", metrics.completionRatePercent))% · " +
-                            "波动 \(String(format: "%.2f", metrics.accuracyVolatility)) · " +
-                            "恢复 \(metrics.recoverySpeedDays.map { "\($0)天" } ?? "未恢复")"
-                        )
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                    }
-                    if let trend = progressTrendByStudent[summary.studentId], !trend.isEmpty {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("最近7天准确率")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                            HStack(alignment: .bottom, spacing: 4) {
-                                ForEach(trend) { point in
-                                    Capsule()
-                                        .fill(cardTrendBarColor(point.accuracyPercent, hasData: point.eventsTotal > 0))
-                                        .frame(width: 10, height: cardTrendBarHeight(point.accuracyPercent, hasData: point.eventsTotal > 0))
-                                }
-                            }
-                        }
-                    }
-                    if let aiInsight = summary.aiInsight, !aiInsight.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                        Text("AI 洞察：\(aiInsight)")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .padding(.top, 2)
-                    }
-                }
-                Spacer()
-                Text(summary.isCompleted ? "完成" : "进行中")
-                    .font(.caption.weight(.semibold))
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(summary.isCompleted ? Color.green.opacity(0.2) : Color.orange.opacity(0.2))
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
-            }
-
-            HStack {
-                Text("进度 \(summary.completedQuestions)/\(summary.targetQuestions)")
-                Spacer()
-                Text("正确率 \(String(format: "%.1f", summary.accuracyPercent))%")
-            }
-            .font(.subheadline)
-
-            HStack {
-                Text("答题数 \(summary.eventsTotal)")
-                Spacer()
-                Text("平均耗时 \(String(format: "%.1f", summary.averageTimeSpentSeconds))s")
-            }
-            .font(.subheadline)
-            .foregroundColor(.secondary)
-        }
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+    /// Bundle the per-student signal state into a `DailySummarySignals` value
+    /// so the daily card view doesn't need to know about our six `@State` maps.
+    private func makeSignals(for summary: ParentDailySummary) -> DailySummarySignals {
+        DailySummarySignals(
+            newBadgeCount: newBadgeCountByStudent[summary.studentId] ?? 0,
+            streakAtRisk: streakAtRiskByStudent[summary.studentId] ?? false,
+            learningRiskLevel: learningRiskByStudent[summary.studentId],
+            learningRiskReasons: learningRiskReasonsByStudent[summary.studentId] ?? [],
+            progressMetrics: progressMetricsByStudent[summary.studentId],
+            progressTrend: progressTrendByStudent[summary.studentId],
+            badgeUnread: isSignalUnread(studentId: summary.studentId, kind: .newBadge),
+            streakUnread: isSignalUnread(studentId: summary.studentId, kind: .streakRisk),
+            learningUnread: isSignalUnread(studentId: summary.studentId, kind: .learningRisk)
         )
-        .shadow(color: Color.black.opacity(0.03), radius: 8, x: 0, y: 4)
     }
 
     private func loadSummaries() async {
@@ -649,19 +547,6 @@ struct ParentDashboardView: View {
         progressTrendByStudent = trendMap
     }
 
-    private func cardTrendBarHeight(_ accuracy: Double, hasData: Bool) -> CGFloat {
-        guard hasData else { return 6 }
-        let bounded = min(max(accuracy, 0.0), 100.0)
-        return max(8, CGFloat(bounded / 100.0) * 26.0)
-    }
-
-    private func cardTrendBarColor(_ accuracy: Double, hasData: Bool) -> Color {
-        guard hasData else { return Color(.systemGray4) }
-        if accuracy >= 80 { return .green }
-        if accuracy >= 60 { return .orange }
-        return .red
-    }
-
     private func weeklyCard(_ summary: ParentWeeklySummary) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -783,28 +668,6 @@ struct ParentDashboardView: View {
         .padding(.horizontal, 16)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 14))
-    }
-
-    private func riskLevelLabel(_ level: String) -> String {
-        switch level {
-        case "high":
-            return "高"
-        case "medium":
-            return "中"
-        default:
-            return "低"
-        }
-    }
-
-    private func riskLevelColor(_ level: String) -> Color {
-        switch level {
-        case "high":
-            return .red
-        case "medium":
-            return .orange
-        default:
-            return .green
-        }
     }
 
     private func fallbackSummaries() -> [ParentDailySummary] {
