@@ -2,7 +2,8 @@
 Multiplication fact templates (times tables) for Year 3-4 learners.
 """
 import random
-import uuid
+
+from .base import deterministic_item_id
 
 
 class MultiplicationFactsTemplate:
@@ -33,15 +34,22 @@ class MultiplicationFactsTemplate:
             a, b = b, a
 
         answer = a * b
-        item_id = f"{MultiplicationFactsTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"What is {a} × {b}?"
+        parameters = {"a": a, "b": b}
+        item_id = deterministic_item_id(
+            skill_id=MultiplicationFactsTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
 
         return {
             "item_id": item_id,
             "skill_id": MultiplicationFactsTemplate.skill_id,
-            "question_text": f"What is {a} × {b}?",
+            "question_text": question,
             "question_type": MultiplicationFactsTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"a": a, "b": b},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": hint,
             "explanation": f"{a} × {b} = {answer}",

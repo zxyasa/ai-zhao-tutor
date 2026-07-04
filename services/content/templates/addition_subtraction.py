@@ -2,7 +2,8 @@
 Templates for place value, arithmetic, and intro algebra skills.
 """
 import random
-import uuid
+
+from .base import deterministic_item_id
 
 
 class PlaceValueTemplate:
@@ -41,14 +42,20 @@ class PlaceValueTemplate:
             hint = "Combine hundreds, tens, and ones."
             explanation = f"{h * 100} + {t * 10} + {o} = {answer}."
 
-        item_id = f"{PlaceValueTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": "identity", "number": n, "mode": mode, "answer": answer}
+        item_id = deterministic_item_id(
+            skill_id=PlaceValueTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": PlaceValueTemplate.skill_id,
             "question_text": question,
             "question_type": PlaceValueTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "identity", "number": n, "mode": mode, "answer": answer},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": hint,
             "explanation": explanation,
@@ -93,14 +100,20 @@ class AdditionSubtractionTemplate:
             hint = "Subtract ones, tens, and hundreds in order."
             explanation = f"{a} - {b} = {answer}."
 
-        item_id = f"{AdditionSubtractionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": op, "a": a, "b": b}
+        item_id = deterministic_item_id(
+            skill_id=AdditionSubtractionTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": AdditionSubtractionTemplate.skill_id,
             "question_text": question,
             "question_type": AdditionSubtractionTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": op, "a": a, "b": b},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": hint,
             "explanation": explanation,
@@ -149,14 +162,20 @@ class AlgebraIntroTemplate:
             answer = x
             explanation = f"Multiply both sides by {c}: x = {x}."
 
-        item_id = f"{AlgebraIntroTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": "identity", "x": x, "mode": mode}
+        item_id = deterministic_item_id(
+            skill_id=AlgebraIntroTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": AlgebraIntroTemplate.skill_id,
             "question_text": question,
             "question_type": AlgebraIntroTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "identity", "x": x, "mode": mode},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": "Undo the operation to isolate x.",
             "explanation": explanation,

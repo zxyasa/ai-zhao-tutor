@@ -3,8 +3,9 @@ Fraction templates with deterministic-style generation and explicit parameters f
 """
 import math
 import random
-import uuid
 from fractions import Fraction
+
+from .base import deterministic_item_id
 
 
 def _rand_fraction(min_denom: int = 2, max_denom: int = 12) -> tuple[int, int]:
@@ -27,14 +28,21 @@ class FractionIntroTemplate:
         total = random.randint(4, 8 + difficulty * 2)
         shaded = random.randint(1, total - 1)
         answer = f"{shaded}/{total}"
-        item_id = f"{FractionIntroTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"A shape is split into {total} equal parts and {shaded} are shaded. Write the fraction shaded."
+        parameters = {"operation": "identity", "num": shaded, "denom": total}
+        item_id = deterministic_item_id(
+            skill_id=FractionIntroTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionIntroTemplate.skill_id,
-            "question_text": f"A shape is split into {total} equal parts and {shaded} are shaded. Write the fraction shaded.",
+            "question_text": question,
             "question_type": FractionIntroTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "identity", "num": shaded, "denom": total},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Fraction = shaded parts / total equal parts.",
             "explanation": f"Shaded {shaded} out of {total}, so the fraction is {answer}.",
@@ -68,14 +76,21 @@ class FractionComparisonTemplate:
                 right = Fraction(n2, d2)
 
         answer = f"{n1}/{d1}" if left > right else f"{n2}/{d2}"
-        item_id = f"{FractionComparisonTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"Which is larger: {n1}/{d1} or {n2}/{d2}?"
+        parameters = {"operation": "max_fraction", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2}
+        item_id = deterministic_item_id(
+            skill_id=FractionComparisonTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionComparisonTemplate.skill_id,
-            "question_text": f"Which is larger: {n1}/{d1} or {n2}/{d2}?",
+            "question_text": question,
             "question_type": FractionComparisonTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "max_fraction", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Use a common denominator when needed.",
             "explanation": "Convert to a common denominator and compare numerators.",
@@ -93,14 +108,21 @@ class FractionIdentifyTemplate:
         total = random.randint(3, 10 + difficulty * 2)
         shaded = random.randint(1, total - 1)
         answer = f"{shaded}/{total}"
-        item_id = f"{FractionIdentifyTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"Out of {total} equal parts, {shaded} are highlighted. What fraction is highlighted?"
+        parameters = {"operation": "identity", "num": shaded, "denom": total}
+        item_id = deterministic_item_id(
+            skill_id=FractionIdentifyTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionIdentifyTemplate.skill_id,
-            "question_text": f"Out of {total} equal parts, {shaded} are highlighted. What fraction is highlighted?",
+            "question_text": question,
             "question_type": FractionIdentifyTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "identity", "num": shaded, "denom": total},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Write highlighted over total parts.",
             "explanation": f"That is {shaded}/{total}.",
@@ -128,14 +150,20 @@ class EquivalentFractionTemplate:
             answer = f"{num}/{denom}"
             q = f"Simplify {uns_num}/{uns_den} to lowest terms."
 
-        item_id = f"{EquivalentFractionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": "equivalent", "num": num, "denom": denom, "factor": factor}
+        item_id = deterministic_item_id(
+            skill_id=EquivalentFractionTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=q,
+        )
         return {
             "item_id": item_id,
             "skill_id": EquivalentFractionTemplate.skill_id,
             "question_text": q,
             "question_type": EquivalentFractionTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "equivalent", "num": num, "denom": denom, "factor": factor},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Multiply or divide numerator and denominator by the same number.",
             "explanation": "Equivalent fractions keep the same value.",
@@ -159,14 +187,21 @@ class FractionCompareAdvancedTemplate:
             right = Fraction(n2, d2)
 
         answer = f"{n1}/{d1}" if left > right else f"{n2}/{d2}"
-        item_id = f"{FractionCompareAdvancedTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"Which is larger: {n1}/{d1} or {n2}/{d2}?"
+        parameters = {"operation": "max_fraction", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2}
+        item_id = deterministic_item_id(
+            skill_id=FractionCompareAdvancedTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionCompareAdvancedTemplate.skill_id,
-            "question_text": f"Which is larger: {n1}/{d1} or {n2}/{d2}?",
+            "question_text": question,
             "question_type": FractionCompareAdvancedTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "max_fraction", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Use LCM/common denominator.",
             "explanation": "Convert to common denominator and compare.",
@@ -186,14 +221,21 @@ class FractionSimplifyTemplate:
         n = base_n * factor
         d = base_d * factor
         answer = f"{base_n}/{base_d}"
-        item_id = f"{FractionSimplifyTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"Simplify {n}/{d} to lowest terms."
+        parameters = {"operation": "simplify", "num": n, "denom": d}
+        item_id = deterministic_item_id(
+            skill_id=FractionSimplifyTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionSimplifyTemplate.skill_id,
-            "question_text": f"Simplify {n}/{d} to lowest terms.",
+            "question_text": question,
             "question_type": FractionSimplifyTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "simplify", "num": n, "denom": d},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Divide numerator and denominator by the GCD.",
             "explanation": f"GCD({n}, {d}) = {factor}.",
@@ -213,14 +255,21 @@ class FractionAdditionTemplate:
         n2 = random.randint(1, denom - 1)
         result = Fraction(n1, denom) + Fraction(n2, denom)
         answer = _format_fraction(result)
-        item_id = f"{FractionAdditionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"What is {n1}/{denom} + {n2}/{denom}?"
+        parameters = {"operation": "add_frac", "num1": n1, "denom1": denom, "num2": n2, "denom2": denom}
+        item_id = deterministic_item_id(
+            skill_id=FractionAdditionTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionAdditionTemplate.skill_id,
-            "question_text": f"What is {n1}/{denom} + {n2}/{denom}?",
+            "question_text": question,
             "question_type": FractionAdditionTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "add_frac", "num1": n1, "denom1": denom, "num2": n2, "denom2": denom},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Same denominator: add numerators.",
             "explanation": "Then simplify if needed.",
@@ -239,14 +288,21 @@ class FractionAdditionDiffTemplate:
         n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) + Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionAdditionDiffTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"What is {n1}/{d1} + {n2}/{d2}?"
+        parameters = {"operation": "add_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2}
+        item_id = deterministic_item_id(
+            skill_id=FractionAdditionDiffTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionAdditionDiffTemplate.skill_id,
-            "question_text": f"What is {n1}/{d1} + {n2}/{d2}?",
+            "question_text": question,
             "question_type": FractionAdditionDiffTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "add_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Use a common denominator.",
             "explanation": "Add converted numerators and simplify.",
@@ -266,14 +322,21 @@ class FractionSubtractionTemplate:
         n2 = random.randint(1, n1 - 1)
         result = Fraction(n1, denom) - Fraction(n2, denom)
         answer = _format_fraction(result)
-        item_id = f"{FractionSubtractionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"What is {n1}/{denom} - {n2}/{denom}?"
+        parameters = {"operation": "sub_frac", "num1": n1, "denom1": denom, "num2": n2, "denom2": denom}
+        item_id = deterministic_item_id(
+            skill_id=FractionSubtractionTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionSubtractionTemplate.skill_id,
-            "question_text": f"What is {n1}/{denom} - {n2}/{denom}?",
+            "question_text": question,
             "question_type": FractionSubtractionTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "sub_frac", "num1": n1, "denom1": denom, "num2": n2, "denom2": denom},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Same denominator: subtract numerators.",
             "explanation": "Then simplify if possible.",
@@ -295,14 +358,21 @@ class FractionSubtractionDiffTemplate:
             n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) - Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionSubtractionDiffTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"What is {n1}/{d1} - {n2}/{d2}?"
+        parameters = {"operation": "sub_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2}
+        item_id = deterministic_item_id(
+            skill_id=FractionSubtractionDiffTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionSubtractionDiffTemplate.skill_id,
-            "question_text": f"What is {n1}/{d1} - {n2}/{d2}?",
+            "question_text": question,
             "question_type": FractionSubtractionDiffTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "sub_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Convert to a common denominator first.",
             "explanation": "Subtract converted numerators and simplify.",
@@ -321,14 +391,21 @@ class FractionMultiplyTemplate:
         n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) * Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionMultiplyTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"What is {n1}/{d1} × {n2}/{d2}?"
+        parameters = {"operation": "mul_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2}
+        item_id = deterministic_item_id(
+            skill_id=FractionMultiplyTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionMultiplyTemplate.skill_id,
-            "question_text": f"What is {n1}/{d1} × {n2}/{d2}?",
+            "question_text": question,
             "question_type": FractionMultiplyTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "mul_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Multiply numerators, multiply denominators.",
             "explanation": "Simplify final answer.",
@@ -347,14 +424,21 @@ class FractionDivideTemplate:
         n2, d2 = _rand_fraction(2, 8 + difficulty)
         result = Fraction(n1, d1) / Fraction(n2, d2)
         answer = _format_fraction(result)
-        item_id = f"{FractionDivideTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        question = f"What is {n1}/{d1} ÷ {n2}/{d2}?"
+        parameters = {"operation": "div_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2}
+        item_id = deterministic_item_id(
+            skill_id=FractionDivideTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionDivideTemplate.skill_id,
-            "question_text": f"What is {n1}/{d1} ÷ {n2}/{d2}?",
+            "question_text": question,
             "question_type": FractionDivideTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "div_frac", "num1": n1, "denom1": d1, "num2": n2, "denom2": d2},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Multiply by the reciprocal of the second fraction.",
             "explanation": "Invert second fraction, then multiply.",
@@ -388,7 +472,12 @@ class FractionMixedTemplate:
             parameters = {"operation": "to_mixed_num_only", "improper_num": num, "denom": frac_denom, "whole": whole}
             rule = "numeric"
 
-        item_id = f"{FractionMixedTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        item_id = deterministic_item_id(
+            skill_id=FractionMixedTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": FractionMixedTemplate.skill_id,

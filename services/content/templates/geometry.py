@@ -4,7 +4,8 @@ angle classification, 3D shape properties, complementary/supplementary
 angle pairs, and first-quadrant coordinates.
 """
 import random
-import uuid
+
+from .base import deterministic_item_id
 
 
 # -----------------------------------------------------------------------------
@@ -44,14 +45,20 @@ class Shape2DYear3Template:
         hint = "Match the description to a shape you know. Count sides and angles."
         explanation = f"A {name} has {desc}."
 
-        item_id = f"{Shape2DYear3Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"shape_name": name, "description": desc}
+        item_id = deterministic_item_id(
+            skill_id=Shape2DYear3Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": Shape2DYear3Template.skill_id,
             "question_text": question,
             "question_type": Shape2DYear3Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"shape_name": name, "description": desc},
+            "parameters": parameters,
             "correct_answer": name,
             "hint": hint,
             "explanation": explanation,
@@ -97,14 +104,20 @@ class SymmetryYear3Template:
         else:
             explanation = f"A {display_name} has {lines} line(s) of symmetry."
 
-        item_id = f"{SymmetryYear3Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"shape": shape_name, "lines": lines}
+        item_id = deterministic_item_id(
+            skill_id=SymmetryYear3Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": SymmetryYear3Template.skill_id,
             "question_text": question,
             "question_type": SymmetryYear3Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"shape": shape_name, "lines": lines},
+            "parameters": parameters,
             "correct_answer": str(lines),
             "hint": hint,
             "explanation": explanation,
@@ -164,14 +177,20 @@ class AnglesYear4Template:
         hint = "acute<90, right=90, obtuse between 90 and 180, straight=180, reflex>180."
         explanation = f"{deg} degrees is {answer} ({AnglesYear4Template._rule(answer)})."
 
-        item_id = f"{AnglesYear4Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"degrees": deg}
+        item_id = deterministic_item_id(
+            skill_id=AnglesYear4Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": AnglesYear4Template.skill_id,
             "question_text": question,
             "question_type": AnglesYear4Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"degrees": deg},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": hint,
             "explanation": explanation,
@@ -225,14 +244,20 @@ class Shape3DYear4Template:
         hint = "Face = flat (or curved) surface. Edge = where two faces meet. Vertex = corner point."
         explanation = f"A {name} has {value} {prop}."
 
-        item_id = f"{Shape3DYear4Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"shape": name, "property": prop, "value": value}
+        item_id = deterministic_item_id(
+            skill_id=Shape3DYear4Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": Shape3DYear4Template.skill_id,
             "question_text": question,
             "question_type": Shape3DYear4Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"shape": name, "property": prop, "value": value},
+            "parameters": parameters,
             "correct_answer": str(value),
             "hint": hint,
             "explanation": explanation,
@@ -285,14 +310,20 @@ class AnglesYear5Template:
 
         explanation = f"{total} - {given} = {missing} degrees."
 
-        item_id = f"{AnglesYear5Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"pair_type": pair_type, "given": given, "total": total}
+        item_id = deterministic_item_id(
+            skill_id=AnglesYear5Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": AnglesYear5Template.skill_id,
             "question_text": question,
             "question_type": AnglesYear5Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"pair_type": pair_type, "given": given, "total": total},
+            "parameters": parameters,
             "correct_answer": str(missing),
             "hint": hint,
             "explanation": explanation,
@@ -350,7 +381,12 @@ class CoordinatesYear5Template:
             params = {"mode": mode, "x": x, "y": y}
             validation = "numeric"
 
-        item_id = f"{CoordinatesYear5Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        item_id = deterministic_item_id(
+            skill_id=CoordinatesYear5Template.skill_id,
+            difficulty=difficulty,
+            parameters=params,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": CoordinatesYear5Template.skill_id,

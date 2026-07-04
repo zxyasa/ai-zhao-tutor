@@ -2,7 +2,8 @@
 Templates for decimal and percent skills.
 """
 import random
-import uuid
+
+from .base import deterministic_item_id
 
 
 class DecimalTemplate:
@@ -40,14 +41,20 @@ class DecimalTemplate:
             answer = f"{answer_val:.2f}"
             explanation = f"Compare whole numbers first, then tenths/hundredths. Larger value is {answer}."
 
-        item_id = f"{DecimalTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": "identity", "answer": answer, "mode": mode}
+        item_id = deterministic_item_id(
+            skill_id=DecimalTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": DecimalTemplate.skill_id,
             "question_text": question,
             "question_type": DecimalTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "identity", "answer": answer, "mode": mode},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": "Line up decimal places before comparing or converting.",
             "explanation": explanation,
@@ -84,14 +91,20 @@ class PercentTemplate:
             question = f"Convert {num}/{denom} to a percentage (number only)."
             explanation = f"{num}/{denom} = {answer}/100, so it is {answer}%."
 
-        item_id = f"{PercentTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": "identity", "answer": answer, "mode": mode}
+        item_id = deterministic_item_id(
+            skill_id=PercentTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": PercentTemplate.skill_id,
             "question_text": question,
             "question_type": PercentTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "identity", "answer": answer, "mode": mode},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": "Percent means per 100.",
             "explanation": explanation,

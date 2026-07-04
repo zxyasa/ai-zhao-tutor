@@ -4,7 +4,8 @@ tables, qualitative chance words, mean of a list, and simple probabilities
 as fractions.
 """
 import random
-import uuid
+
+from .base import deterministic_item_id
 
 
 # -----------------------------------------------------------------------------
@@ -48,14 +49,20 @@ class DataReadYear3Template:
         hint = "Find the row (or bar) for the category, then read its value."
         explanation = f"From the data, {target} = {counts[target]}."
 
-        item_id = f"{DataReadYear3Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"topic": topic, "counts": counts, "target": target}
+        item_id = deterministic_item_id(
+            skill_id=DataReadYear3Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": DataReadYear3Template.skill_id,
             "question_text": question,
             "question_type": DataReadYear3Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"topic": topic, "counts": counts, "target": target},
+            "parameters": parameters,
             "correct_answer": str(counts[target]),
             "hint": hint,
             "explanation": explanation,
@@ -134,14 +141,20 @@ class DataInterpretYear4Template:
             validation = "numeric"
             correct = str(answer)
 
-        item_id = f"{DataInterpretYear4Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"topic": topic, "counts": counts, "operation": q_type}
+        item_id = deterministic_item_id(
+            skill_id=DataInterpretYear4Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": DataInterpretYear4Template.skill_id,
             "question_text": question,
             "question_type": validation,
             "difficulty": difficulty,
-            "parameters": {"topic": topic, "counts": counts, "operation": q_type},
+            "parameters": parameters,
             "correct_answer": correct,
             "hint": hint,
             "explanation": explanation,
@@ -193,14 +206,20 @@ class ChanceYear4Template:
         hint = "Impossible can never happen; unlikely is rare; likely happens often; certain always happens."
         explanation = f"This event is {classification}."
 
-        item_id = f"{ChanceYear4Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"event": event_text, "options": ChanceYear4Template.CLASSES}
+        item_id = deterministic_item_id(
+            skill_id=ChanceYear4Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": ChanceYear4Template.skill_id,
             "question_text": question,
             "question_type": ChanceYear4Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"event": event_text, "options": ChanceYear4Template.CLASSES},
+            "parameters": parameters,
             "correct_answer": classification,
             "hint": hint,
             "explanation": explanation,
@@ -267,14 +286,20 @@ class DataAvgYear5Template:
             f"Count = {n}. Mean = {total} / {n} = {mean}."
         )
 
-        item_id = f"{DataAvgYear5Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"values": values, "count": n, "sum": total}
+        item_id = deterministic_item_id(
+            skill_id=DataAvgYear5Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": DataAvgYear5Template.skill_id,
             "question_text": question,
             "question_type": DataAvgYear5Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"values": values, "count": n, "sum": total},
+            "parameters": parameters,
             "correct_answer": str(mean),
             "hint": hint,
             "explanation": explanation,
@@ -357,14 +382,20 @@ class ChanceYear5Template:
             explanation = f"Favourable = {favourable}, total = {sections}. P = {favourable}/{sections}."
 
         answer = f"{num}/{denom}"
-        item_id = f"{ChanceYear5Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"scenario": scenario, "num": num, "denom": denom}
+        item_id = deterministic_item_id(
+            skill_id=ChanceYear5Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": ChanceYear5Template.skill_id,
             "question_text": question,
             "question_type": ChanceYear5Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"scenario": scenario, "num": num, "denom": denom},
+            "parameters": parameters,
             "correct_answer": answer,
             "hint": hint,
             "explanation": explanation,

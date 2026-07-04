@@ -3,7 +3,8 @@ Measurement templates (Year 3-5): length, time, money, area, perimeter,
 volume, and unit conversion. All math deterministic and verifiable.
 """
 import random
-import uuid
+
+from .base import deterministic_item_id
 
 
 # -----------------------------------------------------------------------------
@@ -45,14 +46,20 @@ class LengthYear3Template:
             explanation = f"{cm} cm / 100 = {metres} m."
             params = {"operation": "cm_to_m", "value": cm}
 
-        item_id = f"{LengthYear3Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {**params, "answer_unit": unit}
+        item_id = deterministic_item_id(
+            skill_id=LengthYear3Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": LengthYear3Template.skill_id,
             "question_text": question,
             "question_type": LengthYear3Template.question_type,
             "difficulty": difficulty,
-            "parameters": {**params, "answer_unit": unit},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": hint,
             "explanation": explanation,
@@ -84,14 +91,20 @@ class TimeYear3Template:
         hint = "Read the digits after the colon — those are the minutes past the hour."
         explanation = f"{time_str} means {minutes} minutes past {hour} o'clock."
 
-        item_id = f"{TimeYear3Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"hour": hour, "minutes": minutes, "display": time_str}
+        item_id = deterministic_item_id(
+            skill_id=TimeYear3Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": TimeYear3Template.skill_id,
             "question_text": question,
             "question_type": TimeYear3Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"hour": hour, "minutes": minutes, "display": time_str},
+            "parameters": parameters,
             "correct_answer": str(minutes),
             "hint": hint,
             "explanation": explanation,
@@ -136,14 +149,20 @@ class MoneyYear3Template:
         hint = "Add each coin's value in cents. $1 = 100c, $2 = 200c."
         explanation = f"{' + '.join(str(c) for c in coins)} = {total} cents."
 
-        item_id = f"{MoneyYear3Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"coins_cents": coins, "answer_unit": "cents"}
+        item_id = deterministic_item_id(
+            skill_id=MoneyYear3Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": MoneyYear3Template.skill_id,
             "question_text": question,
             "question_type": MoneyYear3Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"coins_cents": coins, "answer_unit": "cents"},
+            "parameters": parameters,
             "correct_answer": str(total),
             "hint": hint,
             "explanation": explanation,
@@ -179,14 +198,20 @@ class AreaYear4Template:
         hint = "Area of a rectangle = length x width."
         explanation = f"{l} x {w} = {area} square cm."
 
-        item_id = f"{AreaYear4Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"length": l, "width": w, "answer_unit": "sq cm"}
+        item_id = deterministic_item_id(
+            skill_id=AreaYear4Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": AreaYear4Template.skill_id,
             "question_text": question,
             "question_type": AreaYear4Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"length": l, "width": w, "answer_unit": "sq cm"},
+            "parameters": parameters,
             "correct_answer": str(area),
             "hint": hint,
             "explanation": explanation,
@@ -218,14 +243,20 @@ class PerimeterYear4Template:
         hint = "Perimeter = 2 x (length + width)."
         explanation = f"2 x ({l} + {w}) = 2 x {l + w} = {perimeter} cm."
 
-        item_id = f"{PerimeterYear4Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"length": l, "width": w, "answer_unit": "cm"}
+        item_id = deterministic_item_id(
+            skill_id=PerimeterYear4Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": PerimeterYear4Template.skill_id,
             "question_text": question,
             "question_type": PerimeterYear4Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"length": l, "width": w, "answer_unit": "cm"},
+            "parameters": parameters,
             "correct_answer": str(perimeter),
             "hint": hint,
             "explanation": explanation,
@@ -258,14 +289,20 @@ class VolumeYear4Template:
         hint = "Volume = length x width x height."
         explanation = f"{l} x {w} x {h} = {volume} cubic units."
 
-        item_id = f"{VolumeYear4Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"length": l, "width": w, "height": h, "answer_unit": "cubic units"}
+        item_id = deterministic_item_id(
+            skill_id=VolumeYear4Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": VolumeYear4Template.skill_id,
             "question_text": question,
             "question_type": VolumeYear4Template.question_type,
             "difficulty": difficulty,
-            "parameters": {"length": l, "width": w, "height": h, "answer_unit": "cubic units"},
+            "parameters": parameters,
             "correct_answer": str(volume),
             "hint": hint,
             "explanation": explanation,
@@ -320,7 +357,12 @@ class AreaYear5Template:
             explanation = f"{a} x {b} = {area} square cm."
             params = {"shape": "rectangle", "length": a, "width": b, "answer_unit": "sq cm"}
 
-        item_id = f"{AreaYear5Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        item_id = deterministic_item_id(
+            skill_id=AreaYear5Template.skill_id,
+            difficulty=difficulty,
+            parameters=params,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": AreaYear5Template.skill_id,
@@ -385,20 +427,26 @@ class PerimeterYear5Template:
             f"and removes {w} + {h} from the outside — they cancel."
         )
 
-        item_id = f"{PerimeterYear5Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {
+            "outer_length": W,
+            "outer_width": H,
+            "notch_length": w,
+            "notch_width": h,
+            "answer_unit": "m",
+        }
+        item_id = deterministic_item_id(
+            skill_id=PerimeterYear5Template.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": PerimeterYear5Template.skill_id,
             "question_text": question,
             "question_type": PerimeterYear5Template.question_type,
             "difficulty": difficulty,
-            "parameters": {
-                "outer_length": W,
-                "outer_width": H,
-                "notch_length": w,
-                "notch_width": h,
-                "answer_unit": "m",
-            },
+            "parameters": parameters,
             "correct_answer": str(perimeter),
             "hint": hint,
             "explanation": explanation,
@@ -471,7 +519,12 @@ class UnitConvertYear5Template:
                 "answer_unit": from_unit,
             }
 
-        item_id = f"{UnitConvertYear5Template.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        item_id = deterministic_item_id(
+            skill_id=UnitConvertYear5Template.skill_id,
+            difficulty=difficulty,
+            parameters=params,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": UnitConvertYear5Template.skill_id,

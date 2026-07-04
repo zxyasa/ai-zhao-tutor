@@ -3,7 +3,8 @@ Templates for multiplication/division and ratio skills.
 """
 import math
 import random
-import uuid
+
+from .base import deterministic_item_id
 
 
 class MultiplicationDivisionTemplate:
@@ -42,14 +43,20 @@ class MultiplicationDivisionTemplate:
             hint = "Think of the related multiplication fact."
             explanation = f"Because {a} × {b} = {product}, {product} ÷ {b} = {a}."
 
-        item_id = f"{MultiplicationDivisionTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": op, "a": a, "b": b}
+        item_id = deterministic_item_id(
+            skill_id=MultiplicationDivisionTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": MultiplicationDivisionTemplate.skill_id,
             "question_text": question,
             "question_type": MultiplicationDivisionTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": op, "a": a, "b": b},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": hint,
             "explanation": explanation,
@@ -95,14 +102,20 @@ class RatioTemplate:
             answer = a * factor
             explanation = f"Scale both parts by {factor}: {a}:{b} -> {a * factor}:{b * factor}."
 
-        item_id = f"{RatioTemplate.skill_id}_d{difficulty}_{uuid.uuid4().hex[:8]}"
+        parameters = {"operation": "identity", "answer": answer, "mode": mode}
+        item_id = deterministic_item_id(
+            skill_id=RatioTemplate.skill_id,
+            difficulty=difficulty,
+            parameters=parameters,
+            question_text=question,
+        )
         return {
             "item_id": item_id,
             "skill_id": RatioTemplate.skill_id,
             "question_text": question,
             "question_type": RatioTemplate.question_type,
             "difficulty": difficulty,
-            "parameters": {"operation": "identity", "answer": answer, "mode": mode},
+            "parameters": parameters,
             "correct_answer": str(answer),
             "hint": "Ratios scale by multiplying or dividing both parts by the same number.",
             "explanation": explanation,
