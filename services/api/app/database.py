@@ -44,6 +44,8 @@ def _ensure_student_schema_compat() -> None:
             "ALTER TABLE students ADD COLUMN parent_id VARCHAR",
             "ALTER TABLE students ADD COLUMN pin_hash VARCHAR",
             "ALTER TABLE daily_sessions ADD COLUMN bonus_questions INTEGER DEFAULT 0 NOT NULL",
+            "CREATE INDEX IF NOT EXISTS ix_events_student_timestamp ON events (student_id, timestamp DESC)",
+            "CREATE INDEX IF NOT EXISTS ix_daily_sessions_student_date ON daily_sessions (student_id, session_date DESC)",
         ],
         "postgresql": [
             "ALTER TABLE students ADD COLUMN IF NOT EXISTS avatar VARCHAR NOT NULL DEFAULT 'star'",
@@ -55,6 +57,11 @@ def _ensure_student_schema_compat() -> None:
             "ALTER TABLE students ADD COLUMN IF NOT EXISTS parent_id VARCHAR",
             "ALTER TABLE students ADD COLUMN IF NOT EXISTS pin_hash VARCHAR",
             "ALTER TABLE daily_sessions ADD COLUMN IF NOT EXISTS bonus_questions INTEGER NOT NULL DEFAULT 0",
+            # Composite index for parent dashboard queries (student_id + timestamp range).
+            # Turns the planner from single-column pick to direct composite scan;
+            # matches _build_student_*_summary hot path. Cheap at 7k rows, essential at 70k+.
+            "CREATE INDEX IF NOT EXISTS ix_events_student_timestamp ON events (student_id, timestamp DESC)",
+            "CREATE INDEX IF NOT EXISTS ix_daily_sessions_student_date ON daily_sessions (student_id, session_date DESC)",
         ],
     }
 

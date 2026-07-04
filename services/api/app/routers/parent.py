@@ -6,8 +6,9 @@ from math import sqrt
 import re
 from uuid import uuid4
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, status
 from pydantic import BaseModel, Field
+from sqlalchemy import case, func
 from sqlalchemy.orm import Session
 
 from ..auth.security import hash_secret, verify_secret
@@ -105,6 +106,7 @@ async def change_parent_password(
 @router.post("/parent/students", status_code=status.HTTP_201_CREATED)
 async def create_parent_student(
     payload: ParentStudentCreate,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
     current_parent: DBParent = Depends(require_parent),
 ):
@@ -130,14 +132,15 @@ async def create_parent_student(
     db.add(student)
     db.commit()
     db.refresh(student)
-    notify_ok = notify_parent_student_created(
+    # SMTP happens after response — never blocks the iOS client.
+    # notify_parent_student_created's own retry loop handles transient SMTP failures.
+    background_tasks.add_task(
+        _notify_and_log,
         parent_email=current_parent.email,
         student_name=student.name,
         student_id=student.id,
         initial_pin=pin,
     )
-    if not notify_ok:
-        logger.warning("parent_notification_failed student_id=%s parent=%s", student.id, current_parent.email)
     return {
         "id": student.id,
         "name": student.name,
@@ -199,6 +202,17 @@ async def get_parent_student_progress(
     return _build_student_progress_series(db, student, start_day, end_day)
 
 
+def _notify_and_log(*, parent_email: str, student_name: str, student_id: str, initial_pin: str) -> None:
+    """Runs in a BackgroundTask so SMTP retries can't block the request cycle."""
+    if not notify_parent_student_created(
+        parent_email=parent_email,
+        student_name=student_name,
+        student_id=student_id,
+        initial_pin=initial_pin,
+    ):
+        logger.warning("parent_notification_failed student_id=%s parent=%s", student_id, parent_email)
+
+
 def _get_parent_student_or_404(db: Session, *, parent_id: str, student_id: str) -> DBStudent:
     student = db.query(DBStudent).filter(
         DBStudent.id == student_id,
@@ -223,16 +237,24 @@ def _build_student_daily_summary(db: Session, student: DBStudent, day: date, par
     start_dt = datetime.combine(day, time.min)
     end_dt = datetime.combine(day, time.max)
 
-    events = db.query(DBEvent).filter(
+    # Aggregate in SQL — 1 round-trip returning 3 scalars, no row-pull into Python.
+    # The composite (student_id, timestamp) index makes this an O(matching-rows) scan
+    # rather than a filter-then-sort. See database.py ix_events_student_timestamp.
+    agg = db.query(
+        func.count(DBEvent.id).label("total"),
+        func.sum(case((DBEvent.is_correct.is_(True), 1), else_=0)).label("correct"),
+        func.coalesce(func.sum(DBEvent.time_spent), 0.0).label("total_time"),
+    ).filter(
         DBEvent.student_id == student.id,
         DBEvent.timestamp >= start_dt,
         DBEvent.timestamp <= end_dt,
-    ).all()
+    ).one()
 
-    correct_count = sum(1 for event in events if event.is_correct)
-    total_count = len(events)
+    total_count = int(agg.total or 0)
+    correct_count = int(agg.correct or 0)
+    total_time = float(agg.total_time or 0.0)
     accuracy = round((correct_count / total_count) * 100, 1) if total_count else 0.0
-    avg_time = round(sum(event.time_spent for event in events) / total_count, 2) if total_count else 0.0
+    avg_time = round(total_time / total_count, 2) if total_count else 0.0
 
     session = db.query(DBDailySession).filter(
         DBDailySession.student_id == student.id,
@@ -268,23 +290,29 @@ def _build_student_weekly_summary(db: Session, student: DBStudent, start_day: da
     start_dt = datetime.combine(start_day, time.min)
     end_dt = datetime.combine(end_day, time.max)
 
-    events = db.query(DBEvent).filter(
+    events_agg = db.query(
+        func.count(DBEvent.id).label("total"),
+        func.sum(case((DBEvent.is_correct.is_(True), 1), else_=0)).label("correct"),
+    ).filter(
         DBEvent.student_id == student.id,
         DBEvent.timestamp >= start_dt,
         DBEvent.timestamp <= end_dt,
-    ).all()
-    total_events = len(events)
-    correct_events = sum(1 for event in events if event.is_correct)
+    ).one()
+    total_events = int(events_agg.total or 0)
+    correct_events = int(events_agg.correct or 0)
     accuracy = round((correct_events / total_events) * 100, 1) if total_events else 0.0
 
-    sessions = db.query(DBDailySession).filter(
+    sessions_agg = db.query(
+        func.sum(case((DBDailySession.is_completed.is_(True), 1), else_=0)).label("completed_days"),
+        func.coalesce(func.sum(DBDailySession.completed_questions), 0).label("total_completed"),
+    ).filter(
         DBDailySession.student_id == student.id,
         DBDailySession.session_date >= start_day,
         DBDailySession.session_date <= end_day,
-    ).all()
+    ).one()
 
-    completed_days = sum(1 for session in sessions if session.is_completed)
-    total_completed_questions = sum(session.completed_questions for session in sessions)
+    completed_days = int(sessions_agg.completed_days or 0)
+    total_completed_questions = int(sessions_agg.total_completed or 0)
 
     return {
         "student_id": student.id,
@@ -311,25 +339,37 @@ def _build_student_progress_series(db: Session, student: DBStudent, start_day: d
 
     start_dt = datetime.combine(start_day, time.min)
     end_dt = datetime.combine(end_day, time.max)
-    events = db.query(DBEvent).filter(
+
+    # Aggregate per-day via SQL GROUP BY — one row per day instead of pulling
+    # 30d × ~50 events/day = 1,500 rows into Python. Works on both SQLite and PG:
+    # both accept func.date(<timestamp>) for date truncation.
+    day_col = func.date(DBEvent.timestamp).label("day")
+    events_by_day_agg = db.query(
+        day_col,
+        func.count(DBEvent.id).label("total"),
+        func.sum(case((DBEvent.is_correct.is_(True), 1), else_=0)).label("correct"),
+        func.coalesce(func.sum(DBEvent.time_spent), 0.0).label("total_time"),
+    ).filter(
         DBEvent.student_id == student.id,
         DBEvent.timestamp >= start_dt,
         DBEvent.timestamp <= end_dt,
-    ).all()
+    ).group_by(day_col).all()
 
     events_by_day = {}
-    for event in events:
-        day = event.timestamp.date()
-        events_by_day.setdefault(day, []).append(event)
+    for row in events_by_day_agg:
+        # SQLite returns date as ISO string, PostgreSQL returns date object.
+        day_key = row.day if isinstance(row.day, date) else date.fromisoformat(str(row.day))
+        events_by_day[day_key] = row
 
     timeline = []
     day = start_day
     while day <= end_day:
-        day_events = events_by_day.get(day, [])
-        total_events = len(day_events)
-        correct_events = sum(1 for event in day_events if event.is_correct)
+        row = events_by_day.get(day)
+        total_events = int(row.total) if row else 0
+        correct_events = int(row.correct) if row else 0
+        total_time = float(row.total_time) if row else 0.0
         accuracy = round((correct_events / total_events) * 100, 1) if total_events else 0.0
-        avg_time = round(sum(event.time_spent for event in day_events) / total_events, 2) if total_events else 0.0
+        avg_time = round(total_time / total_events, 2) if total_events else 0.0
 
         session = session_by_day.get(day)
         completed_questions = session.completed_questions if session else 0
@@ -350,7 +390,14 @@ def _build_student_progress_series(db: Session, student: DBStudent, start_day: d
         )
         day += timedelta(days=1)
 
-    risk = _compute_risk_signal(events)
+    # For risk signal we only need the 7 most-recent events — small fetch, cheap.
+    recent_events = db.query(DBEvent).filter(
+        DBEvent.student_id == student.id,
+        DBEvent.timestamp >= start_dt,
+        DBEvent.timestamp <= end_dt,
+    ).order_by(DBEvent.timestamp.desc()).limit(7).all()
+
+    risk = _compute_risk_signal(recent_events)
     metrics = _compute_progress_metrics(timeline)
 
     return {
