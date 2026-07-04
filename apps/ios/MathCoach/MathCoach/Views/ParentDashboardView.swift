@@ -58,11 +58,11 @@ struct ParentDashboardView: View {
                         parentContextCard
                     }
 
-                    if let viewModel.errorMessage {
+                    if let errorMessage = viewModel.errorMessage {
                         HStack(spacing: 8) {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .foregroundColor(.orange)
-                            Text(viewModel.errorMessage)
+                            Text(errorMessage)
                                 .foregroundColor(.secondary)
                             Spacer()
                         }
@@ -113,7 +113,7 @@ struct ParentDashboardView: View {
                     .scrollIndicators(.hidden)
 
                     Button {
-                        Task { await loadSummaries() }
+                        Task { await viewModel.loadSummaries(mode: mode) }
                     } label: {
                         HStack(spacing: 6) {
                             Image(systemName: "arrow.clockwise")
@@ -141,10 +141,10 @@ struct ParentDashboardView: View {
             }
             .task {
                 rolloverSeenStateIfNeeded()
-                await loadSummaries()
+                await viewModel.loadSummaries(mode: mode)
             }
             .onChange(of: mode) { _, _ in
-                Task { await loadSummaries() }
+                Task { await viewModel.loadSummaries(mode: mode) }
             }
         }
         .sheet(item: $selectedDailySummary) { summary in
@@ -237,7 +237,7 @@ struct ParentDashboardView: View {
             contextSubmitMessage = "已提交"
             contextFreeText = ""
             selectedContextTags = []
-            await loadSummaries()
+            await viewModel.loadSummaries(mode: mode)
         } catch {
             contextSubmitMessage = "提交失败"
         }
@@ -420,7 +420,7 @@ struct ParentDashboardView: View {
             newStudentName = ""
             newStudentYearLevel = 3
             newStudentPin = ""
-            await loadSummaries()
+            await viewModel.loadSummaries(mode: mode)
         } catch {
             addStudentMessage = "创建失败：\(error.localizedDescription)"
         }
