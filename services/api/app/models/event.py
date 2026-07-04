@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Boolean, Float, DateTime, ForeignKey
+from sqlalchemy import Column, String, Boolean, Float, DateTime, ForeignKey, Index
 from sqlalchemy.orm import relationship
 from .student import Base
 
@@ -14,6 +14,13 @@ class Event(Base):
     time_spent = Column(Float, nullable=False)
     hint_requested = Column(Boolean, default=False)
     timestamp = Column(DateTime, nullable=False, index=True)
+
+    # Composite index used by every parent dashboard query
+    # (filter by student_id, range on timestamp). Overrides the single-column
+    # indices for that filter shape without replacing them.
+    __table_args__ = (
+        Index("ix_events_student_timestamp", "student_id", "timestamp"),
+    )
 
     # Relationships
     student = relationship("Student", back_populates="events")
